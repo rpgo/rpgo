@@ -11,8 +11,6 @@
 |
 */
 
-Route::get('/', 'WelcomeController@index');
-
 Route::get('home', 'HomeController@index');
 
 Route::controllers([
@@ -25,3 +23,6 @@ Route::get(Lang::get("routes.worlds.index"), ['as' => 'worlds.index', 'uses' => 
 Route::group(["domain" => "{slug}.rpgo.{tld}"], function(){
     Route::get('/', ['as' => 'worlds.show', 'uses' => 'WorldController@show']);
 });
+
+
+Route::get('/', 'WelcomeController@index');
