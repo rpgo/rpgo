@@ -4,11 +4,18 @@ use Rpgo\Http\Requests;
 use Rpgo\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use Rpgo\Http\Requests\CreateWorld;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
 
 class WorldController extends Controller {
 
-	/**
+    function __construct()
+    {
+        $this->middleware('auth', ['only' => ['create', 'store']]);
+    }
+
+
+    /**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
@@ -36,9 +43,19 @@ class WorldController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(CreateWorld $request)
 	{
-		//
+        $data = array_merge($request->all(),['creator_id' => \Auth::user()->id]);
+
+        $world = \Rpgo\World::create($data);
+
+        if(!$world)
+            return redirect()->back();
+
+        return redirect()->route('worlds.index')->with('message', 'success');
+
+
+
 	}
 
     /**

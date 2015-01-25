@@ -37,5 +37,8 @@
                 @endif
             </div>
         </div>
+        <div>
+            <a href="{{route('worlds.create')}}" class="btn btn-primary pull-right">{{trans('worlds.create.title')}}</a>
+        </div>
     </div>
 @endsection

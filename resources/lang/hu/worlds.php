@@ -13,5 +13,6 @@ return [
     "create" => [
         "title" => "Készíts egy új világot!",
         "submit" => "Legyen egy új világ",
+        "new" => "Új"
     ],
 ];

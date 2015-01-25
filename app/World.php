@@ -4,7 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class World extends Model {
 
-	protected $fillable = ["name", "slug", "creator_id"];
+	protected $fillable = ["name", "slug", "brand", "creator_id"];
 
     public function creator()
     {
