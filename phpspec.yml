@@ -1,0 +1,7 @@
+suites:
+  main:
+    namespace: Rpgo
+    psr4_prefix: Rpgo
+    src_path: app
+    spec_prefix: unit
+    spec_path: tests

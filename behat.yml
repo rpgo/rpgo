@@ -1,0 +1,32 @@
+behat:
+  paths:
+    base: ./
+default:
+  autoload:
+    '': %paths.base%/tests/acceptance/_bootstrap
+  suites:
+    default:
+      paths:
+        - %paths.base%/tests/acceptance
+      contexts:
+        - ModelContext
+    model:
+      paths:
+        - %paths.base%/tests/acceptance
+      contexts:
+        - ModelContext
+    app:
+      paths:
+        - %paths.base%/tests/acceptance
+      contexts:
+        - AppContext
+    ui:
+      paths:
+        - %paths.base%/tests/acceptance
+      contexts:
+        - UiContext
+    api:
+      paths:
+        - %paths.base%/tests/acceptance
+      contexts:
+        - ApiContext
