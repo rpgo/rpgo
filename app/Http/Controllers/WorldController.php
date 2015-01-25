@@ -25,7 +25,7 @@ class WorldController extends Controller {
 
         $worlds = \Rpgo\World::all();
 
-		return view('world.index', ["worlds" => $worlds]);
+		return view('world.index')->with(compact('worlds'));
 	}
 
 	/**
@@ -73,7 +73,7 @@ class WorldController extends Controller {
         if(! $world)
             throw new RouteNotFoundException;
 
-        return view('world.show', ['world' => $world]);
+        return view('world.show')->with(compact('world'));
 	}
 
 	/**

@@ -38,7 +38,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label">{{trans('worlds.slug')}}</label>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" name="slug">
+                                    <input type="text" class="form-control" name="slug" value="{{old('slug')}}">
                                 </div>
                             </div>
 

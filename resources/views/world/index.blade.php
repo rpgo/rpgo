@@ -4,18 +4,18 @@
     <div class="container-fluid">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">{{Lang::get('worlds.worlds')}}</h3>
+                <h3 class="panel-title">{{trans('worlds.worlds')}}</h3>
             </div>
             <div class="panel-body table-responsive">
-                @if($worlds->count())
+                @if(count($worlds))
                 <table class="table table-hover">
                     <thead>
                         <tr>
                             <th>
-                                {{Lang::get('worlds.world')}}
+                                {{trans('worlds.world')}}
                             </th>
                             <th>
-                                {{Lang::get('worlds.creator')}}
+                                {{trans('worlds.creator')}}
                             </th>
                         </tr>
                     </thead>
@@ -33,7 +33,7 @@
                     </tbody>
                 </table>
                 @else
-                    {{Lang::get('worlds.none')}}
+                    {{trans('worlds.none')}}
                 @endif
             </div>
         </div>
