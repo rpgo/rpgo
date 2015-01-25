@@ -15,7 +15,8 @@ class WorldController extends Controller {
 	public function index()
 	{
         $worlds = \Rpgo\World::all();
-		return view('world.index', $worlds);
+
+		return view('world.index', ["worlds" => $worlds]);
 	}
 
 	/**

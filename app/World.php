@@ -6,4 +6,9 @@ class World extends Model {
 
 	protected $fillable = ["name", "slug", "creator_id"];
 
+    public function creator()
+    {
+        return $this->belongsTo('Rpgo\User', 'creator_id', 'id');
+    }
+
 }
