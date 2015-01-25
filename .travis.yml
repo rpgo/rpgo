@@ -13,7 +13,7 @@ script:
 
 after_success:
   - composer install --no-dev --prefer-source --no-interaction
-  - curl --ftp-create-dirs -T . -u $FTP_USER:$FTP_PASSWORD ftp://t104.nlg.hu/dir
+  - find -type f -exec curl -v -u $FTP_USER:$FTP_PASSWORD --ftp-create-dirs -T {} ftp://$FTP_SERVER/{} \;
 
 notifications:
   email:
