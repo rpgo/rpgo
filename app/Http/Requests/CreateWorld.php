@@ -22,7 +22,9 @@ class CreateWorld extends Request {
 	public function rules()
 	{
 		return [
-			//
+			'name' => 'required|unique:worlds',
+            'brand' => 'required|unique:worlds',
+            'slug' => 'required|unique:worlds',
 		];
 	}
 
