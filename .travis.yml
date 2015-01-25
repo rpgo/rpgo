@@ -13,6 +13,7 @@ script:
 
 after_success:
   - composer install --no-dev --prefer-source --no-interaction
+  - gem install net-sftp
   - gem install dandelion
   - dandelion deploy
 
