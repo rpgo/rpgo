@@ -1,4 +1,4 @@
-@extends('app')
+@extends('master.rpgo')
 
 @section('content')
     <div class="container-fluid">
