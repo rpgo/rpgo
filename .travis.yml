@@ -13,7 +13,8 @@ script:
 
 after_success:
   - composer install --no-dev --prefer-source --no-interaction
-  - find -type f -exec curl -v -u $FTP_USER:$FTP_PASSWORD --ftp-create-dirs -T {} ftp://$FTP_SERVER/{} \;
+  - gem install dandelion
+  - dandelion deploy
 
 notifications:
   email:
