@@ -20,4 +20,4 @@ Route::controllers([
 	'password' => 'Auth\PasswordController',
 ]);
 
-Route::get(Lang::get("routes.worlds.index"), "WorldController@index");
+Route::get(Lang::get("routes.worlds.index"), ['as' => 'worlds.index', 'uses' => "WorldController@index"]);

@@ -13,7 +13,7 @@ class LanguageSetting {
 	 */
 	public function handle($request, Closure $next)
 	{
-        \App::setlocale('hu');
+        //\App::setlocale('hu');
 
         return $next($request);
 	}

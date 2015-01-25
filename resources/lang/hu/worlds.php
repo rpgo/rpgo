@@ -5,4 +5,5 @@ return [
     "worlds" => "Világok",
     "creator" => "Alkotó",
     "none" => "Nincs egyetlen világ sem.",
+    "index" => "Világok",
 ];
