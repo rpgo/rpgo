@@ -23,7 +23,7 @@
                     @foreach($worlds as $world)
                         <tr>
                             <td>
-                                <a href="http://{{$world->slug}}.rpgo.hu">{{$world->name}}</a>
+                                <a href="{{route('worlds.show',[$world->slug, "dev"])}}">{{$world->name}}</a>
                             </td>
                             <td>
                                 {{$world->creator->name}}

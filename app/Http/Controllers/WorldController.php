@@ -14,6 +14,7 @@ class WorldController extends Controller {
 	 */
 	public function index()
 	{
+
         $worlds = \Rpgo\World::all();
 
 		return view('world.index', ["worlds" => $worlds]);
@@ -39,15 +40,16 @@ class WorldController extends Controller {
 		//
 	}
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
+    /**
+     * Display the specified resource.
+     *
+     * @param $slug
+     * @param $tld
+     * @return Response
+     */
+	public function show($slug, $tld)
 	{
-		//
+		dd($slug);
 	}
 
 	/**
