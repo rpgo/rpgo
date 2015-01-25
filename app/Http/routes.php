@@ -18,7 +18,15 @@ Route::controllers([
 	'password' => 'Auth\PasswordController',
 ]);
 
-Route::get(Lang::get("routes.worlds.index"), ['as' => 'worlds.index', 'uses' => "WorldController@index"]);
+Route::get(Lang::get("routes.worlds") . "/" . Lang::get("routes.create"),
+    ['as' => 'worlds.create', 'uses' => 'WorldController@create']
+);
+
+Route::post(Lang::get("routes.worlds") . "/" . Lang::get("routes.create"),
+    ['as' => 'worlds.store', 'uses' => 'WorldController@store']
+);
+
+Route::get(Lang::get("routes.worlds"), ['as' => 'worlds.index', 'uses' => "WorldController@index"]);
 
 Route::group(["domain" => "{slug}.rpgo.{tld}"], function(){
     Route::get('/', ['as' => 'worlds.show', 'uses' => 'WorldController@show']);

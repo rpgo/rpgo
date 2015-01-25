@@ -1,7 +1,6 @@
 <?php
 
 return [
-    "worlds" => [
-        "index" => "worlds",
-    ],
+    "worlds" => "worlds",
+    "create" => "create",
 ];

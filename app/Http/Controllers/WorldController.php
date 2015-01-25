@@ -28,7 +28,7 @@ class WorldController extends Controller {
 	 */
 	public function create()
 	{
-		//
+		return view('world.create');
 	}
 
 	/**

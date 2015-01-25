@@ -1,7 +1,6 @@
 <?php
 
 return [
-    "worlds" => [
-        "index" => "vilagok",
-    ],
+    "create" => "uj",
+    "worlds" => "vilagok",
 ];
