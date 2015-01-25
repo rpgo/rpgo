@@ -11,24 +11,26 @@
 |
 */
 
-Route::get('home', 'HomeController@index');
+Route::group(['domain' => 'rpgo.' . config('app.tld')], function() {
+    Route::get('home', 'HomeController@index');
 
-Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
-]);
+    Route::controllers([
+        'auth' => 'Auth\AuthController',
+        'password' => 'Auth\PasswordController',
+    ]);
 
-Route::get(Lang::get("routes.worlds") . "/" . Lang::get("routes.create"),
-    ['as' => 'worlds.create', 'uses' => 'WorldController@create']
-);
+    Route::get(Lang::get("routes.worlds") . "/" . Lang::get("routes.create"),
+        ['as' => 'worlds.create', 'uses' => 'WorldController@create']
+    );
 
-Route::post(Lang::get("routes.worlds") . "/" . Lang::get("routes.create"),
-    ['as' => 'worlds.store', 'uses' => 'WorldController@store']
-);
+    Route::post(Lang::get("routes.worlds") . "/" . Lang::get("routes.create"),
+        ['as' => 'worlds.store', 'uses' => 'WorldController@store']
+    );
 
-Route::get(Lang::get("routes.worlds"), ['as' => 'worlds.index', 'uses' => "WorldController@index"]);
+    Route::get(Lang::get("routes.worlds"), ['as' => 'worlds.index', 'uses' => "WorldController@index"]);
+});
 
-Route::group(["domain" => "{slug}.rpgo.{tld}"], function(){
+Route::group(["domain" => "{slug}.rpgo." . config('app.tld')], function(){
     Route::get('/', ['as' => 'worlds.show', 'uses' => 'WorldController@show']);
 });
 

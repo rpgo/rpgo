@@ -38,11 +38,12 @@ class WorldController extends Controller {
 		return view('world.create');
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param CreateWorld $request
+     * @return Response
+     */
 	public function store(CreateWorld $request)
 	{
         $data = array_merge($request->all(),['creator_id' => \Auth::user()->id]);
@@ -65,7 +66,7 @@ class WorldController extends Controller {
      * @param $tld
      * @return Response
      */
-	public function show($slug, $tld)
+	public function show($slug)
 	{
 		$world = \Rpgo\World::where('slug', $slug)->first();
 
