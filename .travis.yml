@@ -11,11 +11,6 @@ script:
   - vendor/bin/phpspec run
   - vendor/bin/behat -f progress
 
-after_success:
-  - composer install --no-dev --prefer-source --no-interaction
-  - gem install dandelion
-  - dandelion deploy
-
 notifications:
   email:
     recipients:
