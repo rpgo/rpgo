@@ -1,4 +1,4 @@
-adapter: ftp
+adapter: sftp
 host: <%= ENV['DANDELION_HOST'] %>
 user: <%= ENV['DANDELION_USER'] %>
 password: <%= ENV['DANDELION_PASSWORD'] %>
