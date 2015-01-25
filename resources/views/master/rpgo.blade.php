@@ -56,6 +56,25 @@
 
 	@yield('content')
 
+    <!--
+
+ BOTTOM LEFT RIBBON: START COPYING HERE
+
+-->
+
+    <div class="github-fork-ribbon-wrapper right-bottom">
+
+        <div class="github-fork-ribbon">
+            <a href="https://github.com/rpgo/rpgo.hu">Fork me on GitHub</a>
+        </div>
+
+    </div>
+    <!--
+
+     BOTTOM LEFT RIBBON: END COPYING HERE
+
+    -->
+
 	<!-- Scripts -->
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
