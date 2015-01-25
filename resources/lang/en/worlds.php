@@ -14,4 +14,7 @@ return [
         "title" => "Make a new world!",
         "submit" => "Create a new world",
     ],
+    "landing" => "Home",
+    "login" => "Login",
+    "register" => "Register",
 ];

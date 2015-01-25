@@ -15,4 +15,7 @@ return [
         "submit" => "Legyen egy új világ",
         "new" => "Új"
     ],
+    "landing" => "Főoldal",
+    "login" => "Bejelentkezés",
+    "register" => "Regisztráció",
 ];
