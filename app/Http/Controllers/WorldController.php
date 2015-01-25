@@ -4,6 +4,7 @@ use Rpgo\Http\Requests;
 use Rpgo\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use Symfony\Component\Routing\Exception\RouteNotFoundException;
 
 class WorldController extends Controller {
 
@@ -49,7 +50,12 @@ class WorldController extends Controller {
      */
 	public function show($slug, $tld)
 	{
-		dd($slug);
+		$world = \Rpgo\World::where('slug', $slug)->first();
+
+        if(! $world)
+            throw new RouteNotFoundException;
+
+        return view('world.show', ['world' => $world]);
 	}
 
 	/**

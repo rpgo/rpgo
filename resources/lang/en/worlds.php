@@ -6,4 +6,5 @@ return [
     "creator" => "Creator",
     "none" => "There are no worlds.",
     "index" => "Worlds",
+    "createdby" => " created by "
 ];
