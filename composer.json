@@ -11,8 +11,8 @@
     "laravel/framework": "dev-master#074160019c547154a77caaeab692e0d39b757f4a"
   },
   "require-dev": {
-    "phpspec/phpspec": "^2.1@stable",
-    "behat/behat": "^3.0@stable"
+    "phpspec/phpspec": "~2.1@stable",
+    "behat/behat": "~3.0@stable"
   },
   "autoload": {
     "classmap": [
