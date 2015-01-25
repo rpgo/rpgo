@@ -8,15 +8,18 @@
             </div>
             <div class="panel-body table-responsive">
                 @if($worlds->count())
-                <table class="table table-striped">
-                    <tr>
-                        <td>
-                            {{Lang::get('worlds.world')}}
-                        </td>
-                        <td>
-                            {{Lang::get('worlds.creator')}}
-                        </td>
-                    </tr>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>
+                                {{Lang::get('worlds.world')}}
+                            </th>
+                            <th>
+                                {{Lang::get('worlds.creator')}}
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
                     @foreach($worlds as $world)
                         <tr>
                             <td>
@@ -27,6 +30,7 @@
                             </td>
                         </tr>
                     @endforeach
+                    </tbody>
                 </table>
                 @else
                     {{Lang::get('worlds.none')}}
