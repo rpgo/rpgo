@@ -4,17 +4,17 @@
     <div class="container-fluid">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">Világok</h3>
+                <h3 class="panel-title">{{Lang::get('worlds.worlds')}}</h3>
             </div>
             <div class="panel-body table-responsive">
                 @if($worlds->count())
                 <table class="table table-striped">
                     <tr>
                         <td>
-                            Név
+                            {{Lang::get('worlds.world')}}
                         </td>
                         <td>
-                            Alkotó
+                            {{Lang::get('worlds.creator')}}
                         </td>
                     </tr>
                     @foreach($worlds as $world)
@@ -29,7 +29,7 @@
                     @endforeach
                 </table>
                 @else
-                    Nincs egyetlen világ sem.
+                    {{Lang::get('worlds.none')}}
                 @endif
             </div>
         </div>
