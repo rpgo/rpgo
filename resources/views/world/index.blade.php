@@ -15,6 +15,9 @@
                                 {{trans('worlds.world')}}
                             </th>
                             <th>
+                                {{trans('members.members')}}
+                            </th>
+                            <th>
                                 {{trans('worlds.creator')}}
                             </th>
                         </tr>
@@ -24,6 +27,9 @@
                         <tr>
                             <td>
                                 <a href="{{route('worlds.show',[$world->slug])}}">{{$world->name}}</a>
+                            </td>
+                            <td>
+                                {{count($world->members)}}
                             </td>
                             <td>
                                 {{$world->creator->name}}
