@@ -31,9 +31,19 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 */
 	protected $hidden = ['password', 'remember_token'];
 
-    public function worlds()
+    public function creations()
     {
         return $this->hasMany('Rpgo\World', 'id', 'creator_id');
+    }
+
+    public function members()
+    {
+        return $this->hasMany('Rpgo\Member');
+    }
+
+    public function playfields()
+    {
+        return $this->hasManyThrough('Rpgo\World', 'Rpgo\Member');
     }
 
 }

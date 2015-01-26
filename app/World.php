@@ -11,4 +11,14 @@ class World extends Model {
         return $this->belongsTo('Rpgo\User', 'creator_id', 'id');
     }
 
+    public function members()
+    {
+        return $this->hasMany('Rpgo\Member');
+    }
+
+    public function users()
+    {
+        return $this->hasManyThrough('Rpgo\User', 'Rpgo\Member');
+    }
+
 }
