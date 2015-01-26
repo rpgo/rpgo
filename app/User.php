@@ -33,17 +33,17 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     public function creations()
     {
-        return $this->hasMany('Rpgo\World', 'id', 'creator_id');
+        return $this->hasMany('Rpgo\World', 'creator_id', 'id');
     }
 
-    public function members()
+    public function memberships()
     {
         return $this->hasMany('Rpgo\Member');
     }
 
     public function playfields()
     {
-        return $this->hasManyThrough('Rpgo\World', 'Rpgo\Member');
+        return $this->belongsToMany('Rpgo\World', 'members');
     }
 
 }

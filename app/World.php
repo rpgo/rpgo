@@ -18,7 +18,7 @@ class World extends Model {
 
     public function users()
     {
-        return $this->hasManyThrough('Rpgo\User', 'Rpgo\Member');
+        return $this->belongsToMany('Rpgo\User','members');
     }
 
 }
