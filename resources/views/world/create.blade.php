@@ -24,21 +24,29 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label">{{trans('worlds.name')}}</label>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" name="name" value="{{ old('name') }}">
+                                    <input type="text" class="form-control" name="name" maxlength="40" value="{{ old('name') }}">
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="col-md-4 control-label">{{trans('worlds.brand')}}</label>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" name="brand" value="{{ old('brand') }}">
+                                    <input type="text" class="form-control" name="brand"  maxlength="10" value="{{ old('brand') }}">
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="col-md-4 control-label">{{trans('worlds.slug')}}</label>
+                                <div class="input-group col-md-6">
+                                    <input type="text" class="form-control" name="slug" maxlength="20" pattern="^[a-z0-9]+$" title="subdomain without special characters" value="{{old('slug')}}" aria-describedby="slug-ending">
+                                    <span class="input-group-addon" id="slug-ending">.rpgo.hu</span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">{{trans('members.name')}}</label>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" name="slug" value="{{old('slug')}}">
+                                    <input type="text" class="form-control" name="member" maxlength="40" value="{{old('slug')}}">
                                 </div>
                             </div>
 

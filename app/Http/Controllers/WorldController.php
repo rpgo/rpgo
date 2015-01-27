@@ -46,11 +46,22 @@ class WorldController extends Controller {
      */
 	public function store(CreateWorld $request)
 	{
-        $data = array_merge($request->all(),['creator_id' => \Auth::user()->id]);
+        $user = \Auth::user();
 
-        $world = \Rpgo\World::create($data);
+        $world = new \Rpgo\World();
+        $world->name = $request->get('name');
+        $world->slug = $request->get('slug');
+        $world->brand = $request->get('brand');
+        $world->creator()->associate($user);
+        $world->save();
 
-        if(!$world)
+        $member = new \Rpgo\Member();
+        $member->name = $request->get('member');
+        $member->user()->associate($user);
+        $member->world()->associate($world);
+        $member->save();
+
+        if(!$world || !$member)
             return redirect()->back();
 
         return redirect()->route('worlds.index')->with('message', 'success');
