@@ -12,7 +12,8 @@
   },
   "require-dev": {
     "phpspec/phpspec": "^2.1@stable",
-    "behat/behat": "^3.0@stable"
+    "behat/behat": "^3.0@stable",
+    "fzaninotto/faker": "^1.4@stable"
   },
   "autoload": {
     "classmap": [
