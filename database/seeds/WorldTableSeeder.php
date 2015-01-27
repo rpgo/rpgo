@@ -16,10 +16,12 @@ class WorldTableSeeder extends Seeder {
 
         foreach(range(1, 30) as $index)
         {
+            $worldName = ucfirst(join(" ", $faker->words(3)));
+
             $world = new \Rpgo\World([
-                'name' => ucfirst($faker->word),
-                'slug' => $faker->word,
-                'brand' => ucfirst($faker->word),
+                'name' => $worldName,
+                'slug' => \Illuminate\Support\Str::slug($worldName),
+                'brand' => substr($worldName, 0, 10),
             ]);
 
             $member = new \Rpgo\Member([
