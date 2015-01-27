@@ -13,12 +13,25 @@
 
 Route::group(['domain' => 'rpgo.' . config('app.tld')], function() {
 
-    Route::get('home', 'HomeController@index');
+    Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 
-    Route::controllers([
-        'auth' => 'Auth\AuthController',
-        'password' => 'Auth\PasswordController',
-    ]);
+    Route::get(trans('routes.auth.login'), ['as' => 'auth.login', 'uses' => 'Auth\AuthController@getLogin']);
+
+    Route::get(trans('routes.auth.logout'), ['as' => 'auth.logout', 'uses' => 'Auth\AuthController@getLogout']);
+
+    Route::post(trans('routes.auth.login'), 'Auth\AuthController@postLogin');
+
+    Route::get(trans('routes.auth.register'), ['as' => 'auth.register', 'uses' => 'Auth\AuthController@getRegister']);
+
+    Route::post(trans('routes.auth.register'), 'Auth\AuthController@postRegister');
+
+    Route::get(trans('routes.password.email'), ['as' => 'password.email', 'uses' => 'Auth\PasswordController@getEmail']);
+
+    Route::post(trans('routes.password.email'), 'Auth\AuthController@postEmail');
+
+    Route::get(trans('routes.password.reset') . "/{token}", ['as' => 'password.reset', 'uses' => 'Auth\PasswordController@getReset']);
+
+    Route::post(trans('routes.password.reset'), 'Auth\AuthController@postReset');
 
     Route::get(trans("routes.worlds") . "/" . trans("routes.create"),
         ['as' => 'worlds.create', 'uses' => 'WorldController@create']
@@ -37,6 +50,3 @@ Route::group(["domain" => "{slug}.rpgo." . config('app.tld')], function(){
     Route::get('/', ['as' => 'worlds.show', 'uses' => 'WorldController@show']);
 
 });
-
-
-Route::get('/', ['as' => 'welcome', 'uses' => 'WelcomeController@index']);
