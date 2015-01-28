@@ -15,84 +15,58 @@ Route::filter('localization', function() {
     App::setLocale(Route::input('lang'));
 });
 
-Route::group(['prefix' => '{lang?}', 'before' => 'localization'], function (){
-    Route::group(['domain' => 'rpgo.' . config('app.tld')], function() {
+foreach(['lang', ''] as $prefix)
+{
+    Route::group(['prefix' => optional($prefix), 'before' => 'localization'], function () use ($prefix) {
 
-        Route::get(trans('routes.auth.login'), ['as' => 'lang.auth.login', 'uses' => 'Auth\AuthController@getLogin']);
+        Route::group(['domain' => 'rpgo.' . config('app.tld')], function() use ($prefix) {
 
-        Route::get(trans('routes.auth.logout'), ['as' => 'lang.auth.logout', 'uses' => 'Auth\AuthController@getLogout']);
+            Route::get(trans('routes.auth.login'), ['as' => prefix($prefix, 'auth.login'), 'uses' => 'Auth\AuthController@getLogin']);
 
-        Route::post(trans('routes.auth.login'), 'Auth\AuthController@postLogin');
+            Route::get(trans('routes.auth.logout'), ['as' => prefix($prefix, 'auth.logout'), 'uses' => 'Auth\AuthController@getLogout']);
 
-        Route::get(trans('routes.auth.register'), ['as' => 'lang.auth.register', 'uses' => 'Auth\AuthController@getRegister']);
+            Route::post(trans('routes.auth.login'), 'Auth\AuthController@postLogin');
 
-        Route::post(trans('routes.auth.register'), 'Auth\AuthController@postRegister');
+            Route::get(trans('routes.auth.register'), ['as' => prefix($prefix, 'auth.register'), 'uses' => 'Auth\AuthController@getRegister']);
 
-        Route::get(trans('routes.password.email'), ['as' => 'lang.password.email', 'uses' => 'Auth\PasswordController@getEmail']);
+            Route::post(trans('routes.auth.register'), 'Auth\AuthController@postRegister');
 
-        Route::post(trans('routes.password.email'), 'Auth\AuthController@postEmail');
+            Route::get(trans('routes.password.email'), ['as' => prefix($prefix, 'password.email'), 'uses' => 'Auth\PasswordController@getEmail']);
 
-        Route::get(trans('routes.password.reset') . "/{token}", ['as' => 'lang.password.reset', 'uses' => 'Auth\PasswordController@getReset']);
+            Route::post(trans('routes.password.email'), 'Auth\AuthController@postEmail');
 
-        Route::post(trans('routes.password.reset'), 'Auth\AuthController@postReset');
+            Route::get(trans('routes.password.reset') . "/{token}", ['as' => prefix($prefix, 'password.reset'), 'uses' => 'Auth\PasswordController@getReset']);
 
-        Route::get(trans("routes.worlds") . "/" . trans("routes.create"),
-            ['as' => 'lang.worlds.create', 'uses' => 'WorldController@create']
-        );
+            Route::post(trans('routes.password.reset'), 'Auth\AuthController@postReset');
 
-        Route::post(trans("routes.worlds") . "/" . trans("routes.create"),
-            ['as' => 'lang.worlds.store', 'uses' => 'WorldController@store']
-        );
+            Route::get(trans("routes.worlds") . "/" . trans("routes.create"),
+                ['as' => prefix($prefix, 'worlds.create'), 'uses' => 'WorldController@create']
+            );
 
-        Route::get(trans("routes.worlds"), ['as' => 'lang.worlds.index', 'uses' => "WorldController@index"]);
+            Route::post(trans("routes.worlds") . "/" . trans("routes.create"),
+                ['as' => prefix($prefix, 'worlds.store'), 'uses' => 'WorldController@store']
+            );
 
-        Route::get('/', ['as' => 'lang.home', 'uses' => 'HomeController@index']);
+            Route::get(trans("routes.worlds"), ['as' => ($prefix ? $prefix . '.' : '') . 'worlds.index', 'uses' => "WorldController@index"]);
 
+            Route::get('/', ['as' => prefix($prefix, 'home'), 'uses' => 'HomeController@index']);
+
+        });
+
+        Route::group(["domain" => "{slug}.rpgo." . config('app.tld')], function() use ($prefix) {
+
+            Route::get('/', ['as' => prefix($prefix, 'worlds.show'), 'uses' => 'WorldController@show']);
+
+        });
     });
+}
 
-    Route::group(["domain" => "{slug}.rpgo." . config('app.tld')], function(){
+function prefix($prefix, $name)
+{
+    return ($prefix ? $prefix . '.' : '') . $name;
+}
 
-        Route::get('/', ['as' => 'lang.worlds.show', 'uses' => 'WorldController@show']);
-
-    });
-});
-
-Route::group(['domain' => 'rpgo.' . config('app.tld')], function() {
-
-    Route::get(trans('routes.auth.login'), ['as' => 'auth.login', 'uses' => 'Auth\AuthController@getLogin']);
-
-    Route::get(trans('routes.auth.logout'), ['as' => 'auth.logout', 'uses' => 'Auth\AuthController@getLogout']);
-
-    Route::post(trans('routes.auth.login'), 'Auth\AuthController@postLogin');
-
-    Route::get(trans('routes.auth.register'), ['as' => 'auth.register', 'uses' => 'Auth\AuthController@getRegister']);
-
-    Route::post(trans('routes.auth.register'), 'Auth\AuthController@postRegister');
-
-    Route::get(trans('routes.password.email'), ['as' => 'password.email', 'uses' => 'Auth\PasswordController@getEmail']);
-
-    Route::post(trans('routes.password.email'), 'Auth\AuthController@postEmail');
-
-    Route::get(trans('routes.password.reset') . "/{token}", ['as' => 'password.reset', 'uses' => 'Auth\PasswordController@getReset']);
-
-    Route::post(trans('routes.password.reset'), 'Auth\AuthController@postReset');
-
-    Route::get(trans("routes.worlds") . "/" . trans("routes.create"),
-        ['as' => 'worlds.create', 'uses' => 'WorldController@create']
-    );
-
-    Route::post(trans("routes.worlds") . "/" . trans("routes.create"),
-        ['as' => 'worlds.store', 'uses' => 'WorldController@store']
-    );
-
-    Route::get(trans("routes.worlds"), ['as' => 'worlds.index', 'uses' => "WorldController@index"]);
-
-    Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
-
-});
-
-Route::group(["domain" => "{slug}.rpgo." . config('app.tld')], function(){
-
-    Route::get('/', ['as' => 'worlds.show', 'uses' => 'WorldController@show']);
-
-});
+function optional($prefix)
+{
+    return $prefix ? '{' . $prefix . '?}' : '';
+}
