@@ -28,12 +28,12 @@ $app = new Illuminate\Foundation\Application(
 
 $app->singleton(
 	'Illuminate\Contracts\Http\Kernel',
-	'Rpgo\Http\Kernel'
+	'Rpgo\Access\Http\Kernel'
 );
 
 $app->singleton(
 	'Illuminate\Contracts\Console\Kernel',
-	'Rpgo\Console\Kernel'
+	'Rpgo\Access\Console\Kernel'
 );
 
 $app->singleton(

@@ -1,4 +1,4 @@
-<?php namespace Rpgo\Http\Controllers;
+<?php namespace Rpgo\Access\Http\Controllers;
 
 class HomeController extends Controller {
 

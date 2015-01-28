@@ -1,4 +1,4 @@
-<?php namespace Rpgo\Console;
+<?php namespace Rpgo\Access\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -11,7 +11,7 @@ class Kernel extends ConsoleKernel {
 	 * @var array
 	 */
 	protected $commands = [
-		'Rpgo\Console\Commands\Inspire',
+		'Rpgo\Access\Console\Commands\Inspire',
 	];
 
 	/**

@@ -1,4 +1,4 @@
-<?php namespace Rpgo\Http\Requests;
+<?php namespace Rpgo\Access\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 

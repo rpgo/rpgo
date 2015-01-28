@@ -1,9 +1,10 @@
-<?php namespace Rpgo\Http\Middleware;
+<?php namespace Rpgo\Access\Http\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Http\RedirectResponse;
 
-class Authenticate {
+class RedirectIfAuthenticated {
 
 	/**
 	 * The Guard implementation.
@@ -32,16 +33,9 @@ class Authenticate {
 	 */
 	public function handle($request, Closure $next)
 	{
-		if ($this->auth->guest())
+		if ($this->auth->check())
 		{
-			if ($request->ajax())
-			{
-				return response('Unauthorized.', 401);
-			}
-			else
-			{
-				return redirect()->guest('auth/login');
-			}
+			return new RedirectResponse(route('home'));
 		}
 
 		return $next($request);

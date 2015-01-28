@@ -1,4 +1,4 @@
-<?php namespace Rpgo\Console\Commands;
+<?php namespace Rpgo\Access\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Foundation\Inspiring;

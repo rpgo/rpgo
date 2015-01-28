@@ -12,7 +12,7 @@ class RouteServiceProvider extends ServiceProvider {
 	 *
 	 * @var string
 	 */
-	protected $namespace = 'Rpgo\Http\Controllers';
+	protected $namespace = 'Rpgo\Access\Http\Controllers';
 
 	/**
 	 * Define your route model bindings, pattern filters, etc.
@@ -39,7 +39,7 @@ class RouteServiceProvider extends ServiceProvider {
 
 		$router->group(['namespace' => $this->namespace], function($router)
 		{
-			require app_path('Http/routes.php');
+			require base_path('helpers/routes.php');
 		});
 	}
 

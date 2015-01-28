@@ -1,6 +1,6 @@
-<?php namespace Rpgo\Http\Requests;
+<?php namespace Rpgo\Access\Http\Requests;
 
-use Rpgo\Http\Requests\Request;
+use Rpgo\Access\Http\Requests\Request;
 
 class CreateWorld extends Request {
 

@@ -1,4 +1,4 @@
-<?php namespace Rpgo\Http\Controllers;
+<?php namespace Rpgo\Access\Http\Controllers;
 
 use Illuminate\Foundation\Bus\DispatchesCommands;
 use Illuminate\Routing\Controller as BaseController;

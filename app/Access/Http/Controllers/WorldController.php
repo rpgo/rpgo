@@ -1,10 +1,10 @@
-<?php namespace Rpgo\Http\Controllers;
+<?php namespace Rpgo\Access\Http\Controllers;
 
-use Rpgo\Http\Requests;
-use Rpgo\Http\Controllers\Controller;
+use Rpgo\Access\Http\Requests;
+use Rpgo\Access\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
-use Rpgo\Http\Requests\CreateWorld;
+use Rpgo\Access\Http\Requests\CreateWorld;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
 
 class WorldController extends Controller {

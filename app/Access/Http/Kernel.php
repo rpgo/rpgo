@@ -1,4 +1,4 @@
-<?php namespace Rpgo\Http;
+<?php namespace Rpgo\Access\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -16,7 +16,7 @@ class Kernel extends HttpKernel {
 		'Illuminate\Session\Middleware\StartSession',
 		'Illuminate\View\Middleware\ShareErrorsFromSession',
 		'Illuminate\Foundation\Http\Middleware\VerifyCsrfToken',
-        'Rpgo\Http\Middleware\LanguageSetting',
+        'Rpgo\Access\Http\Middleware\LanguageSetting',
 	];
 
 	/**
@@ -25,9 +25,9 @@ class Kernel extends HttpKernel {
 	 * @var array
 	 */
 	protected $routeMiddleware = [
-		'auth' => 'Rpgo\Http\Middleware\Authenticate',
+		'auth' => 'Rpgo\Access\Http\Middleware\Authenticate',
 		'auth.basic' => 'Illuminate\Auth\Middleware\AuthenticateWithBasicAuth',
-		'guest' => 'Rpgo\Http\Middleware\RedirectIfAuthenticated',
+		'guest' => 'Rpgo\Access\Http\Middleware\RedirectIfAuthenticated',
 	];
 
 }

@@ -1,4 +1,4 @@
-<?php namespace Rpgo\Http\Middleware;
+<?php namespace Rpgo\Access\Http\Middleware;
 
 use Closure;
 
