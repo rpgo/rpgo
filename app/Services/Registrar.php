@@ -1,6 +1,6 @@
 <?php namespace Rpgo\Services;
 
-use Rpgo\User;
+use Rpgo\Application\Repository\Eloquent\User;
 use Validator;
 use Illuminate\Contracts\Auth\Registrar as RegistrarContract;
 
@@ -25,7 +25,7 @@ class Registrar implements RegistrarContract {
 	 * Create a new user instance after a valid registration.
 	 *
 	 * @param  array  $data
-	 * @return User
+	 * @return \Rpgo\Application\Repository\Eloquent\User
 	 */
 	public function create(array $data)
 	{

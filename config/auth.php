@@ -28,7 +28,7 @@ return [
 	|
 	*/
 
-	'model' => 'Rpgo\User',
+	'model' => 'Rpgo\Application\Repository\Eloquent\User',
 
 	/*
 	|--------------------------------------------------------------------------

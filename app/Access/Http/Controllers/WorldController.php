@@ -23,7 +23,7 @@ class WorldController extends Controller {
 	public function index()
 	{
 
-        $worlds = \Rpgo\World::all();
+        $worlds = \Rpgo\Application\Repository\Eloquent\World::all();
 
 		return view('world.index')->with(compact('worlds'));
 	}
@@ -48,14 +48,14 @@ class WorldController extends Controller {
 	{
         $user = \Auth::user();
 
-        $world = new \Rpgo\World();
+        $world = new \Rpgo\Application\Repository\Eloquent\World();
         $world->name = $request->get('name');
         $world->slug = $request->get('slug');
         $world->brand = $request->get('brand');
         $world->creator()->associate($user);
         $world->save();
 
-        $member = new \Rpgo\Member();
+        $member = new \Rpgo\Application\Repository\Eloquent\Member();
         $member->name = $request->get('member');
         $member->user()->associate($user);
         $member->world()->associate($world);
@@ -79,7 +79,7 @@ class WorldController extends Controller {
      */
 	public function show($slug)
 	{
-		$world = \Rpgo\World::where('slug', $slug)->first();
+		$world = \Rpgo\Application\Repository\Eloquent\World::where('slug', $slug)->first();
 
         if(! $world)
             throw new RouteNotFoundException;

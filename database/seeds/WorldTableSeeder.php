@@ -18,17 +18,17 @@ class WorldTableSeeder extends Seeder {
         {
             $worldName = ucfirst(join(" ", $faker->words(3)));
 
-            $world = new \Rpgo\World([
+            $world = new \Rpgo\Application\Repository\Eloquent\World([
                 'name' => $worldName,
                 'slug' => \Illuminate\Support\Str::slug($worldName),
                 'brand' => substr($worldName, 0, 10),
             ]);
 
-            $member = new \Rpgo\Member([
+            $member = new \Rpgo\Application\Repository\Eloquent\Member([
                 'name' => ucfirst($faker->word),
             ]);
 
-            $creator = \Rpgo\User::orderBy(DB::raw('RAND()'))->first();
+            $creator = \Rpgo\Application\Repository\Eloquent\User::orderBy(DB::raw('RAND()'))->first();
 
             if($creator)
             {

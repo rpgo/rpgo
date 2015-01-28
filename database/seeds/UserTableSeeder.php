@@ -16,7 +16,7 @@ class UserTableSeeder extends Seeder {
 
         foreach(range(1, 10) as $index)
         {
-            $user = \Rpgo\User::create([
+            $user = \Rpgo\Application\Repository\Eloquent\User::create([
                 'name' => ucfirst($faker->word),
                 'password' => \Hash::make('12345'),
                 'email' => $faker->email,

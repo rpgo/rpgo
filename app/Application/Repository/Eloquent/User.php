@@ -1,4 +1,4 @@
-<?php namespace Rpgo;
+<?php namespace Rpgo\Application\Repository\Eloquent;
 
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
@@ -33,17 +33,17 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     public function creations()
     {
-        return $this->hasMany('Rpgo\World', 'creator_id', 'id');
+        return $this->hasMany('Rpgo\Application\Repository\Eloquent\World', 'creator_id', 'id');
     }
 
     public function memberships()
     {
-        return $this->hasMany('Rpgo\Member');
+        return $this->hasMany('Rpgo\Application\Repository\Eloquent\Member');
     }
 
     public function playfields()
     {
-        return $this->belongsToMany('Rpgo\World', 'members');
+        return $this->belongsToMany('Rpgo\Application\Repository\Eloquent\World', 'members');
     }
 
 }
