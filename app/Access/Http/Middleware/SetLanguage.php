@@ -2,7 +2,7 @@
 
 use Closure;
 
-class LanguageSetting {
+class SetLanguage {
 
 	/**
 	 * Handle an incoming request.

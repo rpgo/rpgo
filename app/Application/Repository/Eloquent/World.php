@@ -8,17 +8,17 @@ class World extends Model {
 
     public function creator()
     {
-        return $this->belongsTo('Rpgo\Application\Repository\Eloquent\User', 'creator_id', 'id');
+        return $this->belongsTo(User::class, 'creator_id', 'id');
     }
 
     public function members()
     {
-        return $this->hasMany('Rpgo\Application\Repository\Eloquent\Member');
+        return $this->hasMany(Member::class);
     }
 
     public function users()
     {
-        return $this->belongsToMany('Rpgo\Application\Repository\Eloquent\User','members');
+        return $this->belongsToMany(User::class,'members');
     }
 
 }

@@ -8,12 +8,12 @@ class Member extends Model {
 
 	public function world()
     {
-        return $this->belongsTo('Rpgo\Application\Repository\Eloquent\World');
+        return $this->belongsTo(World::class);
     }
 
     public function user()
     {
-        return $this->belongsTo('Rpgo\Application\Repository\Eloquent\User');
+        return $this->belongsTo(User::class);
     }
 
 }
