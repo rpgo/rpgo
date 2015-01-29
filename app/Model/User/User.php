@@ -2,7 +2,7 @@
 
 use Rpgo\Model\Contracts\User as UserContract;
 
-class User implements UserContract {
+final class User implements UserContract {
 
     /**
      * @var Name
