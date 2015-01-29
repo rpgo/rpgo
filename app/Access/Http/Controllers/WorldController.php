@@ -1,7 +1,7 @@
 <?php namespace Rpgo\Access\Http\Controllers;
 
 use Rpgo\Access\Http\Requests;
-use Rpgo\Access\Http\Requests\CreateWorld;
+use Rpgo\Access\Http\Requests\CreateWorldRequest;
 use Rpgo\Application\Commands\CreateWorldCommand;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
 
@@ -39,10 +39,10 @@ class WorldController extends Controller {
     /**
      * Store a newly created resource in storage.
      *
-     * @param CreateWorld $request
+     * @param CreateWorldRequest $request
      * @return Response
      */
-	public function store(CreateWorld $request)
+	public function store(CreateWorldRequest $request)
 	{
         $success = $this->dispatchFrom(CreateWorldCommand::class, $request);
 

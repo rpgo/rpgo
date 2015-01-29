@@ -1,8 +1,6 @@
 <?php namespace Rpgo\Access\Http\Requests;
 
-use Rpgo\Access\Http\Requests\Request;
-
-class CreateWorld extends Request {
+class CreateWorldRequest extends Request {
 
 	/**
 	 * Determine if the user is authorized to make this request.
