@@ -2,7 +2,6 @@
 
 use Rpgo\Model\Contracts\User\UserIdGenerator as UserIdGeneratorContract;
 
-class UserIdGenerator implements UserIdGeneratorContract
-{
+final class UserIdGenerator implements UserIdGeneratorContract {
 
 }

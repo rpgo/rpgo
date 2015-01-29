@@ -2,6 +2,6 @@
 
 use Rpgo\Model\Contracts\Member\MemberId as MemberIdContract;
 
-class MemberId implements MemberIdContract {
+final class MemberId implements MemberIdContract {
 
 }

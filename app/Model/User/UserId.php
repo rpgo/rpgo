@@ -2,7 +2,6 @@
 
 use Rpgo\Model\Contracts\User\UserId as UserIdContract;
 
-class UserId implements UserIdContract
-{
+final class UserId implements UserIdContract {
 
 }

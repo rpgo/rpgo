@@ -2,7 +2,7 @@
 
 use Rpgo\Model\Contracts\Member\MemberFactory as MemberFactoryContract;
 
-class MemberFactory implements MemberFactoryContract
+final class MemberFactory implements MemberFactoryContract
 {
 
 }

@@ -2,7 +2,6 @@
 
 use Rpgo\Model\Contracts\World\WorldIdGenerator as WorldIdGeneratorContract;
 
-class WorldIdGenerator implements WorldIdGeneratorContract
-{
+final class WorldIdGenerator implements WorldIdGeneratorContract {
 
 }

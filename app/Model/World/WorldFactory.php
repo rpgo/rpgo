@@ -2,7 +2,6 @@
 
 use Rpgo\Model\Contracts\World\WorldFactory as WorldFactoryContract;
 
-class WorldFactory implements WorldFactoryContract
-{
+final class WorldFactory implements WorldFactoryContract {
 
 }
