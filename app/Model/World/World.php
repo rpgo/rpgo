@@ -25,13 +25,12 @@ final class World implements WorldContract {
      */
     private $brand;
 
-
-    function __construct(User $creator, $name, $slug, $brand)
+    function __construct(User $creator, Name $name, Slug $slug, Brand $brand)
     {
         $this->creator = $creator;
-        $this->name = new Name($name);
-        $this->slug = new Slug($slug);
-        $this->brand = new Brand($brand);
+        $this->name = $name;
+        $this->slug = $slug;
+        $this->brand = $brand;
     }
 
 }

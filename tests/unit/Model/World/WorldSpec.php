@@ -6,12 +6,15 @@ use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Rpgo\Model\Contracts\User;
 use Rpgo\Model\Contracts\World;
+use Rpgo\Model\World\Brand;
+use Rpgo\Model\World\Name;
+use Rpgo\Model\World\Slug;
 
 class WorldSpec extends ObjectBehavior
 {
-    function let(User $user)
+    function let(User $user, Name $name, Slug $slug, Brand $brand)
     {
-        $this->beConstructedWith($user, 'Stargate Memories', 'sgmemo', 'SG:Memo');
+        $this->beConstructedWith($user, $name, $slug, $brand);
     }
 
     function it_adheres_to_the_World_contract()
