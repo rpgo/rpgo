@@ -1,4 +1,4 @@
-<?php namespace Rpgo\Services;
+<?php namespace Rpgo\Application;
 
 use Rpgo\Application\Repository\Eloquent\User;
 use Validator;

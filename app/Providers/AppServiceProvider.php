@@ -2,7 +2,7 @@
 
 use Illuminate\Contracts\Auth\Registrar as RegistrarContract;
 use Illuminate\Support\ServiceProvider;
-use Rpgo\Services\Registrar;
+use Rpgo\Application\Registrar;
 
 class AppServiceProvider extends ServiceProvider {
 
