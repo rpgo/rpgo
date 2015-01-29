@@ -1,5 +1,7 @@
 <?php namespace Rpgo\Model\Contracts\World;
 
-interface WorldId {
+use Rpgo\Model\Contracts\Id;
+
+interface WorldId extends Id {
 
 }

@@ -1,5 +1,7 @@
 <?php namespace Rpgo\Model\Contracts\Member;
 
-interface MemberId {
+use Rpgo\Model\Contracts\Id;
+
+interface MemberId extends Id {
 
 }

@@ -1,5 +1,7 @@
 <?php namespace Rpgo\Model\Contracts\Member;
 
-interface MemberIdGenerator {
+use Rpgo\Model\Contracts\IdGenerator;
+
+interface MemberIdGenerator extends IdGenerator {
 
 }

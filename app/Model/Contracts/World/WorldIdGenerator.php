@@ -1,5 +1,7 @@
 <?php namespace Rpgo\Model\Contracts\World;
 
-interface WorldIdGenerator {
+use Rpgo\Model\Contracts\IdGenerator;
+
+interface WorldIdGenerator extends IdGenerator {
 
 }
