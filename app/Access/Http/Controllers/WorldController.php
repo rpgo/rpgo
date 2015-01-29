@@ -1,10 +1,8 @@
 <?php namespace Rpgo\Access\Http\Controllers;
 
 use Rpgo\Access\Http\Requests;
-use Rpgo\Access\Http\Controllers\Controller;
-
-use Illuminate\Http\Request;
 use Rpgo\Access\Http\Requests\CreateWorld;
+use Rpgo\Application\Commands\CreateWorldCommand;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
 
 class WorldController extends Controller {
@@ -46,28 +44,12 @@ class WorldController extends Controller {
      */
 	public function store(CreateWorld $request)
 	{
-        $user = \Auth::user();
+        $success = $this->dispatchFrom(CreateWorldCommand::class, $request);
 
-        $world = new \Rpgo\Application\Repository\Eloquent\World();
-        $world->name = $request->get('name');
-        $world->slug = $request->get('slug');
-        $world->brand = $request->get('brand');
-        $world->creator()->associate($user);
-        $world->save();
-
-        $member = new \Rpgo\Application\Repository\Eloquent\Member();
-        $member->name = $request->get('member');
-        $member->user()->associate($user);
-        $member->world()->associate($world);
-        $member->save();
-
-        if(!$world || !$member)
+        if( ! $success)
             return redirect()->back();
 
         return redirect()->route('worlds.index')->with('message', 'success');
-
-
-
 	}
 
     /**
