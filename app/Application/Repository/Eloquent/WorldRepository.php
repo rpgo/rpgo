@@ -1,5 +1,7 @@
 <?php namespace Rpgo\Application\Repository\Eloquent;
 
-class WorldRepository {
+use Rpgo\Application\Repository\WorldRepository as WorldRepositoryContract;
+
+class WorldRepository implements WorldRepositoryContract {
 
 }
