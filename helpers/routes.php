@@ -33,11 +33,11 @@ foreach(['lang', ''] as $prefix)
 
             Route::get(trans('routes.password.email'), ['as' => prefix($prefix, 'password.email'), 'uses' => 'Auth\PasswordController@getEmail']);
 
-            Route::post(trans('routes.password.email'), 'Auth\AuthController@postEmail');
+            Route::post(trans('routes.password.email'), 'Auth\PasswordController@postEmail');
 
             Route::get(trans('routes.password.reset') . "/{token}", ['as' => prefix($prefix, 'password.reset'), 'uses' => 'Auth\PasswordController@getReset']);
 
-            Route::post(trans('routes.password.reset'), 'Auth\AuthController@postReset');
+            Route::post(trans('routes.password.reset'), 'Auth\PasswordController@postReset');
 
             Route::get(trans("routes.worlds") . "/" . trans("routes.create"),
                 ['as' => prefix($prefix, 'worlds.create'), 'uses' => 'WorldController@create']
