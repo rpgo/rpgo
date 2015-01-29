@@ -1,6 +1,6 @@
 <?php namespace Rpgo\Model\User;
 
-use Rpgo\Model\Contracts\User as UserContract;
+use Rpgo\Model\Contracts\User\User as UserContract;
 
 final class User implements UserContract {
 

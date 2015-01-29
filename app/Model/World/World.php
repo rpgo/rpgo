@@ -1,7 +1,7 @@
 <?php namespace Rpgo\Model\World;
 
-use Rpgo\Model\Contracts\User;
-use Rpgo\Model\Contracts\World as WorldContract;
+use Rpgo\Model\Contracts\User\User;
+use Rpgo\Model\Contracts\World\World as WorldContract;
 
 final class World implements WorldContract {
 

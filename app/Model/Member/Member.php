@@ -1,8 +1,8 @@
 <?php namespace Rpgo\Model\Member;
 
-use Rpgo\Model\Contracts\Member as MemberContract;
-use Rpgo\Model\Contracts\User;
-use Rpgo\Model\Contracts\World;
+use Rpgo\Model\Contracts\Member\Member as MemberContract;
+use Rpgo\Model\Contracts\User\User;
+use Rpgo\Model\Contracts\World\World;
 
 final class Member implements MemberContract {
 
@@ -11,7 +11,7 @@ final class Member implements MemberContract {
      */
     private $user;
     /**
-     * @var World
+     * @var \Rpgo\Model\Contracts\World\World
      */
     private $world;
     /**

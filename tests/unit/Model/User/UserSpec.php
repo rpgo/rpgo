@@ -4,7 +4,7 @@ namespace unit\Rpgo\Model\User;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
-use Rpgo\Model\Contracts\User;
+use Rpgo\Model\Contracts\User\User;
 use Rpgo\Model\User\Email;
 use Rpgo\Model\User\Name;
 use Rpgo\Model\User\Password;

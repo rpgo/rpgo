@@ -4,8 +4,8 @@ namespace unit\Rpgo\Model\World;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
-use Rpgo\Model\Contracts\User;
-use Rpgo\Model\Contracts\World;
+use Rpgo\Model\Contracts\User\User;
+use Rpgo\Model\Contracts\World\World;
 use Rpgo\Model\World\Brand;
 use Rpgo\Model\World\Name;
 use Rpgo\Model\World\Slug;
