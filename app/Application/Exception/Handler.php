@@ -1,4 +1,4 @@
-<?php namespace Rpgo\Exceptions;
+<?php namespace Rpgo\Application\Exception;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;

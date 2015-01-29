@@ -38,7 +38,7 @@ $app->singleton(
 
 $app->singleton(
 	'Illuminate\Contracts\Debug\ExceptionHandler',
-	'Rpgo\Exceptions\Handler'
+	'Rpgo\Application\Exception\Handler'
 );
 
 /*

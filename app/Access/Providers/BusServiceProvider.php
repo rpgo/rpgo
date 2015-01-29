@@ -1,4 +1,4 @@
-<?php namespace Rpgo\Providers;
+<?php namespace Rpgo\Access\Providers;
 
 use Illuminate\Bus\Dispatcher;
 use Illuminate\Support\ServiceProvider;

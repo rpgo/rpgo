@@ -1,4 +1,4 @@
-<?php namespace Rpgo\Providers;
+<?php namespace Rpgo\Access\Providers;
 
 use Illuminate\Contracts\Auth\Registrar as RegistrarContract;
 use Illuminate\Support\ServiceProvider;
