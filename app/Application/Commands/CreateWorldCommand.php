@@ -3,7 +3,7 @@
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Bus\SelfHandling;
 
-class CreateWorldCommand implements SelfHandling {
+class CreateWorldCommand extends Command implements SelfHandling {
     /**
      * @var
      */
@@ -30,16 +30,17 @@ class CreateWorldCommand implements SelfHandling {
      */
 	public function __construct($name, $slug, $brand, $member)
 	{
-		//
         $this->name = $name;
         $this->slug = $slug;
         $this->brand = $brand;
         $this->member = $member;
     }
 
-	/**
-	 * Execute the command.
-	 */
+    /**
+     * Execute the command.
+     * @param Guard $auth
+     * @return bool
+     */
 	public function handle(Guard $auth)
 	{
         $user = $auth->user();
