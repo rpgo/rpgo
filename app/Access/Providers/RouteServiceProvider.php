@@ -39,7 +39,7 @@ class RouteServiceProvider extends ServiceProvider {
 
 		$router->group(['namespace' => $this->namespace], function($router)
 		{
-			require base_path('helpers/routes.php');
+			require app_path('Access/Http/routes.php');
 		});
 	}
 
