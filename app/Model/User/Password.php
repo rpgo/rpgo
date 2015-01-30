@@ -1,12 +1,21 @@
 <?php namespace Rpgo\Model\User;
 
-class Password {
+use Illuminate\Hashing\BcryptHasher as Hash;
 
+class Password {
 
     private $password;
 
-    public function __construct($password)
+    private $hash;
+
+    public function __construct($password, $hashed = false)
     {
-        $this->password = $password;
+        $this->hash = new Hash();
+        $this->password = $hashed ? $password : $this->hash->make($password);
+    }
+
+    public function check($password)
+    {
+        return $this->hash->check($password, $this->password);
     }
 }

@@ -21,10 +21,17 @@ class UserFactorySpec extends ObjectBehavior
         $this->shouldHaveType(UserFactory::class);
     }
 
-    function it_creates_a_User_from_raw_input(UserIdGenerator $generator, UserId $id)
+    function it_creates_a_new_User(UserIdGenerator $generator, UserId $id)
     {
         $generator->next()->willReturn($id);
 
-        $this->createFromRaw('LilyBelle', 'tolilybelle@gmail.com', '123456') ->shouldHaveType(User::class);
+        $this->create('LilyBelle', 'tolilybelle@gmail.com', '123456')->shouldHaveType(User::class);
+    }
+
+    function it_revives_an_old_User(UserIdGenerator $generator, UserId $id)
+    {
+        $generator->from('id')->willReturn($id);
+
+        $this->revive('id', 'LilyBelle', 'tolilyBelle@gmail.com', '12345')->shouldHaveType(User::class);
     }
 }
