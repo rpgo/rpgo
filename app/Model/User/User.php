@@ -34,4 +34,9 @@ final class User implements UserContract {
     }
 
 
+
+    public function email()
+    {
+        // TODO: write logic here
+    }
 }
