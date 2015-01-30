@@ -33,10 +33,18 @@ final class User implements UserContract {
         $this->password = $password;
     }
 
-
-
     public function email()
     {
-        // TODO: write logic here
+        return (string) $this->email;
+    }
+
+    public function id()
+    {
+        return (string) $this->id;
+    }
+
+    public function name()
+    {
+        return (string) $this->name;
     }
 }

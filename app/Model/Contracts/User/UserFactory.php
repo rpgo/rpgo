@@ -2,4 +2,8 @@
 
 interface UserFactory {
 
+    public function create($name, $email, $password);
+
+    public function revive($id, $name, $email, $password);
+
 }

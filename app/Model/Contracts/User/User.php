@@ -2,4 +2,10 @@
 
 interface User {
 
+    public function id();
+
+    public function name();
+
+    public function email();
+
 }
