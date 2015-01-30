@@ -10,7 +10,7 @@ final class Member implements MemberContract {
     /**
      * @var MemberId
      */
-    private $memberId;
+    private $id;
 
     /**
      * @var User
@@ -29,7 +29,7 @@ final class Member implements MemberContract {
 
     public function __construct(MemberIdContract $memberId, User $user, World $world, Name $name)
     {
-        $this->memberId = $memberId;
+        $this->id = $memberId;
         $this->user = $user;
         $this->world = $world;
         $this->name = $name;

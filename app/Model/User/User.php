@@ -8,7 +8,7 @@ final class User implements UserContract {
     /**
      * @var UserIdContract
      */
-    private $userId;
+    private $id;
 
     /**
      * @var Name
@@ -27,9 +27,11 @@ final class User implements UserContract {
 
     public function __construct(UserIdContract $userId, Name $name, Email $email, Password $password)
     {
-        $this->userId = $userId;
+        $this->id = $userId;
         $this->name = $name;
         $this->email = $email;
         $this->password = $password;
     }
+
+
 }

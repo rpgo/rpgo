@@ -7,6 +7,11 @@ use Rpgo\Model\Contracts\User\User;
 final class World implements WorldContract {
 
     /**
+     * @var WorldId
+     */
+    private $id;
+
+    /**
      * @var User
      */
     private $creator;
@@ -25,18 +30,14 @@ final class World implements WorldContract {
      * @var Brand
      */
     private $brand;
-    /**
-     * @var WorldIdContract
-     */
-    private $worldId;
 
     function __construct(WorldIdContract $worldId, User $creator, Name $name, Slug $slug, Brand $brand)
     {
+        $this->id = $worldId;
         $this->creator = $creator;
         $this->name = $name;
         $this->slug = $slug;
         $this->brand = $brand;
-        $this->worldId = $worldId;
     }
 
 }
