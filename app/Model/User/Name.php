@@ -58,7 +58,7 @@ class Name {
      */
     private function checkLetters($name)
     {
-        if (!preg_match("/^[a-zA-ZáéíóöőúűÁÉÍÓÖŐÚŰ0-9]+$/", $name))
+        if ( ! preg_match("/^[a-zA-ZáéíóöőúűÁÉÍÓÖŐÚŰ0-9]+$/", $name))
             throw new InvalidCharacterInUserNameException("A user cannot have the name '${name}', because it contains special characters.");
     }
 
