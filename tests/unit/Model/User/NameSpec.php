@@ -120,7 +120,7 @@ class NameSpec extends ObjectBehavior
         $this->change('JohnDoe')->shouldNotBe($this);
     }
 
-    function it_morphs_into_a_username()
+    function it_morphs_into_a_new_username()
     {
         $this->change('JohnDoe')->shouldHaveType($this);
     }
@@ -129,6 +129,13 @@ class NameSpec extends ObjectBehavior
     {
         $this->change('JohnDoe')->__toString()->shouldReturn('JohnDoe');
     }
+
+    function it_cannot_be_empty()
+    {
+        $this->shouldThrow('\Rpgo\Support\Exception\UserNameEmptyException')
+            ->during('__construct', ['']);
+    }
+
 
 
 }
