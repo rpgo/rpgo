@@ -1,11 +1,9 @@
 <?php namespace Rpgo\Model\Member;
 
-use Rpgo\Model\Contracts\Member\MemberFactory as MemberFactoryContract;
-use Rpgo\Model\Contracts\User\User;
-use Rpgo\Model\Contracts\World\World;
+use Rpgo\Model\User\User;
+use Rpgo\Model\World\World;
 
-final class MemberFactory implements MemberFactoryContract
-{
+class MemberFactory {
     /**
      * @var MemberIdGenerator
      */

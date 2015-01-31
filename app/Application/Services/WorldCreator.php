@@ -1,18 +1,16 @@
 <?php namespace Rpgo\Application\Services;
 
-
-use Rpgo\Application\Commands\CreateWorldCommand;
-use Rpgo\Model\Contracts\User\User;
+use Rpgo\Model\User\User;
 use Rpgo\Model\Member\MemberFactory;
 use Rpgo\Model\World\WorldFactory;
 
 class WorldCreator {
 
-
     /**
      * @var WorldFactory
      */
     private $worldFactory;
+
     /**
      * @var MemberFactory
      */

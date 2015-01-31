@@ -1,11 +1,9 @@
 <?php namespace Rpgo\Model\Member;
 
-use Rpgo\Model\Contracts\Member\Member as MemberContract;
-use Rpgo\Model\Contracts\Member\MemberId as MemberIdContract;
-use Rpgo\Model\Contracts\User\User;
-use Rpgo\Model\Contracts\World\World;
+use Rpgo\Model\User\User;
+use Rpgo\Model\World\World;
 
-final class Member implements MemberContract {
+class Member {
 
     /**
      * @var MemberId
@@ -27,7 +25,7 @@ final class Member implements MemberContract {
      */
     private $name;
 
-    public function __construct(MemberIdContract $memberId, User $user, World $world, Name $name)
+    public function __construct(MemberId $memberId, User $user, World $world, Name $name)
     {
         $this->id = $memberId;
         $this->user = $user;

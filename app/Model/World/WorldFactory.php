@@ -1,9 +1,8 @@
 <?php namespace Rpgo\Model\World;
 
-use Rpgo\Model\Contracts\User\User;
-use Rpgo\Model\Contracts\World\WorldFactory as WorldFactoryContract;
+use Rpgo\Model\User\User;
 
-final class WorldFactory implements WorldFactoryContract {
+class WorldFactory {
 
 
     /**

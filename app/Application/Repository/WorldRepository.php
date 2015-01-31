@@ -1,6 +1,6 @@
 <?php namespace Rpgo\Application\Repository;
 
-use Rpgo\Model\Contracts\World\World;
+use Rpgo\Model\World\World;
 
 interface WorldRepository {
 

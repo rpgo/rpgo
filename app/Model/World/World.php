@@ -1,10 +1,8 @@
 <?php namespace Rpgo\Model\World;
 
-use Rpgo\Model\Contracts\World\World as WorldContract;
-use Rpgo\Model\Contracts\World\WorldId as WorldIdContract;
-use Rpgo\Model\Contracts\User\User;
+use Rpgo\Model\User\User;
 
-final class World implements WorldContract {
+class World {
 
     /**
      * @var WorldId
@@ -31,7 +29,7 @@ final class World implements WorldContract {
      */
     private $brand;
 
-    function __construct(WorldIdContract $worldId, User $creator, Name $name, Slug $slug, Brand $brand)
+    function __construct(WorldId $worldId, User $creator, Name $name, Slug $slug, Brand $brand)
     {
         $this->id = $worldId;
         $this->creator = $creator;
