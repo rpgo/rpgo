@@ -1,7 +1,8 @@
 <?php namespace Rpgo\Application\Repository\Eloquent;
 
 use Rpgo\Application\Repository\UserRepository as UserRepositoryContract;
-use Rpgo\Model\Contracts\User\UserFactory;
+use Rpgo\Model\Contracts\User\User;
+use Rpgo\Model\User\UserFactory;
 use Rpgo\Application\Repository\Eloquent\User as Eloquent;
 
 class UserRepository implements UserRepositoryContract {
@@ -28,6 +29,12 @@ class UserRepository implements UserRepositoryContract {
 
     public function fetchById($id)
     {
-        // TODO: Implement fetchById() method.
+        $user = Eloquent::find($id);
+        return $this->factory->revive($user->uuid, $user->name, $user->email, $user->password);
+    }
+
+    public function save(User $user)
+    {
+        // TODO: Implement save() method.
     }
 }

@@ -145,6 +145,7 @@ return [
 		'Rpgo\Access\Providers\ConfigServiceProvider',
 		'Rpgo\Access\Providers\EventServiceProvider',
 		'Rpgo\Access\Providers\RouteServiceProvider',
+        'Rpgo\Access\Providers\RepositoryServiceProvider',
 
 	],
 

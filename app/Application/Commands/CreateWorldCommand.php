@@ -1,6 +1,12 @@
 <?php namespace Rpgo\Application\Commands;
 
-use Rpgo\Support\Contracts\Guard\Guard;
+use Rpgo\Application\Repository\MemberRepository;
+use Rpgo\Application\Repository\UserRepository;
+use Rpgo\Application\Repository\WorldRepository;
+use Rpgo\Application\Services\WorldCreator;
+use Rpgo\Model\Member\MemberFactory;
+use Rpgo\Model\World\WorldFactory;
+use Rpgo\Support\Guard\Guard;
 use Illuminate\Contracts\Bus\SelfHandling;
 
 class CreateWorldCommand extends Command implements SelfHandling {
@@ -23,6 +29,7 @@ class CreateWorldCommand extends Command implements SelfHandling {
 
     /**
      * Create a new command instance.
+     *
      * @param $name
      * @param $slug
      * @param $brand
@@ -38,27 +45,19 @@ class CreateWorldCommand extends Command implements SelfHandling {
 
     /**
      * Execute the command.
+     *
      * @param Guard $guard
+     * @param WorldCreator $creator
+     * @param WorldRepository $worldRepository
      * @return bool
      */
-	public function handle(Guard $guard)
+	public function handle(Guard $guard, WorldCreator $creator, WorldRepository $worldRepository)
 	{
         $user = $guard->user();
 
-        $world = new \Rpgo\Application\Repository\Eloquent\World();
-        $world->name = $this->name;
-        $world->slug = $this->slug;
-        $world->brand = $this->brand;
-        $world->creator()->associate($user);
-        $world->save();
+        $world = $creator->create($this->name, $this->slug, $this->brand, $this->member, $user);
 
-        $member = new \Rpgo\Application\Repository\Eloquent\Member();
-        $member->name = $this->member;
-        $member->user()->associate($user);
-        $member->world()->associate($world);
-        $member->save();
-
-        return $world && $member;
+        return $worldRepository->save($world);
 	}
 
 }

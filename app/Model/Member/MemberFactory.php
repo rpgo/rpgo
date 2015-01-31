@@ -1,6 +1,5 @@
 <?php namespace Rpgo\Model\Member;
 
-use Rpgo\Model\Contracts\Member\MemberIdGenerator as MemberIdGeneratorContract;
 use Rpgo\Model\Contracts\Member\MemberFactory as MemberFactoryContract;
 use Rpgo\Model\Contracts\User\User;
 use Rpgo\Model\Contracts\World\World;
@@ -12,7 +11,7 @@ final class MemberFactory implements MemberFactoryContract
      */
     private $generator;
 
-    public function __construct(MemberIdGeneratorContract $generator)
+    public function __construct(MemberIdGenerator $generator)
     {
         $this->generator = $generator;
     }

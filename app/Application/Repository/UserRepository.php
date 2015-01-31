@@ -18,4 +18,6 @@ interface UserRepository {
      */
     public function fetchById($id);
 
+    public function save(User $user);
+
 }

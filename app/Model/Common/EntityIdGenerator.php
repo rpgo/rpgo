@@ -7,7 +7,7 @@ abstract class EntityIdGenerator implements IdGenerator {
 
     private $generator;
 
-    public function __construct(IdGenerator $generator)
+    public function __construct(UuidGenerator $generator)
     {
         $this->generator = $generator;
     }

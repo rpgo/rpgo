@@ -40,4 +40,9 @@ final class World implements WorldContract {
         $this->brand = $brand;
     }
 
+    public function addMember()
+    {
+
+    }
+
 }
