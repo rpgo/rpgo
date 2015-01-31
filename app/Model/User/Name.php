@@ -1,8 +1,8 @@
 <?php namespace Rpgo\Model\User;
 
-use Rpgo\Support\Exception\InvalidCharacterInUserNameException;
-use Rpgo\Support\Exception\UserNameEmptyException;
-use Rpgo\Support\Exception\UserNameTooLongException;
+use Rpgo\Model\User\Exception\InvalidCharacterInUserNameException;
+use Rpgo\Model\User\Exception\UserNameEmptyException;
+use Rpgo\Model\User\Exception\UserNameTooLongException;
 
 class Name {
 
@@ -26,8 +26,8 @@ class Name {
 
     /**
      * @param string $name
-     * @throws InvalidCharacterInUserNameException
-     * @throws UserNameTooLongException
+     * @throws \Rpgo\Model\User\Exception\InvalidCharacterInUserNameException
+     * @throws \Rpgo\Model\User\Exception\UserNameTooLongException
      */
     private function setName($name)
     {
@@ -43,7 +43,7 @@ class Name {
     /**
      * @param $name
      * @throws UserNameEmptyException
-     * @throws UserNameTooLongException
+     * @throws \Rpgo\Model\User\Exception\UserNameTooLongException
      */
     private function checkLength($name)
     {
@@ -78,7 +78,7 @@ class Name {
 
     /**
      * @param $name
-     * @throws UserNameEmptyException
+     * @throws \Rpgo\Model\User\Exception\UserNameEmptyException
      */
     private function checkIfEmpty($name)
     {
@@ -88,7 +88,7 @@ class Name {
 
     /**
      * @param $name
-     * @throws UserNameTooLongException
+     * @throws \Rpgo\Model\User\Exception\UserNameTooLongException
      */
     private function checkIfTooLong($name)
     {
