@@ -12,4 +12,10 @@ interface UserRepository {
      */
     public function model(Eloquent $user);
 
+    /**
+     * @param string $id
+     * @return User
+     */
+    public function fetchById($id);
+
 }

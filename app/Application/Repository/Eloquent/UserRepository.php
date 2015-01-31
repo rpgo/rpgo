@@ -25,4 +25,9 @@ class UserRepository implements UserRepositoryContract {
     {
         return $this->factory->revive($user->id, $user->name, $user->email, $user->password);
     }
+
+    public function fetchById($id)
+    {
+        // TODO: Implement fetchById() method.
+    }
 }

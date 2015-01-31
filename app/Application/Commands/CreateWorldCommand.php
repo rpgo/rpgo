@@ -1,6 +1,6 @@
 <?php namespace Rpgo\Application\Commands;
 
-use Illuminate\Contracts\Auth\Guard;
+use Rpgo\Support\Contracts\Guard\Guard;
 use Illuminate\Contracts\Bus\SelfHandling;
 
 class CreateWorldCommand extends Command implements SelfHandling {
@@ -38,12 +38,12 @@ class CreateWorldCommand extends Command implements SelfHandling {
 
     /**
      * Execute the command.
-     * @param Guard $auth
+     * @param Guard $guard
      * @return bool
      */
-	public function handle(Guard $auth)
+	public function handle(Guard $guard)
 	{
-        $user = $auth->user();
+        $user = $guard->user();
 
         $world = new \Rpgo\Application\Repository\Eloquent\World();
         $world->name = $this->name;
