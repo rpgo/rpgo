@@ -59,9 +59,9 @@ class EmailSpec extends ObjectBehavior
         $this->change('john@doe.sg')->shouldNotBe($this);
     }
 
-    function it_morphs_into_a_new_username()
+    function it_morphs_into_a_new_email()
     {
-        $this->change('john@doe.sg')->shouldHaveType($this);
+        $this->change('john@doe.sg')->shouldHaveType('Rpgo\Model\User\Email');
     }
 
     function it_changes_the_value_when_morphing()
@@ -79,6 +79,28 @@ class EmailSpec extends ObjectBehavior
         $this->beConstructedWith('john@doe.sg');
 
         $this->__toString()->shouldReturn('john@doe.sg');
+    }
+
+    function it_returns_the_handle()
+    {
+        $this->handle()->shouldBe('tolilybelle');
+    }
+
+    function it_returns_the_correct_handle()
+    {
+        $this->beConstructedWith('john@doe.sg');
+        $this->handle()->shouldBe('john');
+    }
+
+    function it_returns_the_domain()
+    {
+        $this->domain()->shouldBe('gmail.com');
+    }
+
+    function it_returns_the_correct_domain()
+    {
+        $this->beConstructedWith('john@doe.sg');
+        $this->domain()->shouldBe('doe.sg');
     }
 
 }

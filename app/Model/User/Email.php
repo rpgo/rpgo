@@ -38,4 +38,15 @@ class Email {
     {
         return (string) $this->email;
     }
+
+    public function handle()
+    {
+        return substr($this, 0, strpos($this, '@'));
+    }
+
+    public function domain()
+    {
+        return substr($this, strpos($this, '@') + 1);
+    }
+
 }
