@@ -32,4 +32,24 @@ class Member {
         $this->world = $world;
         $this->name = $name;
     }
+
+    public function id()
+    {
+        return $this->id;
+    }
+
+    public function user()
+    {
+        return $this->user;
+    }
+
+    public function world()
+    {
+        return $this->world;
+    }
+
+    public function name()
+    {
+        return $this->name;
+    }
 }

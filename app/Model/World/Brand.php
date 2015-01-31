@@ -8,4 +8,9 @@ class Brand {
     {
         $this->brand = $brand;
     }
+
+    function __toString()
+    {
+        return $this->brand;
+    }
 }

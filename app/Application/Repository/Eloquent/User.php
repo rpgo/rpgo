@@ -8,6 +8,10 @@ use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
 
+    public $incrementing = false;
+
+    public $casts = ['id' => 'string'];
+
 	use Authenticatable, CanResetPassword;
 
 	/**

@@ -38,9 +38,29 @@ class World {
         $this->brand = $brand;
     }
 
-    public function addMember()
+    public function id()
     {
+        return (string) $this->id;
+    }
 
+    public function name()
+    {
+        return (string) $this->name;
+    }
+
+    public function slug()
+    {
+        return (string) $this->slug;
+    }
+
+    public function brand()
+    {
+        return (string) $this->brand;
+    }
+
+    public function creator()
+    {
+        return $this->creator;
     }
 
 }

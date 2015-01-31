@@ -14,12 +14,13 @@ class CreateWorldsTable extends Migration {
 	{
 		Schema::create('worlds', function(Blueprint $table)
 		{
-			$table->increments('id');
-			$table->timestamps();
-            $table->integer('creator_id')->unsigned();
+			$table->string('id', 36)->primary();
+            $table->string('creator_id', 36);
             $table->foreign('creator_id')->references('id')->on('users');
-            $table->string('name', 40);
-            $table->string('slug', 20);
+            $table->string('name', 40)->unique();
+            $table->string('slug', 20)->unique();
+            $table->string('brand', 10)->unique();
+            $table->timestamps();
 		});
 	}
 

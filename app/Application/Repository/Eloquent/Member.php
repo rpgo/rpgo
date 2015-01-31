@@ -4,6 +4,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Member extends Model {
 
+    public $incrementing = false;
+
+    public $casts = ['id' => 'string'];
+
     protected $fillable = ['name'];
 
 	public function world()

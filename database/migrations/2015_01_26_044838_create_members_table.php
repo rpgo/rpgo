@@ -14,13 +14,13 @@ class CreateMembersTable extends Migration {
 	{
 		Schema::create('members', function(Blueprint $table)
 		{
-			$table->increments('id');
-			$table->timestamps();
-            $table->integer('world_id')->unsigned();
+			$table->string('id', 36)->primary();
+            $table->string('world_id', 36);
             $table->foreign('world_id')->references('id')->on('worlds');
-            $table->integer('user_id')->unsigned();
+            $table->string('user_id', 36);
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('name', 40);
+            $table->timestamps();
 		});
 	}
 

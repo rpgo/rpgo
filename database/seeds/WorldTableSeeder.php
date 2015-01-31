@@ -19,12 +19,14 @@ class WorldTableSeeder extends Seeder {
             $worldName = ucfirst(join(" ", $faker->words(3)));
 
             $world = new \Rpgo\Application\Repository\Eloquent\World([
+                'id' => $faker->uuid,
                 'name' => $worldName,
                 'slug' => \Illuminate\Support\Str::slug($worldName),
                 'brand' => substr($worldName, 0, 10),
             ]);
 
             $member = new \Rpgo\Application\Repository\Eloquent\Member([
+                'id' => $faker->uuid,
                 'name' => ucfirst($faker->word),
             ]);
 

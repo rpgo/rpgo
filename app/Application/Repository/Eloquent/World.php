@@ -4,6 +4,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class World extends Model {
 
+    public $incrementing = false;
+
+    public $casts = ['id' => 'string'];
+
 	protected $fillable = ["name", "slug", "brand", "creator_id"];
 
     public function creator()

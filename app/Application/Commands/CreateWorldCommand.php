@@ -1,11 +1,7 @@
 <?php namespace Rpgo\Application\Commands;
 
-use Rpgo\Application\Repository\MemberRepository;
-use Rpgo\Application\Repository\UserRepository;
 use Rpgo\Application\Repository\WorldRepository;
 use Rpgo\Application\Services\WorldCreator;
-use Rpgo\Model\Member\MemberFactory;
-use Rpgo\Model\World\WorldFactory;
 use Rpgo\Support\Guard\Guard;
 use Illuminate\Contracts\Bus\SelfHandling;
 
@@ -48,16 +44,13 @@ class CreateWorldCommand extends Command implements SelfHandling {
      *
      * @param Guard $guard
      * @param WorldCreator $creator
-     * @param WorldRepository $worldRepository
      * @return bool
      */
-	public function handle(Guard $guard, WorldCreator $creator, WorldRepository $worldRepository)
+	public function handle(Guard $guard, WorldCreator $creator)
 	{
         $user = $guard->user();
 
-        $world = $creator->create($this->name, $this->slug, $this->brand, $this->member, $user);
-
-        return $worldRepository->save($world);
+        return $creator->create($this->name, $this->slug, $this->brand, $this->member, $user);
 	}
 
 }

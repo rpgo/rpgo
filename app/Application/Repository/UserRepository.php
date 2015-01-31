@@ -1,16 +1,8 @@
 <?php namespace Rpgo\Application\Repository;
 
-
-use Rpgo\Application\Repository\Eloquent\User as Eloquent;
-use Rpgo\Model\Contracts\User\User;
+use Rpgo\Model\User\User;
 
 interface UserRepository {
-
-    /**
-     * @param Eloquent $user
-     * @return User
-     */
-    public function model(Eloquent $user);
 
     /**
      * @param string $id
@@ -18,6 +10,16 @@ interface UserRepository {
      */
     public function fetchById($id);
 
+    /**
+     * @param User $user
+     * @return bool
+     */
     public function save(User $user);
+
+    /**
+     * @param User $user
+     * @return bool
+     */
+    public function delete(User $user);
 
 }

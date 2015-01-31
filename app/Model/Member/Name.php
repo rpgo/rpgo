@@ -8,4 +8,11 @@ class Name {
     {
         $this->name = $name;
     }
+
+    function __toString()
+    {
+        return $this->name;
+    }
+
+
 }

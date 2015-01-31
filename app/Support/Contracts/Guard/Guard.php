@@ -1,6 +1,6 @@
 <?php namespace Rpgo\Support\Contracts\Guard;
 
-use Rpgo\Model\Contracts\User\User;
+use Rpgo\Model\User\User;
 
 interface Guard {
 

@@ -9,4 +9,8 @@ class Slug {
         $this->slug = $slug;
     }
 
+    function __toString()
+    {
+        return $this->slug;
+    }
 }
