@@ -11,23 +11,16 @@ class User {
      * @var Name
      */
     private $name;
-
     /**
-     * @var Email
+     * @var Credentials
      */
-    private $email;
+    private $credentials;
 
-    /**
-     * @var Password
-     */
-    private $password;
-
-    public function __construct(UserId $userId, Name $name, Email $email, Password $password)
+    public function __construct(UserId $userId, Name $name, Credentials $credentials)
     {
         $this->id = $userId;
         $this->name = $name;
-        $this->email = $email;
-        $this->password = $password;
+        $this->credentials = $credentials;
     }
 
     public function id()
@@ -42,6 +35,16 @@ class User {
 
     public function email()
     {
-        return (string) $this->email;
+        return (string) $this->credentials->email();
+    }
+
+    public function password()
+    {
+        return (string) $this->credentials->password();
+    }
+
+    public function validateCredentials($email, $password)
+    {
+        return $this->credentials->match($email, $password);
     }
 }
