@@ -15,7 +15,7 @@ Route::filter('localization', function() {
     App::setLocale(Route::input('lang'));
 });
 
-foreach(['lang', ''] as $prefix)
+foreach(['', 'lang'] as $prefix)
 {
     Route::group(['prefix' => optional($prefix), 'before' => 'localization'], function () use ($prefix) {
 
