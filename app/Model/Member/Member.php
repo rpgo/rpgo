@@ -11,26 +11,19 @@ class Member {
     private $id;
 
     /**
-     * @var User
-     */
-    private $user;
-
-    /**
-     * @var World
-     */
-    private $world;
-
-    /**
      * @var Name
      */
     private $name;
+    /**
+     * @var Membership
+     */
+    private $membership;
 
-    public function __construct(MemberId $memberId, User $user, World $world, Name $name)
+    public function __construct(MemberId $memberId, Name $name, Membership $membership)
     {
         $this->id = $memberId;
-        $this->user = $user;
-        $this->world = $world;
         $this->name = $name;
+        $this->membership = $membership;
     }
 
     public function id()
@@ -40,12 +33,12 @@ class Member {
 
     public function user()
     {
-        return $this->user;
+        return $this->membership->user();
     }
 
     public function world()
     {
-        return $this->world;
+        return $this->membership->world();
     }
 
     public function name()

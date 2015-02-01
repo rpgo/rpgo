@@ -4,16 +4,18 @@ namespace unit\Rpgo\Model\Member;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
+use Rpgo\Model\Member\Member;
 use Rpgo\Model\Member\MemberId;
+use Rpgo\Model\Member\Membership;
 use Rpgo\Model\Member\Name;
 use Rpgo\Model\User\User;
 use Rpgo\Model\World\World;
 
 class MemberSpec extends ObjectBehavior
 {
-    function let(MemberId $id, User $user, World $world, Name $name)
+    function let(MemberId $id, Name $name, Membership $membership)
     {
-        $this->beConstructedWith($id, $user, $world, $name);
+        $this->beConstructedWith($id, $name, $membership);
     }
 
     function it_is_initializable()
@@ -27,13 +29,15 @@ class MemberSpec extends ObjectBehavior
         $this->name()->shouldBe('LilyBelle');
     }
 
-    function it_returns_the_User_who_has_the_membership(User $user)
+    function it_returns_the_User_who_has_the_membership(Membership $membership, User $user)
     {
+        $membership->user()->willReturn($user);
         $this->user()->shouldBe($user);
     }
 
-    function it_returns_the_World_in_which_the_membership_is(World $world)
+    function it_returns_the_World_in_which_the_membership_is(Membership $membership, World $world)
     {
+        $membership->world()->willReturn($world);
         $this->world()->shouldBe($world);
     }
 
