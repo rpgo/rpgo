@@ -16,7 +16,7 @@ class Member {
     private $user;
 
     /**
-     * @var \Rpgo\Model\Contracts\World\World
+     * @var World
      */
     private $world;
 
@@ -35,7 +35,7 @@ class Member {
 
     public function id()
     {
-        return $this->id;
+        return (string) $this->id;
     }
 
     public function user()
@@ -50,6 +50,6 @@ class Member {
 
     public function name()
     {
-        return $this->name;
+        return (string) $this->name;
     }
 }
