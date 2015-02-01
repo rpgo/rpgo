@@ -43,20 +43,20 @@ class WorldCreator {
      * @param $name
      * @param $slug
      * @param $brand
-     * @param $member
+     * @param $admin
      * @param User $user
      * @return bool
      */
-    public function create($name, $slug, $brand, $member, User $user)
+    public function create($name, $slug, $brand, $admin, User $user)
     {
-        $world = $this->worldFactory->create($name, $slug, $brand, $user);
+        $world = $this->worldFactory->create($name, $brand, $slug, $user);
 
-        $member = $this->memberFactory->create($world, $user, $member);
+        $admin = $this->memberFactory->create($admin, $world, $user);
 
         if( ! $this->worldRepository->save($world))
             return false;
 
-        if( ! $this->memberRepository->save($member))
+        if( ! $this->memberRepository->save($admin))
         {
             $this->worldRepository->delete($world);
             return false;

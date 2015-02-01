@@ -46,7 +46,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label">{{trans('members.name')}}</label>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" name="member" maxlength="40" value="{{old('slug')}}">
+                                    <input type="text" class="form-control" name="admin" maxlength="40" value="{{old('slug')}}">
                                 </div>
                             </div>
 

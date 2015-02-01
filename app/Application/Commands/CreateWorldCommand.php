@@ -1,56 +1,40 @@
 <?php namespace Rpgo\Application\Commands;
 
-use Rpgo\Application\Repository\WorldRepository;
-use Rpgo\Application\Services\WorldCreator;
-use Rpgo\Support\Guard\Guard;
-use Illuminate\Contracts\Bus\SelfHandling;
+use Rpgo\Application\Commands\Command;
 
-class CreateWorldCommand extends Command implements SelfHandling {
+class CreateWorldCommand extends Command {
+
     /**
      * @var
      */
-    private $name;
+    public $name;
     /**
      * @var
      */
-    private $slug;
+    public $slug;
     /**
      * @var
      */
-    private $brand;
+    public $brand;
     /**
      * @var
      */
-    private $member;
+    public $member;
 
     /**
      * Create a new command instance.
      *
-     * @param $name
-     * @param $slug
-     * @param $brand
-     * @param $member
+     * @param string $name
+     * @param string $slug
+     * @param string $brand
+     * @param string $admin
      */
-	public function __construct($name, $slug, $brand, $member)
-	{
+    public function __construct($name, $slug, $brand, $admin)
+    {
         $this->name = $name;
         $this->slug = $slug;
         $this->brand = $brand;
-        $this->member = $member;
+        $this->member = $admin;
     }
-
-    /**
-     * Execute the command.
-     *
-     * @param Guard $guard
-     * @param WorldCreator $creator
-     * @return bool
-     */
-	public function handle(Guard $guard, WorldCreator $creator)
-	{
-        $user = $guard->user();
-
-        return $creator->create($this->name, $this->slug, $this->brand, $this->member, $user);
-	}
 
 }
