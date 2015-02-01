@@ -8,34 +8,20 @@ class World {
      * @var WorldId
      */
     private $id;
-
+    /**
+     * @var Trademark
+     */
+    private $trademark;
     /**
      * @var User
      */
     private $creator;
 
-    /**
-     * @var Name
-     */
-    private $name;
-
-    /**
-     * @var Slug
-     */
-    private $slug;
-
-    /**
-     * @var Brand
-     */
-    private $brand;
-
-    function __construct(WorldId $worldId, User $creator, Name $name, Slug $slug, Brand $brand)
+    function __construct(WorldId $id, Trademark $trademark, User $creator)
     {
-        $this->id = $worldId;
+        $this->id = $id;
+        $this->trademark = $trademark;
         $this->creator = $creator;
-        $this->name = $name;
-        $this->slug = $slug;
-        $this->brand = $brand;
     }
 
     public function id()
@@ -45,17 +31,17 @@ class World {
 
     public function name()
     {
-        return (string) $this->name;
+        return (string) $this->trademark->name();
     }
 
     public function slug()
     {
-        return (string) $this->slug;
+        return (string) $this->trademark->slug();
     }
 
     public function brand()
     {
-        return (string) $this->brand;
+        return (string) $this->trademark->brand();
     }
 
     public function creator()
