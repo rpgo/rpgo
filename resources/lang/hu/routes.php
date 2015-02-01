@@ -13,4 +13,7 @@ return [
         'email' => 'jelszo/email',
         'reset' => 'jelszo/uj',
     ],
+    'dashboard' => [
+        'home' => 'admin',
+    ],
 ];

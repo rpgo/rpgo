@@ -57,6 +57,8 @@ foreach(['lang', ''] as $prefix)
 
             Route::get('/', ['as' => prefix($prefix, 'worlds.show'), 'uses' => 'WorldController@show']);
 
+            Route::get(trans('routes.dashboard.home'), ['as' => prefix($prefix, 'worlds.dashboard.main'), 'uses' => 'DashboardController@main']);
+
         });
     });
 }
