@@ -1,7 +1,8 @@
 <?php
 
 return [
-    "landing" => "Főoldal",
-    "login" => "Bejelentkezés",
-    "register" => "Regisztráció",
+    'landing' => 'Főoldal',
+    'login' => 'Bejelentkezés',
+    'register' => 'Regisztráció',
+    'logout' => 'Kijelentkezés',
 ];
