@@ -2,7 +2,8 @@
 
 use Rpgo\Application\Repository\Eloquent\Member as Eloquent;
 use Rpgo\Application\Repository\MemberRepository as MemberRepositoryContract;
-use Rpgo\Application\Repository\UserRepository;
+use Rpgo\Model\Contracts\User\UserFactory;
+use Rpgo\Model\Contracts\World\WorldFactory;
 use Rpgo\Model\Member\Member as Model;
 use Rpgo\Model\Member\MemberFactory;
 use Rpgo\Model\World\World;
@@ -15,15 +16,15 @@ class MemberRepository implements MemberRepositoryContract {
      */
     private $factory;
     /**
-     * @var WorldRepository
+     * @var WorldFactory
      */
     private $world;
     /**
-     * @var UserRepository
+     * @var UserFactory
      */
     private $user;
 
-    public function __construct(MemberFactory $factory, WorldRepository $world, UserRepository $user)
+    public function __construct(MemberFactory $factory, WorldFactory $world, UserFactory $user)
     {
 
         $this->factory = $factory;
