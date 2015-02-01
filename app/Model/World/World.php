@@ -1,6 +1,7 @@
 <?php namespace Rpgo\Model\World;
 
 use Rpgo\Model\User\User;
+use Rpgo\Support\Collection\Collection;
 
 class World {
 
@@ -16,6 +17,11 @@ class World {
      * @var User
      */
     private $creator;
+
+    /**
+     * @var Collection
+     */
+    private $members;
 
     function __construct(WorldId $id, Trademark $trademark, User $creator)
     {
@@ -47,6 +53,11 @@ class World {
     public function creator()
     {
         return $this->creator;
+    }
+
+    public function members(Collection $members = null)
+    {
+        return $members ? $this->members = $members : $this->members;
     }
 
 }

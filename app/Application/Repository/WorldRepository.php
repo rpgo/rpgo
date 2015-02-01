@@ -1,6 +1,7 @@
 <?php namespace Rpgo\Application\Repository;
 
 use Rpgo\Model\World\World;
+use Rpgo\Support\Collection\Collection;
 
 interface WorldRepository {
 
@@ -21,5 +22,10 @@ interface WorldRepository {
      * @return World
      */
     public function fetchById($id);
+
+    /**
+     * @return Collection
+     */
+    public function fetchAll();
 
 }

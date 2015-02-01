@@ -26,13 +26,13 @@
                     @foreach($worlds as $world)
                         <tr>
                             <td>
-                                <a href="{{route('worlds.show',[$world->slug])}}">{{$world->name}}</a>
+                                <a href="{{route('worlds.show',[$world->slug()])}}">{{$world->name()}}</a>
                             </td>
                             <td>
-                                {{count($world->members)}}
+                                {{count($world->members())}}
                             </td>
                             <td>
-                                {{$world->creator->name}}
+                                {{$world->creator()->name()}}
                             </td>
                         </tr>
                     @endforeach

@@ -3,6 +3,7 @@
 use Rpgo\Access\Http\Requests;
 use Rpgo\Access\Http\Requests\CreateWorldRequest;
 use Rpgo\Application\Commands\CreateWorldCommand;
+use Rpgo\Application\Commands\ListWorldsCommand;
 use Rpgo\Application\Repository\Eloquent\World;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
 
@@ -21,8 +22,7 @@ class WorldController extends Controller {
 	 */
 	public function index()
 	{
-
-        $worlds = World::all();
+        $worlds = $this->dispatch(new ListWorldsCommand());
 
 		return view('world.index')->with(compact('worlds'));
 	}

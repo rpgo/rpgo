@@ -2,9 +2,34 @@
 
 use Rpgo\Application\Repository\Eloquent\Member as Eloquent;
 use Rpgo\Application\Repository\MemberRepository as MemberRepositoryContract;
+use Rpgo\Application\Repository\UserRepository;
 use Rpgo\Model\Member\Member;
+use Rpgo\Model\Member\MemberFactory;
+use Rpgo\Model\World\World;
+use Rpgo\Support\Collection\Collection;
 
 class MemberRepository implements MemberRepositoryContract {
+
+    /**
+     * @var MemberFactory
+     */
+    private $factory;
+    /**
+     * @var WorldRepository
+     */
+    private $world;
+    /**
+     * @var UserRepository
+     */
+    private $user;
+
+    public function __construct(MemberFactory $factory, WorldRepository $world, UserRepository $user)
+    {
+
+        $this->factory = $factory;
+        $this->world = $world;
+        $this->user = $user;
+    }
 
     public function save(Member $member)
     {
@@ -32,5 +57,26 @@ class MemberRepository implements MemberRepositoryContract {
     public function fetchById($id)
     {
         // TODO: Implement fetchById() method.
+    }
+
+    /**
+     * @param World $world
+     * @return Collection
+     */
+    public function fetchAllForWorld(World $world)
+    {
+        $eloquents = Eloquent::where('world_id', $world->id())->get();
+
+        $members = new Collection();
+
+        foreach ($eloquents as $eloquent)
+        {
+            $user = $this->user->fetchById($eloquent->user_id);
+            $world = $this->world->fetchById($eloquent->world_id);
+            $member = $this->factory->revive($eloquent->id, $eloquent->name, $world, $user);
+            $members->add($member);
+        }
+
+        return $members;
     }
 }
