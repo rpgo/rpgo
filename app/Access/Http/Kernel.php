@@ -38,6 +38,7 @@ class Kernel extends HttpKernel {
 		'auth' => Authenticate::class,
 		'auth.basic' => AuthenticateWithBasicAuth::class,
 		'guest' => RedirectIfAuthenticated::class,
+        'worlds' => 'Rpgo\Access\Http\Middleware\IdentifyWorld',
 	];
 
 }

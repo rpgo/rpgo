@@ -88,6 +88,13 @@ class WorldRepository implements WorldRepositoryContract {
 
     }
 
+    public function fetchBySlug($slug)
+    {
+        $eloquent = World::where('slug', $slug)->first();
+
+        return $this->getModel($eloquent);
+    }
+
     /**
      * @param $eloquent
      * @param $world
@@ -117,5 +124,14 @@ class WorldRepository implements WorldRepositoryContract {
 
             $world->members($members);
         }
+    }
+
+    private function getModel($eloquent)
+    {
+        if( ! $eloquent)
+            return null;
+
+        $creator = $this->user->revive($eloquent->creator->id, $eloquent->creator->name, $eloquent->creator->email, $eloquent->creator->password);
+        return $this->factory->revive($eloquent->id, $eloquent->name, $eloquent->brand, $eloquent->slug, $creator);
     }
 }

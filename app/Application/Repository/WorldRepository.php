@@ -28,4 +28,10 @@ interface WorldRepository {
      */
     public function fetchAll();
 
+    /**
+     * @param string $slug
+     * @return World
+     */
+    public function fetchBySlug($slug);
+
 }

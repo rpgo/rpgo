@@ -60,14 +60,9 @@ class WorldController extends Controller {
      * @param $tld
      * @return Response
      */
-	public function show($slug)
+	public function show()
 	{
-		$world = World::where('slug', $slug)->first();
-
-        if(! $world)
-            throw new RouteNotFoundException;
-
-        return view('world.show')->with(compact('world'));
+        return view('world.show');
 	}
 
 	/**
