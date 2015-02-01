@@ -83,7 +83,7 @@ class Name {
     private function checkIfEmpty($name)
     {
         if (strlen(utf8_decode($name)) == 0)
-            throw new EmptyUserNameException("A user cannot have an empty username.");
+            throw new EmptyUserNameException("A user cannot have an empty name.");
     }
 
     /**
