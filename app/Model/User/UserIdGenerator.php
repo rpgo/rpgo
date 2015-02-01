@@ -4,7 +4,7 @@ use Rpgo\Model\Common\EntityIdGenerator;
 use Rpgo\Model\Contracts\Id;
 use Rpgo\Model\Contracts\User\UserIdGenerator as UserIdGeneratorContract;
 
-final class UserIdGenerator extends EntityIdGenerator implements UserIdGeneratorContract {
+class UserIdGenerator extends EntityIdGenerator implements UserIdGeneratorContract {
 
     public function getEntityId(Id $id)
     {

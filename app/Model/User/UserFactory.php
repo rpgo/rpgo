@@ -22,12 +22,10 @@ final class UserFactory implements UserFactoryContract {
      */
     public function create($name, $email, $password)
     {
-        $id = $this->getNewId();
         $name = $this->getName($name);
-        $email = $this->getEmail($email);
-        $password = $this->getNewPassword($password);
+        $credentials = $this->getCredentials($email, $password);
 
-        return $this->getUser($name, $email, $password, $id);
+        return $this->getUser($name, $credentials);
     }
 
     /**
@@ -41,10 +39,9 @@ final class UserFactory implements UserFactoryContract {
     {
         $id = $this->getOldId($id);
         $name = $this->getName($name);
-        $email = $this->getEmail($email);
-        $password = $this->getOldPassword($password);
+        $credentials = $this->getCredentials($email, $password, true);
 
-        return new User($id, $name, $email, $password);
+        return $this->getUser($name, $credentials, $id);
     }
 
     /**
@@ -66,33 +63,15 @@ final class UserFactory implements UserFactoryContract {
     }
 
     /**
-     * @param string $password
-     * @return Password
-     */
-    private function getNewPassword($password)
-    {
-        return new Password($password);
-    }
-
-    /**
-     * @param string $password
-     * @return Password
-     */
-    private function getOldPassword($password)
-    {
-        return new Password($password, true);
-    }
-
-    /**
      * @param Name $name
-     * @param Email $email
-     * @param Password $password
-     * @param UserId $id
+     * @param Credentials $credentials
+     * @param UserId|null $id
      * @return User
      */
-    private function getUser($name, $email, $password, $id)
+    private function getUser($name, $credentials, $id = null)
     {
-        return new User($id, $name, $email, $password);
+        $id = $id ?: $this->getNewId();
+        return new User($id, $name, $credentials);
     }
 
     /**
@@ -110,5 +89,28 @@ final class UserFactory implements UserFactoryContract {
     private function getOldId($id)
     {
         return $this->generator->from($id);
+    }
+
+    /**
+     * @param string $email
+     * @param string $password
+     * @param bool $hashed
+     * @return Credentials
+     */
+    private function getCredentials($email, $password, $hashed = false)
+    {
+        $email = $this->getEmail($email);
+        $password = $this->getPassword($password, $hashed);
+        return new Credentials($email, $password);
+    }
+
+    /**
+     * @param string $password
+     * @param bool $hashed
+     * @return Password
+     */
+    private function getPassword($password, $hashed = false)
+    {
+        return new Password($password, $hashed);
     }
 }
