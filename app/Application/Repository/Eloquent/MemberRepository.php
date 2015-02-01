@@ -2,8 +2,8 @@
 
 use Rpgo\Application\Repository\Eloquent\Member as Eloquent;
 use Rpgo\Application\Repository\MemberRepository as MemberRepositoryContract;
-use Rpgo\Model\Contracts\User\UserFactory;
-use Rpgo\Model\Contracts\World\WorldFactory;
+use Rpgo\Model\User\UserFactory;
+use Rpgo\Model\World\WorldFactory;
 use Rpgo\Model\Member\Member as Model;
 use Rpgo\Model\Member\MemberFactory;
 use Rpgo\Model\World\World;
