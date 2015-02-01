@@ -19,7 +19,7 @@ class CreateMembersTable extends Migration {
             $table->foreign('world_id')->references('id')->on('worlds');
             $table->string('user_id', 36);
             $table->foreign('user_id')->references('id')->on('users');
-            $table->string('name', 40);
+            $table->string('name', 30);
             $table->timestamps();
 		});
 	}
