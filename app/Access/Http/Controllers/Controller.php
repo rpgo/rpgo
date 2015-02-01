@@ -8,4 +8,9 @@ abstract class Controller extends BaseController {
 
 	use DispatchesCommands, ValidatesRequests;
 
+    public function execute($command, $source, $extras = [])
+    {
+        return $this->dispatchFrom($command, $source, $extras);
+    }
+
 }

@@ -1,10 +1,11 @@
 <?php namespace Rpgo\Application\Commands\Handlers;
 
+use Rpgo\Application\Events\WorldWasCreated;
 use Rpgo\Application\Services\WorldCreator;
 use Rpgo\Application\Commands\CreateWorldCommand;
 use Rpgo\Support\Guard\Guard;
 
-class CreateWorldCommandHandler {
+class CreateWorldCommandHandler extends CommandHandler {
     /**
      * @var Guard
      */
@@ -31,7 +32,14 @@ class CreateWorldCommandHandler {
 	{
         $user = $this->guard->user();
 
-        return $this->creator->create($command->name, $command->slug, $command->brand, $command->member, $user);
+        $world = $this->creator->create($command->name, $command->slug, $command->brand, $command->member, $user);
+
+        if( ! $world)
+            return false;
+
+        $this->announce(new WorldWasCreated($world));
+
+        return true;
 	}
 
 }

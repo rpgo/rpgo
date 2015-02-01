@@ -1,6 +1,7 @@
 <?php namespace Rpgo\Application\Services;
 
 use Rpgo\Application\Repository\UserRepository;
+use Rpgo\Model\User\User;
 use Rpgo\Model\User\UserFactory;
 
 class UserRegistrar {
@@ -20,11 +21,20 @@ class UserRegistrar {
         $this->userRepository = $userRepository;
     }
 
+    /**
+     * @param $name
+     * @param $email
+     * @param $password
+     * @return null|User
+     */
     public function register($name, $email, $password)
     {
         $user = $this->userFactory->create($name, $email, $password);
 
-        return $this->userRepository->save($user);
+        if(! $this->userRepository->save($user))
+            return null;
+
+        return $user;
     }
 
 }

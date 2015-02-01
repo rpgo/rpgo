@@ -2,6 +2,9 @@
 
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use Rpgo\Application\Events\Handlers\Notifier;
+use Rpgo\Application\Events\UserWasRegistered;
+use Rpgo\Application\Events\WorldWasCreated;
 
 class EventServiceProvider extends ServiceProvider {
 
@@ -11,9 +14,7 @@ class EventServiceProvider extends ServiceProvider {
 	 * @var array
 	 */
 	protected $listen = [
-		'event.name' => [
-			'EventListener',
-		],
+		'listen' => [ 'listener' ]
 	];
 
 	/**
@@ -24,6 +25,11 @@ class EventServiceProvider extends ServiceProvider {
 	 */
 	public function boot(DispatcherContract $events)
 	{
+        $events->listen([
+            UserWasRegistered::class,
+            WorldWasCreated::class,
+        ], Notifier::class);
+
 		parent::boot($events);
 
 		//

@@ -45,7 +45,7 @@ class WorldController extends Controller {
      */
 	public function store(CreateWorldRequest $request)
 	{
-        $success = $this->dispatchFrom(CreateWorldCommand::class, $request);
+        $success = $this->execute(CreateWorldCommand::class, $request);
 
         if( ! $success)
             return redirect()->back();

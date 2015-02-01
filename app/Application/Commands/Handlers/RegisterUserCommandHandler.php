@@ -3,10 +3,11 @@
 use Rpgo\Application\Commands\RegisterUserCommand;
 
 use Illuminate\Queue\InteractsWithQueue;
+use Rpgo\Application\Events\UserWasRegistered;
 use Rpgo\Application\Services\UserRegistrar;
 use Rpgo\Support\Guard\Guard;
 
-class RegisterUserCommandHandler {
+class RegisterUserCommandHandler extends CommandHandler {
 
     /**
      * @var Guard
@@ -37,12 +38,14 @@ class RegisterUserCommandHandler {
 	 */
 	public function handle(RegisterUserCommand $command)
 	{
-		$success = $this->registrar->register($command->name, $command->email, $command->password);
+		$user = $this->registrar->register($command->name, $command->email, $command->password);
 
-        if( ! $success)
+        if( ! $user)
             return false;
 
         $this->guard->login($command->email, $command->password);
+
+        $this->announce(new UserWasRegistered($user));
 
         return true;
 

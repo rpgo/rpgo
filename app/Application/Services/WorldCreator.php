@@ -4,6 +4,7 @@ use Rpgo\Application\Repository\MemberRepository;
 use Rpgo\Application\Repository\WorldRepository;
 use Rpgo\Model\User\User;
 use Rpgo\Model\Member\MemberFactory;
+use Rpgo\Model\World\World;
 use Rpgo\Model\World\WorldFactory;
 
 class WorldCreator {
@@ -45,7 +46,7 @@ class WorldCreator {
      * @param $brand
      * @param $admin
      * @param User $user
-     * @return bool
+     * @return World|null
      */
     public function create($name, $slug, $brand, $admin, User $user)
     {
@@ -54,15 +55,15 @@ class WorldCreator {
         $admin = $this->memberFactory->create($admin, $world, $user);
 
         if( ! $this->worldRepository->save($world))
-            return false;
+            return null;
 
         if( ! $this->memberRepository->save($admin))
         {
             $this->worldRepository->delete($world);
-            return false;
+            return null;
         }
 
-        return true;
+        return $world;
     }
 
 }
