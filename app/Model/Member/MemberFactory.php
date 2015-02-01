@@ -20,11 +20,12 @@ class MemberFactory {
      * @param string $name
      * @return Member
      */
-    public function create(World $world, User $user, $name)
+    public function create($name, World $world, User $user)
     {
         $id = $this->generator->next();
         $name = new Name($name);
-        return new Member($id, $user, $world, $name);
+        $membership = new Membership($world, $user);
+        return new Member($id, $name, $membership);
 
     }
 
@@ -35,10 +36,11 @@ class MemberFactory {
      * @param string $name
      * @return Member
      */
-    public function revive($id, World $world, User $user, $name)
+    public function revive($id, $name, World $world, User $user)
     {
         $id = $this->generator->from($id);
         $name = new Name($name);
-        return new Member($id, $user, $world, $name);
+        $membership = new Membership($world, $user);
+        return new Member($id, $name, $membership);
     }
 }
