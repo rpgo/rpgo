@@ -3,9 +3,8 @@
 use Illuminate\Auth\Guard as IlluminateGuard;
 use Rpgo\Application\Repository\UserRepository;
 use Rpgo\Model\User\User;
-use Rpgo\Support\Contracts\Guard\Guard as GuardContract;
 
-final class Guard implements GuardContract {
+final class Guard {
 
     /**
      * @var IlluminateGuard
