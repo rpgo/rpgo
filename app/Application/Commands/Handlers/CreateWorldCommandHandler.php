@@ -3,6 +3,7 @@
 use Rpgo\Application\Events\WorldWasCreated;
 use Rpgo\Application\Services\WorldCreator;
 use Rpgo\Application\Commands\CreateWorldCommand;
+use Rpgo\Model\World\World;
 use Rpgo\Support\Guard\Guard;
 
 class CreateWorldCommandHandler extends CommandHandler {
@@ -26,7 +27,7 @@ class CreateWorldCommandHandler extends CommandHandler {
      * Handle the command.
      *
      * @param  CreateWorldCommand $command
-     * @return bool
+     * @return World|null
      */
 	public function handle(CreateWorldCommand $command)
 	{
@@ -35,11 +36,11 @@ class CreateWorldCommandHandler extends CommandHandler {
         $world = $this->creator->create($command->name, $command->slug, $command->brand, $command->member, $user);
 
         if( ! $world)
-            return false;
+            return null;
 
         $this->announce(new WorldWasCreated($world));
 
-        return true;
+        return $world;
 	}
 
 }

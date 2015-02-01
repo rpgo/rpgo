@@ -45,12 +45,12 @@ class WorldController extends Controller {
      */
 	public function store(CreateWorldRequest $request)
 	{
-        $success = $this->execute(CreateWorldCommand::class, $request);
+        $world = $this->execute(CreateWorldCommand::class, $request);
 
-        if( ! $success)
+        if( ! $world)
             return redirect()->back();
 
-        return redirect()->route('worlds.index')->with('message', 'success');
+        return redirect()->route('worlds.show', [$world->slug()]);
 	}
 
     /**
