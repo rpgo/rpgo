@@ -8,7 +8,7 @@
   "license": "MIT",
   "type": "project",
   "require": {
-    "laravel/framework": "dev-master#074160019c547154a77caaeab692e0d39b757f4a@dev",
+    "laravel/framework": "dev-master#074160019c547154a77caaeab692e0d39b757f4a",
     "rhumsaa/uuid": "^2.8@stable"
   },
   "require-dev": {
