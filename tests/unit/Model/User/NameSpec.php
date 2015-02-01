@@ -31,7 +31,7 @@ class NameSpec extends ObjectBehavior
 
     function it_squawks_at_more_than_30_characters()
     {
-        $this->shouldThrow('Rpgo\Model\User\Exception\UserNameTooLongException')
+        $this->shouldThrow('Rpgo\Model\User\Exception\LongUserNameException')
             ->during('__construct', ['TooLongANameToGiveToAUserHereNow']);
     }
 
@@ -132,7 +132,7 @@ class NameSpec extends ObjectBehavior
 
     function it_cannot_be_empty()
     {
-        $this->shouldThrow('Rpgo\Model\User\Exception\UserNameEmptyException')
+        $this->shouldThrow('Rpgo\Model\User\Exception\EmptyUserNameException')
             ->during('__construct', ['']);
     }
 

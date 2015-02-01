@@ -1,8 +1,8 @@
 <?php namespace Rpgo\Model\User;
 
 use Rpgo\Model\User\Exception\InvalidUserNameException;
-use Rpgo\Model\User\Exception\UserNameEmptyException;
-use Rpgo\Model\User\Exception\UserNameTooLongException;
+use Rpgo\Model\User\Exception\EmptyUserNameException;
+use Rpgo\Model\User\Exception\LongUserNameException;
 
 class Name {
 
@@ -27,7 +27,7 @@ class Name {
     /**
      * @param string $name
      * @throws \Rpgo\Model\User\Exception\InvalidUserNameException
-     * @throws \Rpgo\Model\User\Exception\UserNameTooLongException
+     * @throws \Rpgo\Model\User\Exception\LongUserNameException
      */
     private function setName($name)
     {
@@ -42,8 +42,8 @@ class Name {
 
     /**
      * @param $name
-     * @throws UserNameEmptyException
-     * @throws \Rpgo\Model\User\Exception\UserNameTooLongException
+     * @throws EmptyUserNameException
+     * @throws \Rpgo\Model\User\Exception\LongUserNameException
      */
     private function checkLength($name)
     {
@@ -78,21 +78,21 @@ class Name {
 
     /**
      * @param $name
-     * @throws \Rpgo\Model\User\Exception\UserNameEmptyException
+     * @throws \Rpgo\Model\User\Exception\EmptyUserNameException
      */
     private function checkIfEmpty($name)
     {
         if (strlen(utf8_decode($name)) == 0)
-            throw new UserNameEmptyException("A user cannot have an empty username.");
+            throw new EmptyUserNameException("A user cannot have an empty username.");
     }
 
     /**
      * @param $name
-     * @throws \Rpgo\Model\User\Exception\UserNameTooLongException
+     * @throws \Rpgo\Model\User\Exception\LongUserNameException
      */
     private function checkIfTooLong($name)
     {
         if (strlen(utf8_decode($name)) > 30)
-            throw new UserNameTooLongException("A user cannot have the name '${name}', because it's more than 30 characters.");
+            throw new LongUserNameException("A user cannot have the name '${name}', because it's more than 30 characters.");
     }
 }

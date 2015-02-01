@@ -1,6 +1,6 @@
 <?php namespace Rpgo\Model\User;
 
-use Rpgo\Model\User\Exception\PasswordEmptyException;
+use Rpgo\Model\User\Exception\EmptyPasswordException;
 use Rpgo\Support\Hash\Hash;
 
 class Password {
@@ -52,11 +52,11 @@ class Password {
 
     /**
      * @param string $password
-     * @throws PasswordEmptyException
+     * @throws EmptyPasswordException
      */
     private function cantBeEmpty($password)
     {
         if ($password == '')
-            throw new PasswordEmptyException;
+            throw new EmptyPasswordException;
     }
 }

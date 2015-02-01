@@ -47,7 +47,7 @@ class PasswordSpec extends ObjectBehavior
 
     function it_cannot_be_empty()
     {
-        $this->shouldThrow('Rpgo\Model\User\Exception\PasswordEmptyException')
+        $this->shouldThrow('Rpgo\Model\User\Exception\EmptyPasswordException')
             ->during('__construct', ['']);
     }
 }
