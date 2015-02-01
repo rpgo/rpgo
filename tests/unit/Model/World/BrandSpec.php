@@ -46,7 +46,7 @@ class BrandSpec extends ObjectBehavior
         $this->change('SG:Memo')->shouldNotBe($this);
     }
 
-    function it_morphs_into_a_new_world_slug()
+    function it_morphs_into_a_new_world_brand()
     {
         $this->change('SG:Memo')->shouldHaveType('Rpgo\Model\World\Brand');
     }
