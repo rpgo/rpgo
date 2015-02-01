@@ -1,6 +1,6 @@
 <?php namespace Rpgo\Model\User;
 
-use Rpgo\Model\User\Exception\InvalidCharacterInUserNameException;
+use Rpgo\Model\User\Exception\InvalidUserNameException;
 use Rpgo\Model\User\Exception\UserNameEmptyException;
 use Rpgo\Model\User\Exception\UserNameTooLongException;
 
@@ -26,7 +26,7 @@ class Name {
 
     /**
      * @param string $name
-     * @throws \Rpgo\Model\User\Exception\InvalidCharacterInUserNameException
+     * @throws \Rpgo\Model\User\Exception\InvalidUserNameException
      * @throws \Rpgo\Model\User\Exception\UserNameTooLongException
      */
     private function setName($name)
@@ -54,12 +54,12 @@ class Name {
 
     /**
      * @param $name
-     * @throws InvalidCharacterInUserNameException
+     * @throws InvalidUserNameException
      */
     private function checkLetters($name)
     {
         if ( ! preg_match("/^[a-zA-ZáéíóöőúűÁÉÍÓÖŐÚŰ0-9]+$/", $name))
-            throw new InvalidCharacterInUserNameException("A user cannot have the name '${name}', because it contains special characters.");
+            throw new InvalidUserNameException("A user cannot have the name '${name}', because it contains special characters.");
     }
 
     public function change($name)

@@ -37,67 +37,67 @@ class NameSpec extends ObjectBehavior
 
     function it_cannot_contain_a_dot()
     {
-        $this->shouldThrow('Rpgo\Model\User\Exception\InvalidCharacterInUserNameException')
+        $this->shouldThrow('Rpgo\Model\User\Exception\InvalidUserNameException')
             ->during('__construct', ['This.isreallykillingme']);
     }
 
     function it_cannot_contain_a_space()
     {
-        $this->shouldThrow('Rpgo\Model\User\Exception\InvalidCharacterInUserNameException')
+        $this->shouldThrow('Rpgo\Model\User\Exception\InvalidUserNameException')
             ->during('__construct', ['This isreallykillingme']);
     }
 
     function it_cannot_contain_a_dash()
     {
-        $this->shouldThrow('Rpgo\Model\User\Exception\InvalidCharacterInUserNameException')
+        $this->shouldThrow('Rpgo\Model\User\Exception\InvalidUserNameException')
             ->during('__construct', ['This-isreallykillingme']);
     }
 
     function it_cannot_contain_an_at_symbol()
     {
-        $this->shouldThrow('Rpgo\Model\User\Exception\InvalidCharacterInUserNameException')
+        $this->shouldThrow('Rpgo\Model\User\Exception\InvalidUserNameException')
             ->during('__construct', ['This@isreallykillingme']);
     }
 
     function it_cannot_contain_an_and_symbol()
     {
-        $this->shouldThrow('Rpgo\Model\User\Exception\InvalidCharacterInUserNameException')
+        $this->shouldThrow('Rpgo\Model\User\Exception\InvalidUserNameException')
             ->during('__construct', ['This&isreallykillingme']);
     }
 
     function it_cannot_contain_a_hashtag()
     {
-        $this->shouldThrow('Rpgo\Model\User\Exception\InvalidCharacterInUserNameException')
+        $this->shouldThrow('Rpgo\Model\User\Exception\InvalidUserNameException')
             ->during('__construct', ['This#isreallykillingme']);
     }
 
     function it_cannot_contain_a_quote()
     {
-        $this->shouldThrow('Rpgo\Model\User\Exception\InvalidCharacterInUserNameException')
+        $this->shouldThrow('Rpgo\Model\User\Exception\InvalidUserNameException')
             ->during('__construct', ['This"isreallykillingme']);
     }
 
     function it_cannot_contain_a_star()
     {
-        $this->shouldThrow('Rpgo\Model\User\Exception\InvalidCharacterInUserNameException')
+        $this->shouldThrow('Rpgo\Model\User\Exception\InvalidUserNameException')
             ->during('__construct', ['This*isreallykillingme']);
     }
 
     function it_cannot_contain_a_plus_sign()
     {
-        $this->shouldThrow('Rpgo\Model\User\Exception\InvalidCharacterInUserNameException')
+        $this->shouldThrow('Rpgo\Model\User\Exception\InvalidUserNameException')
             ->during('__construct', ['This+isreallykillingme']);
     }
 
     function it_cannot_contain_a_slash()
     {
-        $this->shouldThrow('Rpgo\Model\User\Exception\InvalidCharacterInUserNameException')
+        $this->shouldThrow('Rpgo\Model\User\Exception\InvalidUserNameException')
             ->during('__construct', ['This/isreallykillingme']);
     }
 
     function it_cannot_contain_a_blackslash()
     {
-        $this->shouldThrow('Rpgo\Model\User\Exception\InvalidCharacterInUserNameException')
+        $this->shouldThrow('Rpgo\Model\User\Exception\InvalidUserNameException')
             ->during('__construct', ['This\\isreallykillingme']);
     }
 
