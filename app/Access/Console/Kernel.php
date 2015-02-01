@@ -12,6 +12,7 @@ class Kernel extends ConsoleKernel {
 	 */
 	protected $commands = [
 		'Rpgo\Access\Console\Commands\Inspire',
+        'Rpgo\Access\Console\Commands\RegisterUserConsole',
 	];
 
 	/**
