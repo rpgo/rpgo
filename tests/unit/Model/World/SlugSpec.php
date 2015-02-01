@@ -58,7 +58,7 @@ class SlugSpec extends ObjectBehavior
         $this->change('sgmemo')->shouldNotBe($this);
     }
 
-    function it_morphs_into_a_new_username()
+    function it_morphs_into_a_new_world_slug()
     {
         $this->change('sgmemo')->shouldHaveType('Rpgo\Model\World\Slug');
     }
