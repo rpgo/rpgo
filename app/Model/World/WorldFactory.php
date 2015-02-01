@@ -15,13 +15,31 @@ class WorldFactory {
         $this->generator = $generator;
     }
 
-    public function create($name, $slug, $brand, User $user)
+    public function create($name, $brand, $slug, User $creator)
     {
         $id = $this->generator->next();
-        $name = new Name($name);
-        $slug = new Slug($slug);
-        $brand = new Brand($brand);
-        return new World($id, $user, $name, $slug, $brand);
+        $trademark = $this->getTrademark($name, $brand, $slug);
+        return new World($id, $trademark, $creator);
     }
 
+    /**
+     * @param $name
+     * @param $slug
+     * @param $brand
+     * @return Trademark
+     */
+    private function getTrademark($name, $brand, $slug)
+    {
+        $name = new Name($name);
+        $brand = new Brand($brand);
+        $slug = new Slug($slug);
+        return new Trademark($name, $brand, $slug);
+    }
+
+    public function revive($id, $name, $brand, $slug, User $creator)
+    {
+        $id = $this->generator->from($id);
+        $trademark = $this->getTrademark($name, $brand, $slug);
+        return new World($id, $trademark, $creator);
+    }
 }

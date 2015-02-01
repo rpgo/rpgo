@@ -4,7 +4,7 @@ use Rpgo\Model\Common\EntityIdGenerator;
 use Rpgo\Model\Contracts\Id;
 use Rpgo\Model\Contracts\World\WorldIdGenerator as WorldIdGeneratorContract;
 
-final class WorldIdGenerator extends EntityIdGenerator implements WorldIdGeneratorContract {
+class WorldIdGenerator extends EntityIdGenerator implements WorldIdGeneratorContract {
 
     public function getEntityId(Id $id)
     {
