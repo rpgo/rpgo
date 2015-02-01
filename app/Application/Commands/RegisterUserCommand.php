@@ -1,17 +1,29 @@
 <?php namespace Rpgo\Application\Commands;
 
-use Rpgo\Application\Commands\Command;
-
 class RegisterUserCommand extends Command {
+    /**
+     * @var
+     */
+    public $name;
+    /**
+     * @var
+     */
+    public $email;
+    /**
+     * @var
+     */
+    public $password;
 
-	/**
+    /**
 	 * Create a new command instance.
 	 *
-	 * @return void
+     * return void
 	 */
-	public function __construct()
+	public function __construct($name, $email, $password)
 	{
-		//
-	}
+        $this->name = $name;
+        $this->email = $email;
+        $this->password = $password;
+    }
 
 }

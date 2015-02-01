@@ -27,9 +27,9 @@ foreach(['lang', ''] as $prefix)
 
             Route::post(trans('routes.auth.login'), 'Auth\AuthController@postLogin');
 
-            Route::get(trans('routes.auth.register'), ['as' => prefix($prefix, 'auth.register'), 'uses' => 'Auth\AuthController@getRegister']);
+            Route::get(trans('routes.auth.register'), ['as' => prefix($prefix, 'auth.register'), 'uses' => 'UserController@create']);
 
-            Route::post(trans('routes.auth.register'), 'Auth\AuthController@postRegister');
+            Route::post(trans('routes.auth.register'), 'UserController@store');
 
             Route::get(trans('routes.password.email'), ['as' => prefix($prefix, 'password.email'), 'uses' => 'Auth\PasswordController@getEmail']);
 

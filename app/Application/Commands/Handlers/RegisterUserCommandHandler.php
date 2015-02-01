@@ -3,28 +3,49 @@
 use Rpgo\Application\Commands\RegisterUserCommand;
 
 use Illuminate\Queue\InteractsWithQueue;
+use Rpgo\Application\Services\UserRegistrar;
+use Rpgo\Support\Guard\Guard;
 
 class RegisterUserCommandHandler {
 
-	/**
-	 * Create the command handler.
-	 *
-	 * @return void
-	 */
-	public function __construct()
+    /**
+     * @var Guard
+     */
+    private $guard;
+
+    /**
+     * @var UserRegistrar
+     */
+    private $registrar;
+
+    /**
+     * Create the command handler.
+     * @param Guard $guard
+     * @param UserRegistrar $registrar
+     */
+	public function __construct(Guard $guard, UserRegistrar $registrar)
 	{
-		//
-	}
+        $this->guard = $guard;
+        $this->registrar = $registrar;
+    }
 
 	/**
 	 * Handle the command.
 	 *
 	 * @param  RegisterUserCommand  $command
-	 * @return void
+	 * @return bool
 	 */
 	public function handle(RegisterUserCommand $command)
 	{
-		//
+		$success = $this->registrar->register($command->name, $command->email, $command->password);
+
+        if( ! $success)
+            return false;
+
+        $this->guard->login($command->email, $command->password);
+
+        return true;
+
 	}
 
 }
