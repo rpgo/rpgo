@@ -46,8 +46,7 @@ class RegisterUserConsole extends Command {
         }
         catch(\Exception $e)
         {
-            $this->error("Oops. The user could not be registered in the repository.");
-            $this->error("Try to ssh into homestead or the user already exists.");
+            $this->error("Oops. The user could not be registered.");
         }
     }
 
