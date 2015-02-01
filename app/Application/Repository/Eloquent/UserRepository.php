@@ -3,7 +3,7 @@
 use Rpgo\Application\Repository\UserRepository as UserRepositoryContract;
 use Rpgo\Model\User\UserFactory;
 use Rpgo\Application\Repository\Eloquent\User as Eloquent;
-use Rpgo\Model\User\User;
+use Rpgo\Model\User\User as Model;
 
 class UserRepository implements UserRepositoryContract {
 
@@ -11,11 +11,6 @@ class UserRepository implements UserRepositoryContract {
      * @var UserFactory
      */
     private $factory;
-
-    /**
-     * @var User
-     */
-    private $eloquent;
 
     public function __construct(UserFactory $factory)
     {
@@ -33,7 +28,7 @@ class UserRepository implements UserRepositoryContract {
         return $this->factory->revive($user->id, $user->name, $user->email, $user->password);
     }
 
-    public function save(User $user)
+    public function save(Model $user)
     {
         $eloquent = Eloquent::findOrNew($user->id());
 
@@ -46,10 +41,10 @@ class UserRepository implements UserRepositoryContract {
     }
 
     /**
-     * @param User $user
+     * @param Model $user
      * @return bool
      */
-    public function delete(User $user)
+    public function delete(Model $user)
     {
         $eloquent = Eloquent::find($user->id());
         return $eloquent->delete();

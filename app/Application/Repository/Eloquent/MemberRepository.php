@@ -3,7 +3,7 @@
 use Rpgo\Application\Repository\Eloquent\Member as Eloquent;
 use Rpgo\Application\Repository\MemberRepository as MemberRepositoryContract;
 use Rpgo\Application\Repository\UserRepository;
-use Rpgo\Model\Member\Member;
+use Rpgo\Model\Member\Member as Model;
 use Rpgo\Model\Member\MemberFactory;
 use Rpgo\Model\World\World;
 use Rpgo\Support\Collection\Collection;
@@ -31,7 +31,7 @@ class MemberRepository implements MemberRepositoryContract {
         $this->user = $user;
     }
 
-    public function save(Member $member)
+    public function save(Model $member)
     {
         $eloquent = Eloquent::findOrNew($member->id());
 
@@ -43,7 +43,7 @@ class MemberRepository implements MemberRepositoryContract {
         return $eloquent->save();
     }
 
-    public function delete(Member $member)
+    public function delete(Model $member)
     {
         $eloquent = Eloquent::find($member->id());
 

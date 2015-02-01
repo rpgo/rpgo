@@ -3,7 +3,7 @@
 use Rpgo\Application\Repository\WorldRepository as WorldRepositoryContract;
 use Rpgo\Model\User\UserFactory;
 use Rpgo\Model\Member\MemberFactory;
-use Rpgo\Model\World\World;
+use Rpgo\Model\World\World as Model;
 use Rpgo\Application\Repository\Eloquent\World as Eloquent;
 use Rpgo\Model\World\WorldFactory;
 use Rpgo\Support\Collection\Collection;
@@ -29,7 +29,7 @@ class WorldRepository implements WorldRepositoryContract {
         $this->member = $member;
     }
 
-    public function save(World $world)
+    public function save(Model $world)
     {
         $eloquent = Eloquent::findOrNew($world->id());
 
@@ -46,7 +46,7 @@ class WorldRepository implements WorldRepositoryContract {
      * @param World $world
      * @return bool
      */
-    public function delete(World $world)
+    public function delete(Model $world)
     {
         $eloquent = Eloquent::find($world->id());
 
