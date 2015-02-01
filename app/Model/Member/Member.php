@@ -1,8 +1,5 @@
 <?php namespace Rpgo\Model\Member;
 
-use Rpgo\Model\User\User;
-use Rpgo\Model\World\World;
-
 class Member {
 
     /**

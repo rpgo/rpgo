@@ -4,7 +4,6 @@ namespace unit\Rpgo\Model\Member;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
-use Rpgo\Model\Member\Member;
 use Rpgo\Model\Member\MemberId;
 use Rpgo\Model\Member\Membership;
 use Rpgo\Model\Member\Name;
