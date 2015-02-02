@@ -33,8 +33,8 @@
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a href="/">{{trans('rpgo.landing')}}</a></li>
                     <li><a href="{{route('worlds.index')}}">{{trans('worlds.index')}}</a></li>
+                    <li><a href="{{route('worlds.create')}}">{{trans('worlds.create.name')}}</a></li>
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
