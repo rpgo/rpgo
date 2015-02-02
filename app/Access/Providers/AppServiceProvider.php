@@ -1,8 +1,6 @@
 <?php namespace Rpgo\Access\Providers;
 
-use Illuminate\Contracts\Auth\Registrar as RegistrarContract;
 use Illuminate\Support\ServiceProvider;
-use Rpgo\Application\Services\Registrar;
 
 class AppServiceProvider extends ServiceProvider {
 
@@ -27,10 +25,12 @@ class AppServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		$this->app->bind(
-			RegistrarContract::class,
-			Registrar::class
+		$this->app->singleton(
+			'Illuminate\Contracts\Auth\Registrar',
+			'Rpgo\Application\Services\Registrar'
 		);
+
+        $this->app->singleton('Rpgo\Support\Guard\Guard');
 	}
 
 }
