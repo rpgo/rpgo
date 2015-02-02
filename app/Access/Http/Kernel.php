@@ -9,6 +9,7 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Rpgo\Access\Http\Middleware\Authenticate;
+use Rpgo\Access\Http\Middleware\IdentifyUser;
 use Rpgo\Access\Http\Middleware\RedirectIfAuthenticated;
 use Rpgo\Access\Http\Middleware\SetLanguage;
 
@@ -27,6 +28,7 @@ class Kernel extends HttpKernel {
 		ShareErrorsFromSession::class,
 		VerifyCsrfToken::class,
         SetLanguage::class,
+        IdentifyUser::class,
 	];
 
 	/**
