@@ -3,7 +3,7 @@
 use Closure;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\View;
-use Rpgo\Support\Guard\Guard;
+use Rpgo\Application\Services\Guard;
 
 class IdentifyUser {
 

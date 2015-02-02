@@ -4,11 +4,11 @@ use Rpgo\Application\Events\WorldWasCreated;
 use Rpgo\Application\Services\WorldCreator;
 use Rpgo\Application\Commands\CreateWorldCommand;
 use Rpgo\Model\World\World;
-use Rpgo\Support\Guard\Guard;
+use Rpgo\Application\Services\Guard;
 
 class CreateWorldCommandHandler extends CommandHandler {
     /**
-     * @var Guard
+     * @var \Rpgo\Application\Services\Guard
      */
     private $guard;
     /**

@@ -5,7 +5,7 @@ use Rpgo\Application\Commands\RegisterUserCommand;
 use Illuminate\Queue\InteractsWithQueue;
 use Rpgo\Application\Events\UserWasRegistered;
 use Rpgo\Application\Services\UserRegistrar;
-use Rpgo\Support\Guard\Guard;
+use Rpgo\Application\Services\Guard;
 
 class RegisterUserCommandHandler extends CommandHandler {
 

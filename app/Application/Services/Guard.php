@@ -1,4 +1,4 @@
-<?php namespace Rpgo\Support\Guard;
+<?php namespace Rpgo\Application\Services;
 
 use Illuminate\Auth\Guard as IlluminateGuard;
 use Rpgo\Application\Repository\UserRepository;
