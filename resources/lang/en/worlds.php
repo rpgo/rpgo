@@ -11,8 +11,10 @@ return [
     "brand" => "Brand",
     "slug" => "Slug",
     "create" => [
+        "name" => "New World",
         "title" => "Make a new world!",
         "submit" => "Create a new world",
+        "new" => "New",
     ],
     "landing" => "Home",
     "login" => "Login",
