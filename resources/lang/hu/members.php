@@ -6,4 +6,7 @@ return [
     'settings' => [
         'name' => 'Beállítások',
     ],
+    'create' => [
+        'name' => 'Csatlakozás',
+    ],
 ];

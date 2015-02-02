@@ -6,4 +6,7 @@ return [
     'settings' => [
         'name' => 'Settings',
     ],
+    'create' => [
+        'name' => 'Join',
+    ],
 ];
