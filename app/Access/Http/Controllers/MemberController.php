@@ -1,7 +1,10 @@
 <?php namespace Rpgo\Access\Http\Controllers;
 
+use Illuminate\Http\Response;
 use Rpgo\Access\Http\Requests;
 use Illuminate\Http\Request;
+use Rpgo\Application\Commands\JoinWorldCommand;
+use Rpgo\Application\Services\Guard;
 use Rpgo\Application\Services\Guide;
 
 class MemberController extends Controller {
@@ -29,14 +32,23 @@ class MemberController extends Controller {
     /**
      * Store a newly created resource in storage.
      *
+     * @param Request $request
+     * @param Guard $guard
      * @param Guide $guide
      * @return Response
      */
-	public function store(Guide $guide)
+	public function store(Request $request, Guide $guide, Guard $guard)
 	{
         $world = $guide->world();
 
-		return redirect()->route('worlds.show', [$world->slug()]);
+        $user = $guard->user();
+
+        $member = $this->execute(JoinWorldCommand::class, $request, compact('world', 'user'));
+
+        if ( ! $member )
+            return redirect()->back();
+
+        return redirect()->route('worlds.show', [$world->slug()]);
 	}
 
 	/**
