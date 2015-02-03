@@ -31,6 +31,7 @@ class AppServiceProvider extends ServiceProvider {
 		);
 
         $this->app->singleton('Rpgo\Application\Services\Guard');
+        $this->app->singleton('Rpgo\Application\Services\Guide');
 	}
 
 }

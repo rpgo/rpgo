@@ -2,6 +2,7 @@
 
 use Rpgo\Access\Http\Requests;
 use Illuminate\Http\Request;
+use Rpgo\Application\Services\Guide;
 
 class MemberController extends Controller {
 
@@ -25,14 +26,17 @@ class MemberController extends Controller {
 		return view('member.create');
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param Guide $guide
+     * @return Response
+     */
+	public function store(Guide $guide)
 	{
-		return 'joining the world';
+        $world = $guide->world();
+
+		return redirect()->route('worlds.show', [$world->slug()]);
 	}
 
 	/**
