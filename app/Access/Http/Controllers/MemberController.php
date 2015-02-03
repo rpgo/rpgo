@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Response;
 use Rpgo\Access\Http\Requests;
-use Illuminate\Http\Request;
+use Rpgo\Access\Http\Requests\JoinWorldRequest;
 use Rpgo\Application\Commands\JoinWorldCommand;
 use Rpgo\Application\Services\Guard;
 use Rpgo\Application\Services\Guide;
@@ -32,12 +32,12 @@ class MemberController extends Controller {
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
-     * @param Guard $guard
+     * @param JoinWorldRequest $request
      * @param Guide $guide
+     * @param Guard $guard
      * @return Response
      */
-	public function store(Request $request, Guide $guide, Guard $guard)
+	public function store(JoinWorldRequest $request, Guide $guide, Guard $guard)
 	{
         $world = $guide->world();
 
