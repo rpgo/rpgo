@@ -2,19 +2,21 @@
 
 use Closure;
 use Rpgo\Application\Repository\WorldRepository;
+use Rpgo\Application\Services\Guide;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class IdentifyWorld {
 
     /**
-     * @var WorldRepository
+     * @var Guide
      */
-    private $world;
+    private $guide;
 
-    function __construct(WorldRepository $world)
+    function __construct(Guide $guide)
     {
-        $this->world = $world;
+        $this->guide = $guide;
     }
+
 
     /**
      * Handle an incoming request.
@@ -28,10 +30,7 @@ class IdentifyWorld {
 	{
         $slug = $request->route()->parameter('slug');
 
-        $world = $this->world->fetchBySlug($slug);
-
-        if( ! $world)
-            throw new HttpException(404);
+        $world = $this->guide->world($slug);
 
         app('view')->share(compact('world'));
 
