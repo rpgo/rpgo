@@ -5,6 +5,14 @@ use Rpgo\Application\Exception\WorldNotFoundException;
 use Rpgo\Application\Repository\WorldRepository;
 use Rpgo\Model\World\World;
 
+/**
+ * Use it as a singleton!
+ * Make a middleware to store the current world and share it with the views.
+ * Then you can use Guide to retrieve that information only when needed.
+ *
+ * Class Guide
+ * @package Rpgo\Application\Services
+ */
 class Guide {
 
     /**
