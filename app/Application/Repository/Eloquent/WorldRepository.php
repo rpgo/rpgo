@@ -1,5 +1,6 @@
 <?php namespace Rpgo\Application\Repository\Eloquent;
 
+use Carbon\Carbon;
 use Rpgo\Application\Repository\WorldRepository as WorldRepositoryContract;
 use Rpgo\Model\User\UserFactory;
 use Rpgo\Model\Member\MemberFactory;
@@ -133,5 +134,28 @@ class WorldRepository implements WorldRepositoryContract {
 
         $creator = $this->user->revive($eloquent->creator->id, $eloquent->creator->name, $eloquent->creator->email, $eloquent->creator->password);
         return $this->factory->revive($eloquent->id, $eloquent->name, $eloquent->brand, $eloquent->slug, $creator);
+    }
+
+    /**
+     * @return Collection
+     */
+    public function fetchAllPublished()
+    {
+        $eloquents = Eloquent::with(['creator', 'members'])->where('published_at', '<=', Carbon::now())->get();
+
+        $worlds = new Collection();
+
+        foreach ($eloquents as $eloquent)
+        {
+            $creator = $this->user->revive($eloquent->creator->id, $eloquent->creator->name, $eloquent->creator->email, $eloquent->creator->password);
+
+            $world = $this->factory->revive($eloquent->id, $eloquent->name, $eloquent->brand, $eloquent->slug, $creator);
+
+            $this->loadMembersFromEloquentToModel($eloquent, $world);
+
+            $worlds->add($world);
+        }
+
+        return $worlds;
     }
 }

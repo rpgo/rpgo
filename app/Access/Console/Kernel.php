@@ -14,6 +14,7 @@ class Kernel extends ConsoleKernel {
 		'Rpgo\Access\Console\Commands\Inspire',
         'Rpgo\Access\Console\Commands\RegisterUserConsole',
         'Rpgo\Access\Console\Commands\CreateWorldConsole',
+        'Rpgo\Access\Console\Commands\ListWorldsConsole',
 	];
 
 	/**

@@ -2,14 +2,19 @@
 
 class ListWorldsCommand extends Command {
 
-	/**
-	 * Create a new command instance.
-	 *
-	 * @return void
-	 */
-	public function __construct()
+    /**
+     * @var bool
+     */
+    public $published;
+
+    /**
+     * Create a new command instance.
+     *
+     * @param bool $published
+     */
+	public function __construct($published = true)
 	{
-		//
-	}
+        $this->published = $published;
+    }
 
 }

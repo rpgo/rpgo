@@ -21,6 +21,7 @@ class CreateWorldsTable extends Migration {
             $table->string('slug', 20)->unique();
             $table->string('brand', 10)->unique();
             $table->timestamps();
+            $table->timestamp('published_at')->nullable();
 		});
 	}
 

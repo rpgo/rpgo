@@ -34,4 +34,9 @@ interface WorldRepository {
      */
     public function fetchBySlug($slug);
 
+    /**
+     * @return Collection
+     */
+    public function fetchAllPublished();
+
 }
