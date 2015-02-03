@@ -16,4 +16,8 @@ return [
     'dashboard' => [
         'home' => 'admin',
     ],
+    'member' => [
+        'create' => 'csatlakozas',
+        'store' => 'csatlakozas',
+    ],
 ];

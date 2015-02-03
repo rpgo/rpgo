@@ -13,4 +13,8 @@ return [
         'email' => 'jelszo/email',
         'reset' => 'jelszo/uj',
     ],
+    'member' => [
+        'create' => 'join',
+        'store' => 'join'
+    ],
 ];
