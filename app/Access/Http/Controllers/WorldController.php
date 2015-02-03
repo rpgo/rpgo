@@ -1,11 +1,11 @@
 <?php namespace Rpgo\Access\Http\Controllers;
 
+use Illuminate\Http\Response;
 use Rpgo\Access\Http\Requests;
 use Rpgo\Access\Http\Requests\CreateWorldRequest;
 use Rpgo\Application\Commands\CreateWorldCommand;
 use Rpgo\Application\Commands\ListWorldsCommand;
-use Rpgo\Application\Repository\Eloquent\World;
-use Symfony\Component\Routing\Exception\RouteNotFoundException;
+use Rpgo\Application\Services\Guard;
 
 class WorldController extends Controller {
 
@@ -41,11 +41,14 @@ class WorldController extends Controller {
      * Store a newly created resource in storage.
      *
      * @param CreateWorldRequest $request
+     * @param Guard $guard
      * @return Response
      */
-	public function store(CreateWorldRequest $request)
+	public function store(CreateWorldRequest $request, Guard $guard)
 	{
-        $world = $this->execute(CreateWorldCommand::class, $request);
+        $creator = $guard->user();
+
+        $world = $this->execute(CreateWorldCommand::class, $request, compact('creator'));
 
         if( ! $world)
             return redirect()->back();

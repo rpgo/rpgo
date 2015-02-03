@@ -23,6 +23,7 @@ class CreateWorldRequest extends Request {
 			'name' => 'required|unique:worlds',
             'brand' => 'required|unique:worlds',
             'slug' => 'required|unique:worlds',
+            'admin' => 'required',
 		];
 	}
 

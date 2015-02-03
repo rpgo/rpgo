@@ -7,20 +7,15 @@ use Rpgo\Model\World\World;
 use Rpgo\Application\Services\Guard;
 
 class CreateWorldCommandHandler extends CommandHandler {
-    /**
-     * @var \Rpgo\Application\Services\Guard
-     */
-    private $guard;
+
     /**
      * @var WorldCreator
      */
     private $creator;
 
-	public function __construct(Guard $guard, WorldCreator $creator)
+	public function __construct(WorldCreator $creator)
 	{
-		//
-        $this->guard = $guard;
-        $this->creator = $creator;
+		$this->creator = $creator;
     }
 
     /**
@@ -31,9 +26,7 @@ class CreateWorldCommandHandler extends CommandHandler {
      */
 	public function handle(CreateWorldCommand $command)
 	{
-        $user = $this->guard->user();
-
-        $world = $this->creator->create($command->name, $command->slug, $command->brand, $command->member, $user);
+        $world = $this->creator->create($command->name, $command->slug, $command->brand, $command->admin, $command->creator);
 
         if( ! $world)
             return null;

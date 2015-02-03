@@ -25,6 +25,8 @@ class UserRepository implements UserRepositoryContract {
     public function fetchById($id)
     {
         $user = Eloquent::find($id);
+        if(!$user)
+            return null;
         return $this->factory->revive($user->id, $user->name, $user->email, $user->password);
     }
 
@@ -48,5 +50,17 @@ class UserRepository implements UserRepositoryContract {
     {
         $eloquent = Eloquent::find($user->id());
         return $eloquent->delete();
+    }
+
+    /**
+     * @param string $name
+     * @return Model
+     */
+    public function fetchByName($name)
+    {
+        $eloquent = Eloquent::where('name', $name)->first();
+        if(!$eloquent)
+            return null;
+        return $this->factory->revive($eloquent->id, $eloquent->name, $eloquent->email, $eloquent->password);
     }
 }

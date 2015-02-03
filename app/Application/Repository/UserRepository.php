@@ -22,4 +22,10 @@ interface UserRepository {
      */
     public function delete(User $user);
 
+    /**
+     * @param string $name
+     * @return User
+     */
+    public function fetchByName($name);
+
 }
