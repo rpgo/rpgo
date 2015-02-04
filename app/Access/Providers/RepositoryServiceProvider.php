@@ -35,7 +35,7 @@ class RepositoryServiceProvider extends ServiceProvider {
         $this->app->alias('Rpgo\Application\Repository\WorldRepository', 'repository.world');
 
         $this->app->singleton('Rpgo\Application\Repository\MemberRepository', 'Rpgo\Application\Repository\Eloquent\MemberRepository');
-        $this->app->alias('Rpgo\Application\Repository\UserRepository', 'repository.user');
+        $this->app->alias('Rpgo\Application\Repository\MemberRepository', 'repository.member');
 	}
 
 }
