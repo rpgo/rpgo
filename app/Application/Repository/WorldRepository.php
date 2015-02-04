@@ -6,16 +6,16 @@ use Rpgo\Support\Collection\Collection;
 interface WorldRepository {
 
     /**
-     * @param World $world
+     * @param World $model
      * @return bool
      */
-    public function save(World $world);
+    public function save(World $model);
 
     /**
-     * @param World $world
+     * @param World $model
      * @return bool
      */
-    public function delete(World $world);
+    public function delete(World $model);
 
     /**
      * @param $id

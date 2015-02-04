@@ -1,54 +1,61 @@
 <?php namespace Rpgo\Application\Repository\Eloquent;
 
+use Rpgo\Application\Repository\RepositoryManager;
 use Rpgo\Application\Repository\UserRepository as UserRepositoryContract;
 use Rpgo\Model\User\UserFactory;
-use Rpgo\Application\Repository\Eloquent\User as Eloquent;
+use Rpgo\Application\Repository\Eloquent\Model\User as Eloquent;
 use Rpgo\Model\User\User as Model;
 
-class UserRepository implements UserRepositoryContract {
+class UserRepository extends Repository implements UserRepositoryContract {
 
     /**
      * @var UserFactory
      */
     private $factory;
 
-    public function __construct(UserFactory $factory)
+    public function __construct(RepositoryManager $manager, UserFactory $factory)
     {
         $this->factory = $factory;
+        parent::__construct($manager);
     }
 
-    public function model(Eloquent $user)
-    {
-        return $this->factory->revive($user->id, $user->name, $user->email, $user->password);
-    }
-
+    /**
+     * @param string $id
+     * @return Model|null
+     */
     public function fetchById($id)
     {
-        $user = Eloquent::find($id);
-        if(!$user)
+        $eloquent = Eloquent::find($id);
+
+        if( ! $eloquent )
             return null;
-        return $this->factory->revive($user->id, $user->name, $user->email, $user->password);
+
+        return $this->factory->revive($eloquent->id, $eloquent->name, $eloquent->email, $eloquent->password);
     }
 
-    public function save(Model $user)
+    /**
+     * @param Model $model
+     * @return bool
+     */
+    public function save(Model $model)
     {
-        $eloquent = Eloquent::findOrNew($user->id());
+        $eloquent = Eloquent::findOrNew($model->id());
 
-        $eloquent->id = $user->id();
-        $eloquent->name = $user->name();
-        $eloquent->email = $user->email();
-        $eloquent->password = $user->password();
+        $eloquent->id = $model->id();
+        $eloquent->name = $model->name();
+        $eloquent->email = $model->email();
+        $eloquent->password = $model->password();
 
         return $eloquent->save();
     }
 
     /**
-     * @param Model $user
+     * @param Model $model
      * @return bool
      */
-    public function delete(Model $user)
+    public function delete(Model $model)
     {
-        $eloquent = Eloquent::find($user->id());
+        $eloquent = Eloquent::find($model->id());
         return $eloquent->delete();
     }
 
@@ -59,8 +66,10 @@ class UserRepository implements UserRepositoryContract {
     public function fetchByName($name)
     {
         $eloquent = Eloquent::where('name', $name)->first();
+
         if(!$eloquent)
             return null;
+
         return $this->factory->revive($eloquent->id, $eloquent->name, $eloquent->email, $eloquent->password);
     }
 }

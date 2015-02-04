@@ -1,10 +1,12 @@
-<?php namespace Rpgo\Application\Repository\Eloquent;
+<?php namespace Rpgo\Application\Repository\Eloquent\Model;
 
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Rpgo\Application\Repository\Eloquent\Model\Member;
+use Rpgo\Application\Repository\Eloquent\Model\World;
 
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
 

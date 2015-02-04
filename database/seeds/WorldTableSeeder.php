@@ -18,19 +18,19 @@ class WorldTableSeeder extends Seeder {
         {
             $worldName = ucfirst(join(" ", $faker->words(3)));
 
-            $world = new \Rpgo\Application\Repository\Eloquent\World([
+            $world = new \Rpgo\Application\Repository\Eloquent\Model\World([
                 'id' => $faker->uuid,
                 'name' => $worldName,
                 'slug' => \Illuminate\Support\Str::slug($worldName),
                 'brand' => substr($worldName, 0, 10),
             ]);
 
-            $member = new \Rpgo\Application\Repository\Eloquent\Member([
+            $member = new \Rpgo\Application\Repository\Eloquent\Model\Member([
                 'id' => $faker->uuid,
                 'name' => ucfirst($faker->word),
             ]);
 
-            $creator = \Rpgo\Application\Repository\Eloquent\User::orderBy(DB::raw('RAND()'))->first();
+            $creator = \Rpgo\Application\Repository\Eloquent\Model\User::orderBy(DB::raw('RAND()'))->first();
 
             if($creator)
             {

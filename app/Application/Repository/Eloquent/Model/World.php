@@ -1,6 +1,8 @@
-<?php namespace Rpgo\Application\Repository\Eloquent;
+<?php namespace Rpgo\Application\Repository\Eloquent\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use Rpgo\Application\Repository\Eloquent\Model\Member;
+use Rpgo\Application\Repository\Eloquent\Model\User;
 
 class World extends Model {
 

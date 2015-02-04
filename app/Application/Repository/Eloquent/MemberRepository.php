@@ -1,35 +1,28 @@
 <?php namespace Rpgo\Application\Repository\Eloquent;
 
-use Rpgo\Application\Repository\Eloquent\Member as Eloquent;
+use Rpgo\Application\Repository\Eloquent\Model\Member as Eloquent;
 use Rpgo\Application\Repository\MemberRepository as MemberRepositoryContract;
-use Rpgo\Model\User\UserFactory;
-use Rpgo\Model\World\WorldFactory;
+use Rpgo\Application\Repository\RepositoryManager;
 use Rpgo\Model\Member\Member as Model;
 use Rpgo\Model\Member\MemberFactory;
 use Rpgo\Model\World\World;
 use Rpgo\Support\Collection\Collection;
 
-class MemberRepository implements MemberRepositoryContract {
+class MemberRepository extends Repository implements MemberRepositoryContract {
 
     /**
      * @var MemberFactory
      */
     private $factory;
-    /**
-     * @var WorldFactory
-     */
-    private $world;
-    /**
-     * @var UserFactory
-     */
-    private $user;
 
-    public function __construct(MemberFactory $factory, WorldFactory $world, UserFactory $user)
+    /**
+     * @param RepositoryManager $manager
+     * @param MemberFactory $factory
+     */
+    public function __construct(RepositoryManager $manager, MemberFactory $factory)
     {
-
         $this->factory = $factory;
-        $this->world = $world;
-        $this->user = $user;
+        parent::__construct($manager);
     }
 
     public function save(Model $member)
@@ -44,6 +37,10 @@ class MemberRepository implements MemberRepositoryContract {
         return $eloquent->save();
     }
 
+    /**
+     * @param Model $member
+     * @return bool|null
+     */
     public function delete(Model $member)
     {
         $eloquent = Eloquent::find($member->id());
@@ -53,11 +50,19 @@ class MemberRepository implements MemberRepositoryContract {
 
     /**
      * @param $id
-     * @return Member
+     * @return Model|null
      */
     public function fetchById($id)
     {
-        // TODO: Implement fetchById() method.
+        $eloquent = Eloquent::find($id);
+
+        if( ! $eloquent)
+            return null;
+
+        $world = $this->world()->fetchById($eloquent->world_id);
+        $user = $this->user()->fetchById($eloquent->user_id);
+
+        $this->factory->revive($eloquent->id, $eloquent->name, $world, $user);
     }
 
     /**
@@ -72,9 +77,11 @@ class MemberRepository implements MemberRepositoryContract {
 
         foreach ($eloquents as $eloquent)
         {
-            $user = $this->user->fetchById($eloquent->user_id);
-            $world = $this->world->fetchById($eloquent->world_id);
+            $world = $this->world()->fetchById($eloquent->world_id);
+            $user = $this->user()->fetchById($eloquent->user_id);
+
             $member = $this->factory->revive($eloquent->id, $eloquent->name, $world, $user);
+
             $members->add($member);
         }
 

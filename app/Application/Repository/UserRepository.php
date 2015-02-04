@@ -11,16 +11,16 @@ interface UserRepository {
     public function fetchById($id);
 
     /**
-     * @param User $user
+     * @param User $model
      * @return bool
      */
-    public function save(User $user);
+    public function save(User $model);
 
     /**
-     * @param User $user
+     * @param User $model
      * @return bool
      */
-    public function delete(User $user);
+    public function delete(User $model);
 
     /**
      * @param string $name

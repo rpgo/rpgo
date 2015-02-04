@@ -1,12 +1,7 @@
 <?php namespace Rpgo\Access\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Rpgo\Application\Repository\MemberRepository as MemberRepositoryContract;
-use Rpgo\Application\Repository\Eloquent\MemberRepository;
-use Rpgo\Application\Repository\WorldRepository as WorldRepositoryContract;
-use Rpgo\Application\Repository\Eloquent\WorldRepository;
-use Rpgo\Application\Repository\UserRepository as UserRepositoryContract;
-use Rpgo\Application\Repository\Eloquent\UserRepository;
+use Rpgo\Application\Repository\RepositoryManager;
 
 class RepositoryServiceProvider extends ServiceProvider {
 
@@ -27,17 +22,20 @@ class RepositoryServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		$this->app->singleton(
-            UserRepositoryContract::class, UserRepository::class
-        );
+        $this->app->singleton('Rpgo\Application\Repository\RepositoryManager', function($app)
+        {
+            return new RepositoryManager($app);
+        });
+        $this->app->alias('Rpgo\Application\Repository\RepositoryManager', 'repository');
 
-        $this->app->singleton(
-            WorldRepositoryContract::class, WorldRepository::class
-        );
+		$this->app->singleton('Rpgo\Application\Repository\UserRepository', 'Rpgo\Application\Repository\Eloquent\UserRepository');
+        $this->app->alias('Rpgo\Application\Repository\UserRepository', 'repository.user');
 
-        $this->app->singleton(
-            MemberRepositoryContract::class, MemberRepository::class
-        );
+        $this->app->singleton('Rpgo\Application\Repository\WorldRepository', 'Rpgo\Application\Repository\Eloquent\WorldRepository');
+        $this->app->alias('Rpgo\Application\Repository\WorldRepository', 'repository.world');
+
+        $this->app->singleton('Rpgo\Application\Repository\MemberRepository', 'Rpgo\Application\Repository\Eloquent\MemberRepository');
+        $this->app->alias('Rpgo\Application\Repository\UserRepository', 'repository.user');
 	}
 
 }
