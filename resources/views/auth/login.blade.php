@@ -17,7 +17,6 @@
 							</ul>
 						</div>
 					@endif
-
 					<form class="form-horizontal" role="form" method="POST" action="{{route('auth.login')}}">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
@@ -50,7 +49,6 @@
 								<button type="submit" class="btn btn-primary" style="margin-right: 15px;">
 									Login
 								</button>
-
 								<a href="{{route('password.email')}}">Forgot Your Password?</a>
 							</div>
 						</div>

@@ -1,10 +1,10 @@
 <?php namespace Rpgo\Application\Repository\Eloquent;
 
 use Carbon\Carbon;
+use Rpgo\Application\Repository\Eloquent\Model\Eloquent;
 use Rpgo\Application\Repository\RepositoryManager;
 use Rpgo\Application\Repository\WorldRepository as WorldRepositoryContract;
 use Rpgo\Model\World\World as Model;
-use Rpgo\Application\Repository\Eloquent\Model\World as Eloquent;
 use Rpgo\Model\World\WorldFactory;
 use Rpgo\Support\Collection\Collection;
 
@@ -14,11 +14,16 @@ class WorldRepository extends Repository implements WorldRepositoryContract {
      * @var WorldFactory
      */
     private $factory;
+    /**
+     * @var Eloquent
+     */
+    private $eloquent;
 
-    function __construct(RepositoryManager $manager, WorldFactory $factory)
+    function __construct(RepositoryManager $manager, WorldFactory $factory, Eloquent $eloquent)
     {
         $this->factory = $factory;
         parent::__construct($manager);
+        $this->eloquent = $eloquent->world();
     }
 
     /**
@@ -27,7 +32,7 @@ class WorldRepository extends Repository implements WorldRepositoryContract {
      */
     public function save(Model $model)
     {
-        $eloquent = Eloquent::findOrNew($model->id());
+        $eloquent = $this->eloquent->findOrNew($model->id());
 
         $eloquent->id = $model->id();
         $eloquent->name = $model->name();
@@ -44,7 +49,7 @@ class WorldRepository extends Repository implements WorldRepositoryContract {
      */
     public function delete(Model $model)
     {
-        $eloquent = Eloquent::find($model->id());
+        $eloquent = $this->eloquent->find($model->id());
 
         return $eloquent->delete();
     }
@@ -55,7 +60,7 @@ class WorldRepository extends Repository implements WorldRepositoryContract {
      */
     public function fetchById($id)
     {
-        $eloquent = Eloquent::find($id);
+        $eloquent = $this->eloquent->find($id);
 
         return $this->getModel($eloquent);
     }
@@ -65,7 +70,7 @@ class WorldRepository extends Repository implements WorldRepositoryContract {
      */
     public function fetchAll()
     {
-        $eloquents = Eloquent::all();
+        $eloquents = $this->eloquent->all();
 
         return $this->getModels($eloquents);
 
@@ -77,7 +82,7 @@ class WorldRepository extends Repository implements WorldRepositoryContract {
      */
     public function fetchBySlug($slug)
     {
-        $eloquent = Eloquent::where('slug', $slug)->first();
+        $eloquent = $this->eloquent->where('slug', $slug)->first();
 
         return $this->getModel($eloquent);
     }
@@ -101,7 +106,7 @@ class WorldRepository extends Repository implements WorldRepositoryContract {
      */
     public function fetchAllPublished()
     {
-        $eloquents = Eloquent::with(['creator', 'members'])->where('published_at', '<=', Carbon::now())->get();
+        $eloquents = $this->eloquent->with(['creator', 'members'])->where('published_at', '<=', Carbon::now())->get();
 
         return $this->getModels($eloquents);
     }

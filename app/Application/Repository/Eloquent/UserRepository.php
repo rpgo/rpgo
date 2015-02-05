@@ -1,9 +1,9 @@
 <?php namespace Rpgo\Application\Repository\Eloquent;
 
+use Rpgo\Application\Repository\Eloquent\Model\Eloquent;
 use Rpgo\Application\Repository\RepositoryManager;
 use Rpgo\Application\Repository\UserRepository as UserRepositoryContract;
 use Rpgo\Model\User\UserFactory;
-use Rpgo\Application\Repository\Eloquent\Model\User as Eloquent;
 use Rpgo\Model\User\User as Model;
 
 class UserRepository extends Repository implements UserRepositoryContract {
@@ -12,11 +12,16 @@ class UserRepository extends Repository implements UserRepositoryContract {
      * @var UserFactory
      */
     private $factory;
+    /**
+     * @var Eloquent
+     */
+    private $eloquent;
 
-    public function __construct(RepositoryManager $manager, UserFactory $factory)
+    public function __construct(RepositoryManager $manager, UserFactory $factory, Eloquent $eloquent)
     {
         $this->factory = $factory;
         parent::__construct($manager);
+        $this->eloquent = $eloquent->user();
     }
 
     /**
@@ -25,7 +30,7 @@ class UserRepository extends Repository implements UserRepositoryContract {
      */
     public function fetchById($id)
     {
-        $eloquent = Eloquent::find($id);
+        $eloquent = $this->eloquent->find($id);
 
         if( ! $eloquent )
             return null;
@@ -39,7 +44,7 @@ class UserRepository extends Repository implements UserRepositoryContract {
      */
     public function save(Model $model)
     {
-        $eloquent = Eloquent::findOrNew($model->id());
+        $eloquent = $this->eloquent->findOrNew($model->id());
 
         $eloquent->id = $model->id();
         $eloquent->name = $model->name();
@@ -55,7 +60,7 @@ class UserRepository extends Repository implements UserRepositoryContract {
      */
     public function delete(Model $model)
     {
-        $eloquent = Eloquent::find($model->id());
+        $eloquent = $this->eloquent->find($model->id());
         return $eloquent->delete();
     }
 
@@ -65,7 +70,7 @@ class UserRepository extends Repository implements UserRepositoryContract {
      */
     public function fetchByName($name)
     {
-        $eloquent = Eloquent::where('name', $name)->first();
+        $eloquent = $this->eloquent->where('name', $name)->first();
 
         if(!$eloquent)
             return null;

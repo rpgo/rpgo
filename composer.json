@@ -1,20 +1,20 @@
 {
-  "name": "laravel/laravel",
-  "description": "The Laravel Framework.",
+  "name": "rpgo/rpgo.hu",
+  "description": "The website for rpgo.hu",
   "keywords": [
-    "framework",
-    "laravel"
+    "rpg",
+    "forum"
   ],
-  "license": "MIT",
+  "license": "GPL-2.0",
   "type": "project",
   "require": {
-    "laravel/framework": "dev-master#074160019c547154a77caaeab692e0d39b757f4a",
-    "rhumsaa/uuid": "^2.8@stable"
+    "laravel/framework": "5.0.*",
+    "rhumsaa/uuid": "2.8.*"
   },
   "require-dev": {
-    "phpspec/phpspec": "^2.1@stable",
-    "behat/behat": "^3.0@stable",
-    "fzaninotto/faker": "^1.4@stable"
+    "phpspec/phpspec": "2.1.*",
+    "behat/behat": "3.0.*",
+    "fzaninotto/faker": "1.4.*"
   },
   "autoload": {
     "classmap": [
@@ -41,5 +41,5 @@
   "config": {
     "preferred-install": "dist"
   },
-  "minimum-stability": "dev"
+  "minimum-stability": "stable"
 }

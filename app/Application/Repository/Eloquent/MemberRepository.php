@@ -1,6 +1,6 @@
 <?php namespace Rpgo\Application\Repository\Eloquent;
 
-use Rpgo\Application\Repository\Eloquent\Model\Member as Eloquent;
+use Rpgo\Application\Repository\Eloquent\Model\Eloquent;
 use Rpgo\Application\Repository\MemberRepository as MemberRepositoryContract;
 use Rpgo\Application\Repository\RepositoryManager;
 use Rpgo\Model\Member\Member as Model;
@@ -14,20 +14,26 @@ class MemberRepository extends Repository implements MemberRepositoryContract {
      * @var MemberFactory
      */
     private $factory;
+    /**
+     * @var Eloquent
+     */
+    private $eloquent;
 
     /**
      * @param RepositoryManager $manager
      * @param MemberFactory $factory
+     * @param Eloquent $eloquent
      */
-    public function __construct(RepositoryManager $manager, MemberFactory $factory)
+    public function __construct(RepositoryManager $manager, MemberFactory $factory, Eloquent $eloquent)
     {
         $this->factory = $factory;
         parent::__construct($manager);
+        $this->eloquent = $eloquent->member();
     }
 
     public function save(Model $member)
     {
-        $eloquent = Eloquent::findOrNew($member->id());
+        $eloquent = $this->eloquent->findOrNew($member->id());
 
         $eloquent->id = $member->id();
         $eloquent->name = $member->name();
@@ -43,7 +49,7 @@ class MemberRepository extends Repository implements MemberRepositoryContract {
      */
     public function delete(Model $member)
     {
-        $eloquent = Eloquent::find($member->id());
+        $eloquent = $this->eloquent->find($member->id());
 
         return $eloquent->delete();
     }
@@ -54,7 +60,7 @@ class MemberRepository extends Repository implements MemberRepositoryContract {
      */
     public function fetchById($id)
     {
-        $eloquent = Eloquent::find($id);
+        $eloquent = $this->eloquent->find($id);
 
         if( ! $eloquent)
             return null;
@@ -71,7 +77,7 @@ class MemberRepository extends Repository implements MemberRepositoryContract {
      */
     public function fetchAllForWorld(World $world)
     {
-        $eloquents = Eloquent::where('world_id', $world->id())->get();
+        $eloquents = $this->eloquent->where('world_id', $world->id())->get();
 
         $members = new Collection();
 

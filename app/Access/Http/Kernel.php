@@ -1,17 +1,6 @@
 <?php namespace Rpgo\Access\Http;
 
-use Illuminate\Auth\Middleware\AuthenticateWithBasicAuth;
-use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
-use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
-use Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode;
-use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
-use Illuminate\Session\Middleware\StartSession;
-use Illuminate\View\Middleware\ShareErrorsFromSession;
-use Rpgo\Access\Http\Middleware\Authenticate;
-use Rpgo\Access\Http\Middleware\IdentifyUser;
-use Rpgo\Access\Http\Middleware\RedirectIfAuthenticated;
-use Rpgo\Access\Http\Middleware\SetLanguage;
 
 class Kernel extends HttpKernel {
 
@@ -21,14 +10,14 @@ class Kernel extends HttpKernel {
 	 * @var array
 	 */
 	protected $middleware = [
-		CheckForMaintenanceMode::class,
-		EncryptCookies::class,
-		AddQueuedCookiesToResponse::class,
-		StartSession::class,
-		ShareErrorsFromSession::class,
-		VerifyCsrfToken::class,
-        SetLanguage::class,
-        IdentifyUser::class,
+        'Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode',
+        'Illuminate\Cookie\Middleware\EncryptCookies',
+        'Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse',
+        'Illuminate\Session\Middleware\StartSession',
+        'Illuminate\View\Middleware\ShareErrorsFromSession',
+        'Rpgo\Access\Http\Middleware\VerifyCsrfToken',
+        'Rpgo\Access\Http\Middleware\IdentifyUser',
+        'Rpgo\Access\Http\Middleware\SetLanguage',
 	];
 
 	/**
@@ -37,9 +26,9 @@ class Kernel extends HttpKernel {
 	 * @var array
 	 */
 	protected $routeMiddleware = [
-		'auth' => Authenticate::class,
-		'auth.basic' => AuthenticateWithBasicAuth::class,
-		'guest' => RedirectIfAuthenticated::class,
+		'auth' => 'Rpgo\Access\Http\Middleware\Authenticate',
+		'auth.basic' => 'Illuminate\Auth\Middleware\AuthenticateWithBasicAuth',
+		'guest' => 'Rpgo\Access\Http\Middleware\RedirectIfAuthenticated',
         'worlds' => 'Rpgo\Access\Http\Middleware\IdentifyWorld',
 	];
 
