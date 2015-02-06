@@ -19,6 +19,10 @@ class BusServiceProvider extends ServiceProvider {
 				$command, 'Rpgo\Application\Commands', 'Rpgo\Application\Commands\Handlers'
 			);
 		});
+
+        $dispatcher->pipeThrough([
+            'Rpgo\Support\Bus\CommandValidation',
+        ]);
 	}
 
 	/**
