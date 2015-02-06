@@ -1,5 +1,6 @@
 <?php namespace Rpgo\Model\User;
 
+use Illuminate\Hashing\BcryptHasher;
 use Rpgo\Model\Contracts\User\UserFactory as UserFactoryContract;
 
 final class UserFactory implements UserFactoryContract {
@@ -8,10 +9,15 @@ final class UserFactory implements UserFactoryContract {
      * @var UserIdGenerator
      */
     private $generator;
+    /**
+     * @var BcryptHasher
+     */
+    private $hasher;
 
-    public function __construct(UserIdGenerator $generator)
+    public function __construct(UserIdGenerator $generator, BcryptHasher $hasher = null)
     {
         $this->generator = $generator;
+        $this->hasher = $hasher;
     }
 
     /**
@@ -111,6 +117,6 @@ final class UserFactory implements UserFactoryContract {
      */
     private function getPassword($password, $hashed = false)
     {
-        return new Password($password, $hashed);
+        return new Password($password, $hashed, $this->hasher);
     }
 }

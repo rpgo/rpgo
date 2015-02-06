@@ -1,14 +1,17 @@
 <?php namespace Rpgo\Model\User;
 
+use Illuminate\Hashing\BcryptHasher;
 use Rpgo\Model\User\Exception\EmptyPasswordException;
-use Rpgo\Support\Hash\Hash;
 
 class Password {
 
     private $password;
 
-    public function __construct($password, $hashed = false)
+    private $hasher;
+
+    public function __construct($password, $hashed = false, BcryptHasher $hasher = null)
     {
+        $this->setHasher($hasher ?: new BcryptHasher());
         $this->cantBeEmpty($password);
         $this->password = $this->setPassword($password, $hashed);
     }
@@ -19,7 +22,7 @@ class Password {
      */
     public function check($password)
     {
-        return Hash::check($password, $this->password);
+        return $this->hasher->check($password, $this->password);
     }
 
     /**
@@ -29,7 +32,7 @@ class Password {
      */
     private function setPassword($password, $hashed)
     {
-        return $hashed ? $password : Hash::make($password);
+        return $hashed ? $password : $this->hasher->make($password);
     }
 
     /**
@@ -47,7 +50,7 @@ class Password {
      */
     public function change($password)
     {
-        return new self($password);
+        return new self($password, false, $this->hasher);
     }
 
     /**
@@ -58,5 +61,10 @@ class Password {
     {
         if ($password == '')
             throw new EmptyPasswordException;
+    }
+
+    private function setHasher($hasher)
+    {
+        $this->hasher = $hasher;
     }
 }

@@ -2,6 +2,7 @@
 
 namespace unit\Rpgo\Model\User;
 
+use Illuminate\Hashing\BcryptHasher;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Rpgo\Model\User\UserId;
@@ -10,11 +11,15 @@ use Rpgo\Support\Hash\Hash;
 
 class UserFactorySpec extends ObjectBehavior
 {
-    function let(UserIdGenerator $generator, UserId $id)
+    function let(UserIdGenerator $generator, UserId $id, BcryptHasher $hasher)
     {
-        $this->beConstructedWith($generator);
+        $this->beConstructedWith($generator, $hasher);
+
         $generator->next()->willReturn($id);
         $generator->from('id')->willReturn($id);
+
+        $hasher->make('password')->willReturn('hashed_password');
+        $hasher->check('password', 'hashed_password')->willReturn(true);
     }
 
     function it_is_initializable()
@@ -64,7 +69,7 @@ class UserFactorySpec extends ObjectBehavior
 
     function it_sets_the_password_correctly_on_the_revived_old_User()
     {
-        $this->revive('id', 'LilyBelle', 'tolilybelle@gmail.com', Hash::make('password'))
+        $this->revive('id', 'LilyBelle', 'tolilybelle@gmail.com', 'hashed_password')
             ->validateCredentials('tolilybelle@gmail.com','password')->shouldReturn(true);
     }
 }

@@ -2,15 +2,21 @@
 
 namespace unit\Rpgo\Model\User;
 
+use Illuminate\Hashing\BcryptHasher;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Rpgo\Support\Hash\Hash;
 
 class PasswordSpec extends ObjectBehavior
 {
-    function let()
+    function let(BcryptHasher $hasher)
     {
-        $this->beConstructedWith('password');
+        $this->beConstructedWith('password', false, $hasher);
+
+        $hasher->make('password')->willReturn('password_hashed');
+        $hasher->check('password', 'password_hashed')->willReturn(true);
+        $hasher->make('newpassword')->willReturn('newpassword_hashed');
+        $hasher->check('newpassword', 'newpassword_hashed')->willReturn(true);
     }
 
     function it_is_initializable()
@@ -20,14 +26,16 @@ class PasswordSpec extends ObjectBehavior
 
     function it_can_be_cast_to_string()
     {
-        $this->check('password')->shouldReturn(true);;
+        $this->__toString()->shouldReturn('password_hashed');;
     }
 
-    function it_casts_itself_to_string()
+    function it_casts_itself_to_string(BcryptHasher $hasher)
     {
-        $this->beConstructedWith('otherpassword');
+        $hasher->make('otherpassword')->willReturn('otherpassword_hashed');
 
-        $this->check('otherpassword')->shouldReturn(true);
+        $this->beConstructedWith('otherpassword', false, $hasher);
+
+        $this->__toString()->shouldReturn('otherpassword_hashed');
     }
 
     function it_is_immutable()
