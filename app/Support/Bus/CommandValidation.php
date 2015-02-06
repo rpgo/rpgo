@@ -5,7 +5,7 @@ class CommandValidation {
 
     public function handle($command, $next)
     {
-        if(method_exists($command, 'validate'))
+        if($command instanceof ShouldBeValidated)
             $command->validate();
 
         return $next($command);
