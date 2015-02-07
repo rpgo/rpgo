@@ -33,8 +33,11 @@
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
+                    @if($member)
                     <li><a href="{{route('worlds.dashboard.main', [$world->slug()])}}">{{trans('dashboard.title')}}</a></li>
+                    @else
                     <li><a href="{{route('member.create', [$world->slug()])}}">{{trans('members.create.name')}}</a></li>
+                    @endif
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">

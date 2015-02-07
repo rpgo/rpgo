@@ -53,7 +53,7 @@ foreach(['', 'lang'] as $prefix)
 
         });
 
-        Route::group(["domain" => "{slug}.rpgo." . config('app.tld'), 'middleware' => 'worlds'], function() use ($prefix) {
+        Route::group(["domain" => "{slug}.rpgo." . config('app.tld'), 'middleware' => ['worlds', 'member']], function() use ($prefix) {
 
             Route::get('/', ['as' => prefix($prefix, 'worlds.show'), 'uses' => 'WorldController@show']);
 

@@ -18,6 +18,7 @@ class Kernel extends HttpKernel {
         'Rpgo\Access\Http\Middleware\VerifyCsrfToken',
         'Rpgo\Access\Http\Middleware\IdentifyUser',
         'Rpgo\Access\Http\Middleware\SetLanguage',
+
 	];
 
 	/**
@@ -30,6 +31,7 @@ class Kernel extends HttpKernel {
 		'auth.basic' => 'Illuminate\Auth\Middleware\AuthenticateWithBasicAuth',
 		'guest' => 'Rpgo\Access\Http\Middleware\RedirectIfAuthenticated',
         'worlds' => 'Rpgo\Access\Http\Middleware\IdentifyWorld',
+        'member' => 'Rpgo\Access\Http\Middleware\IdentifyMember',
 	];
 
 }

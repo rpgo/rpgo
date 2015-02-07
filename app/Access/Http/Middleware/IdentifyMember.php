@@ -1,24 +1,30 @@
 <?php namespace Rpgo\Access\Http\Middleware;
 
 use Closure;
-use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Foundation\Application;
 use Illuminate\View\View;
 use Rpgo\Application\Services\Guard;
+use Rpgo\Application\Services\Guide;
 
-class IdentifyUser {
+class IdentifyMember {
 
     /**
      * @var Guard
      */
     private $guard;
     /**
+     * @var Guide
+     */
+    private $guide;
+    /**
      * @var Application
      */
     private $app;
 
-    function __construct(Guard $guard, Application $app)
+    function __construct(Guard $guard, Guide $guide, Application $app)
     {
         $this->guard = $guard;
+        $this->guide = $guide;
         $this->app = $app;
     }
 
@@ -31,9 +37,11 @@ class IdentifyUser {
 	 */
 	public function handle($request, Closure $next)
 	{
-        $user = $this->guard()->user();
+        $user = $this->guard->user();
 
-        $this->view()->share(compact('user'));
+        $member = $this->guide->member($user);
+
+        $this->view()->share(compact('member'));
 
 		return $next($request);
 	}
@@ -44,14 +52,6 @@ class IdentifyUser {
     private function view()
     {
         return $this->app->make('view');
-    }
-
-    /**
-     * @return Guard
-     */
-    private function guard()
-    {
-        return $this->guard;
     }
 
 }

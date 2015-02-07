@@ -1,8 +1,10 @@
 <?php namespace Rpgo\Application\Services;
 
 use HttpException;
-use Rpgo\Application\Exception\WorldNotFoundException;
+use Rpgo\Application\Repository\MemberRepository;
 use Rpgo\Application\Repository\WorldRepository;
+use Rpgo\Model\Member\Member;
+use Rpgo\Model\User\User;
 use Rpgo\Model\World\World;
 
 /**
@@ -18,13 +20,20 @@ class Guide {
     /**
      * @var WorldRepository
      */
-    private $repository;
+    private $worldRepository;
 
     private $world;
+    /**
+     * @var MemberRepository
+     */
+    private $memberRepository;
 
-    function __construct(WorldRepository $repository)
+    private $member;
+
+    function __construct(WorldRepository $worldRepository, MemberRepository $memberRepository)
     {
-        $this->repository = $repository;
+        $this->worldRepository = $worldRepository;
+        $this->memberRepository = $memberRepository;
     }
 
     /**
@@ -37,11 +46,25 @@ class Guide {
         if(!$slug)
             return $this->world;
 
-        $world = $this->repository->fetchBySlug($slug);
-
-        if( ! $world)
-            throw new WorldNotFoundException(404);
+        $world = $this->worldRepository->fetchBySlug($slug);
 
         return $this->world = $world;
+    }
+
+    public function member(User $user = null)
+    {
+        if(!$user)
+            return $this->member;
+
+        $members = $this->memberRepository->fetchAllForWorld($this->world);
+
+        if( ! $members->count() )
+            return $this->member;
+
+        $member = $members->filter(function(Member $member) use ($user) {
+            return $member->user() == $user;
+        })->first();
+
+        return $this->member = $member;
     }
 }

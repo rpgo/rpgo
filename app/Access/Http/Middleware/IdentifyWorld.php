@@ -1,9 +1,10 @@
 <?php namespace Rpgo\Access\Http\Middleware;
 
 use Closure;
-use Rpgo\Application\Repository\WorldRepository;
+use Illuminate\Foundation\Application;
+use Illuminate\View\View;
+use Rpgo\Application\Exception\WorldNotFoundException;
 use Rpgo\Application\Services\Guide;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class IdentifyWorld {
 
@@ -11,10 +12,15 @@ class IdentifyWorld {
      * @var Guide
      */
     private $guide;
+    /**
+     * @var Application
+     */
+    private $app;
 
-    function __construct(Guide $guide)
+    function __construct(Guide $guide, Application $app)
     {
         $this->guide = $guide;
+        $this->app = $app;
     }
 
 
@@ -24,19 +30,30 @@ class IdentifyWorld {
      * @param  \Illuminate\Http\Request $request
      * @param  \Closure $next
      * @return mixed
-     * @throws \HttpException
+     * @throws WorldNotFoundException
      */
 	public function handle($request, Closure $next)
 	{
-        $slug = $request->route()->parameter('slug');
+        $slug = $request->route('slug');
 
         $world = $this->guide->world($slug);
 
-        app('view')->share(compact('world'));
+        if( ! $world)
+            throw new WorldNotFoundException(404);
+
+        $this->view()->share(compact('world'));
 
         $request->route()->forgetParameter('slug');
 
 		return $next($request);
 	}
+
+    /**
+     * @return View
+     */
+    private function view()
+    {
+        return $this->app->make('view');
+    }
 
 }
