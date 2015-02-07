@@ -1,33 +1,25 @@
 <?php namespace Rpgo\Application\Commands\Handlers;
 
 use Rpgo\Application\Commands\RegisterUserCommand;
-
-use Illuminate\Queue\InteractsWithQueue;
 use Rpgo\Application\Events\UserWasRegistered;
-use Rpgo\Application\Services\UserRegistrar;
-use Rpgo\Application\Services\Guard;
+use Rpgo\Application\Repository\UserRepository;
+use Rpgo\Model\User\UserFactory;
 
 class RegisterUserCommandHandler extends CommandHandler {
 
     /**
-     * @var Guard
+     * @var UserFactory
      */
-    private $guard;
-
+    private $userFactory;
     /**
-     * @var UserRegistrar
+     * @var UserRepository
      */
-    private $registrar;
+    private $userRepository;
 
-    /**
-     * Create the command handler.
-     * @param Guard $guard
-     * @param UserRegistrar $registrar
-     */
-	public function __construct(Guard $guard, UserRegistrar $registrar)
-	{
-        $this->guard = $guard;
-        $this->registrar = $registrar;
+    function __construct(UserFactory $userFactory, UserRepository $userRepository)
+    {
+        $this->userFactory = $userFactory;
+        $this->userRepository = $userRepository;
     }
 
 	/**
@@ -38,16 +30,14 @@ class RegisterUserCommandHandler extends CommandHandler {
 	 */
 	public function handle(RegisterUserCommand $command)
 	{
-		$user = $this->registrar->register($command->name, $command->email, $command->password);
+        $user = $this->userFactory->create($command->name, $command->email, $command->password);
 
-        if( ! $user)
-            return false;
-
-        $this->guard->login($command->email, $command->password);
+        if( ! $this->userRepository->save($user))
+            return null;
 
         $this->announce(new UserWasRegistered($user));
 
-        return true;
+        return $user;
 
 	}
 

@@ -44,4 +44,19 @@ class CreateWorldCommand extends Command {
         $this->creator = $creator;
     }
 
+    public function authorize()
+    {
+        return true;
+    }
+
+    public function rules()
+    {
+        return [
+            'name' => ['required', 'string', 'max:40', 'unique:worlds,name'],
+            'slug' => ['required', 'string', 'max:20', 'regex:/^[a-z][-a-z0-9]*$/', 'unique:worlds,slug'],
+            'brand' => ['required', 'string', 'max:10', 'unique:worlds,brand'],
+            'admin' => ['required'],
+        ];
+    }
+
 }

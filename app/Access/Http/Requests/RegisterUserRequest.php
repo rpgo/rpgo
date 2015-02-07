@@ -1,15 +1,18 @@
 <?php namespace Rpgo\Access\Http\Requests;
 
+use Rpgo\Application\Services\Guard;
+
 class RegisterUserRequest extends Request {
 
     /**
      * Determine if the user is authorized to make this request.
      *
+     * @param Guard $guard
      * @return bool
      */
-    public function authorize()
+    public function authorize(Guard $guard)
     {
-        return \Auth::guest();
+        return (bool) ! $guard->user();
     }
 
     /**
@@ -20,9 +23,7 @@ class RegisterUserRequest extends Request {
     public function rules()
     {
         return [
-            'name' => 'required|unique:users',
-            'email' => 'email',
-            'password' => 'required|confirmed',
+            'password' => 'confirmed',
         ];
     }
 

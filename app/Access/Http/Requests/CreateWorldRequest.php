@@ -1,15 +1,18 @@
 <?php namespace Rpgo\Access\Http\Requests;
 
+use Rpgo\Application\Services\Guard;
+
 class CreateWorldRequest extends Request {
 
-	/**
-	 * Determine if the user is authorized to make this request.
-	 *
-	 * @return bool
-	 */
-	public function authorize()
+    /**
+     * Determine if the user is authorized to make this request.
+     *
+     * @param Guard $guard
+     * @return bool
+     */
+	public function authorize(Guard $guard)
 	{
-		return \Auth::check();
+		return (bool) $guard->user();
 	}
 
 	/**
@@ -19,12 +22,7 @@ class CreateWorldRequest extends Request {
 	 */
 	public function rules()
 	{
-		return [
-			'name' => 'required|unique:worlds',
-            'brand' => 'required|unique:worlds',
-            'slug' => 'required|unique:worlds',
-            'admin' => 'required',
-		];
+		return [];
 	}
 
 }

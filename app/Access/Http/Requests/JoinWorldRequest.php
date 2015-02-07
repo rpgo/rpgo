@@ -1,32 +1,29 @@
 <?php namespace Rpgo\Access\Http\Requests;
 
+use Rpgo\Application\Services\Guard;
 use Rpgo\Application\Services\Guide;
 
 class JoinWorldRequest extends Request {
 
-	/**
-	 * Determine if the user is authorized to make this request.
-	 *
-	 * @return bool
-	 */
-	public function authorize()
+    /**
+     * Determine if the user is authorized to make this request.
+     *
+     * @param Guide $guide
+     * @param Guard $guard
+     * @return bool
+     */
+	public function authorize(Guide $guide, Guard $guard)
 	{
-		return true;
+		return (bool) $guard->user() && $guide->world();
 	}
 
     /**
      * Get the validation rules that apply to the request.
-     *
-     * @param Guide $guide
      * @return array
      */
-	public function rules(Guide $guide)
+	public function rules()
 	{
-        $world = $guide->world();
-
-		return [
-			'name' => 'unique:members,name,NULL,id,world_id,' . $world->id()
-		];
+        return [];
 	}
 
 }
