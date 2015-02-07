@@ -32,6 +32,8 @@ class Kernel extends HttpKernel {
 		'guest' => 'Rpgo\Access\Http\Middleware\RedirectIfAuthenticated',
         'worlds' => 'Rpgo\Access\Http\Middleware\IdentifyWorld',
         'member' => 'Rpgo\Access\Http\Middleware\IdentifyMember',
+        'stranger' => 'Rpgo\Access\Http\Middleware\HideFromMember',
+        'admin' => 'Rpgo\Access\Http\Middleware\OnlyIfAdmin',
 	];
 
 }

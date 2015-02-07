@@ -12,7 +12,7 @@
 */
 
 Route::filter('localization', function() {
-    App::setLocale(Route::input('lang'));
+    app()->setLocale(Route::input('lang'));
 });
 
 foreach(['', 'lang'] as $prefix)
@@ -57,11 +57,11 @@ foreach(['', 'lang'] as $prefix)
 
             Route::get('/', ['as' => prefix($prefix, 'worlds.show'), 'uses' => 'WorldController@show']);
 
-            Route::get(trans('routes.member.create'), ['as' => prefix($prefix, 'member.create'), 'uses' => 'MemberController@create']);
+            Route::get(trans('routes.member.create'), ['as' => prefix($prefix, 'member.create'), 'uses' => 'MemberController@create', 'middleware' => 'stranger']);
 
             Route::post(trans('routes.member.store'), ['as' => prefix($prefix, 'member.store'), 'uses' => 'MemberController@store']);
 
-            Route::get(trans('routes.dashboard.home'), ['as' => prefix($prefix, 'worlds.dashboard.main'), 'uses' => 'DashboardController@main']);
+            Route::get(trans('routes.dashboard.home'), ['as' => prefix($prefix, 'worlds.dashboard.main'), 'uses' => 'DashboardController@main', 'middleware' => 'admin']);
 
         });
     });
