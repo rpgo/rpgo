@@ -107,12 +107,15 @@ class WorldController extends Controller {
     /**
      * @param PublishWorldRequest $request
      * @param Guide $guide
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function publish(PublishWorldRequest $request, Guide $guide)
     {
         $world = $guide->world();
 
-        $success = $this->dispatchFrom(PublishWorldCommand::class, $request, compact('world'));
+        $this->dispatchFrom(PublishWorldCommand::class, $request, compact('world'));
+
+        return redirect()->route('worlds.dashboard.main', [$world->slug()]);
     }
 
 }
