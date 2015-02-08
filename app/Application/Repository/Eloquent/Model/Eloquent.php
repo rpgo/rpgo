@@ -6,6 +6,7 @@ class Eloquent {
         'User',
         'World',
         'Member',
+        'Location',
     ];
 
     private $model;
