@@ -19,13 +19,17 @@ class MemberController extends Controller {
 		//
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @param Guard $guard
+     * @return Response
+     */
+	public function create(Guard $guard)
 	{
+        if( ! $guard->user())
+            return redirect()->route('auth.register');
+
 		return view('member.create');
 	}
 
