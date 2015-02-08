@@ -15,10 +15,10 @@ class CreateLocationsTable extends Migration {
 	{
 		Schema::create('locations', function(Blueprint $table)
 		{
-            $table->string('id', 36)->primary();
+            $table->increments('id');
             $table->unsignedInteger('_lft');
             $table->unsignedInteger('_rgt');
-            $table->string('parent_id', 36)->nullable();
+            $table->integer('parent_id')->nullable();
             $table->string('name', 50);
             $table->string('slug', 50);
 			$table->timestamps();

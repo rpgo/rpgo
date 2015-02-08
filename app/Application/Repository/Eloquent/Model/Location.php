@@ -4,6 +4,8 @@ use Kalnoy\Nestedset\Node;
 
 class Location extends Node {
 
+    // public $casts = ['id' => 'string'];
+
     const LFT = 'container_lft';
 
     const RGT = 'container_rgt';
