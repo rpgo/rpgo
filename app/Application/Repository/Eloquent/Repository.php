@@ -51,6 +51,19 @@ abstract class Repository {
         return $this->manager->member();
     }
 
+
+    /**
+     * @return Collection
+     */
+    public function fetchAll()
+    {
+        $eloquents = $this->eloquent
+            ->all();
+
+        return $this->getEntities($eloquents);
+
+    }
+
     /**
      * @param $entity
      * @return bool

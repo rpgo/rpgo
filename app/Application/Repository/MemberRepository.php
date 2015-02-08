@@ -4,7 +4,7 @@ use Rpgo\Model\Member\Member;
 use Rpgo\Model\World\World;
 use Rpgo\Support\Collection\Collection;
 
-interface MemberRepository {
+interface MemberRepository extends Repository {
 
     /**
      * @param Member $member
@@ -19,10 +19,15 @@ interface MemberRepository {
     public function delete($member);
 
     /**
-     * @param $id
+     * @param string $id
      * @return Member
      */
     public function fetchById($id);
+
+    /**
+     * @return Collection
+     */
+    public function fetchAll();
 
     /**
      * @param World $world

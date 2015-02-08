@@ -6,19 +6,19 @@ use Rpgo\Support\Collection\Collection;
 interface WorldRepository {
 
     /**
-     * @param World $model
+     * @param World $world
      * @return bool
      */
-    public function save($model);
+    public function save($world);
 
     /**
-     * @param World $model
+     * @param World $world
      * @return bool
      */
-    public function delete($model);
+    public function delete($world);
 
     /**
-     * @param $id
+     * @param string $id
      * @return World
      */
     public function fetchById($id);

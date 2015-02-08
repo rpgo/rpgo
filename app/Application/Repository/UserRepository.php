@@ -1,8 +1,21 @@
 <?php namespace Rpgo\Application\Repository;
 
 use Rpgo\Model\User\User;
+use Rpgo\Support\Collection\Collection;
 
 interface UserRepository {
+
+    /**
+     * @param User $user
+     * @return bool
+     */
+    public function save($user);
+
+    /**
+     * @param User $user
+     * @return bool
+     */
+    public function delete($user);
 
     /**
      * @param string $id
@@ -11,16 +24,9 @@ interface UserRepository {
     public function fetchById($id);
 
     /**
-     * @param User $model
-     * @return bool
+     * @return Collection
      */
-    public function save($model);
-
-    /**
-     * @param User $model
-     * @return bool
-     */
-    public function delete($model);
+    public function fetchAll();
 
     /**
      * @param string $name

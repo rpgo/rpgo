@@ -25,31 +25,6 @@ class WorldRepository extends Repository implements WorldRepositoryContract {
         $this->eloquent = $eloquent->world();
     }
 
-
-    /**
-     * @param string $id
-     * @return null|Entity
-     */
-    public function fetchById($id)
-    {
-        $eloquent = $this->eloquent
-            ->find($id);
-
-        return $this->getEntity($eloquent);
-    }
-
-    /**
-     * @return Collection
-     */
-    public function fetchAll()
-    {
-        $eloquents = $this->eloquent
-            ->all();
-
-        return $this->getEntities($eloquents);
-
-    }
-
     /**
      * @param string $slug
      * @return null|Entity
