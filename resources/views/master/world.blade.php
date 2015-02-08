@@ -33,11 +33,10 @@
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-                    @if($member->canSeeAdminPanel())
-                    <li><a href="{{route('worlds.dashboard.main', [$world->slug()])}}">{{trans('dashboard.title')}}</a></li>
-                    @endif
                     @if(! $member)
-                    <li><a href="{{route('member.create', [$world->slug()])}}">{{trans('members.create.name')}}</a></li>
+                        <li><a href="{{route('member.create', [$world->slug()])}}">{{trans('members.create.name')}}</a></li>
+                    @elseif($member->canSeeAdminPanel())
+                            <li><a href="{{route('worlds.dashboard.main', [$world->slug()])}}">{{trans('dashboard.name')}}</a></li>
                     @endif
 				</ul>
 
