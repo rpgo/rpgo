@@ -22,7 +22,7 @@ class LocationRepository extends Repository implements LocationRepositoryContrac
      */
     protected function getEntity($eloquent)
     {
-        return null;
+        return $eloquent;
     }
 
     /**
@@ -31,6 +31,10 @@ class LocationRepository extends Repository implements LocationRepositoryContrac
      */
     protected function getEloquentAttributes($entity)
     {
-        return [];
+        return [
+            'container_id' => $entity->container_id,
+            'name' => $entity->name,
+            'slug' => $entity->slug,
+        ];
     }
 }
