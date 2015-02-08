@@ -9,7 +9,8 @@
   "type": "project",
   "require": {
     "laravel/framework": "5.0.*",
-    "rhumsaa/uuid": "2.8.*"
+    "rhumsaa/uuid": "2.8.*",
+    "kalnoy/nestedset": "2.2.*"
   },
   "require-dev": {
     "phpspec/phpspec": "2.1.*",

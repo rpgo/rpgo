@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "94e6526ab6d997853d84d9ee4f8a96fe",
+    "hash": "c58b17e05f7f220a24f3a73411046fcd",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -407,6 +407,52 @@
                 "tokenizer"
             ],
             "time": "2015-01-26 23:07:39"
+        },
+        {
+            "name": "kalnoy/nestedset",
+            "version": "v2.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lazychaser/laravel-nestedset.git",
+                "reference": "f4e3a563b5607b085b3aed7aeee83b980288c70a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lazychaser/laravel-nestedset/zipball/f4e3a563b5607b085b3aed7aeee83b980288c70a",
+                "reference": "f4e3a563b5607b085b3aed7aeee83b980288c70a",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": ">=4.1,<5.1.0",
+                "illuminate/events": ">=4.1,<5.1.0",
+                "illuminate/support": ">=4.1,<5.1.0",
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Kalnoy\\Nestedset\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander Kalnoy",
+                    "email": "lazychaser@gmail.com"
+                }
+            ],
+            "description": "Nested Set Model for Laravel 4",
+            "keywords": [
+                "database",
+                "hierarchy",
+                "laravel",
+                "nested sets",
+                "nsm"
+            ],
+            "time": "2015-02-04 18:24:10"
         },
         {
             "name": "laravel/framework",
