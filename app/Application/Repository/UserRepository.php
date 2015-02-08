@@ -14,13 +14,13 @@ interface UserRepository {
      * @param User $model
      * @return bool
      */
-    public function save(User $model);
+    public function save($model);
 
     /**
      * @param User $model
      * @return bool
      */
-    public function delete(User $model);
+    public function delete($model);
 
     /**
      * @param string $name

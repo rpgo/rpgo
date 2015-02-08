@@ -10,13 +10,13 @@ interface MemberRepository {
      * @param Member $member
      * @return bool
      */
-    public function save(Member $member);
+    public function save($member);
 
     /**
      * @param Member $member
      * @return bool
      */
-    public function delete(Member $member);
+    public function delete($member);
 
     /**
      * @param $id

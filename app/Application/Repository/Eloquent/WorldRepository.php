@@ -1,10 +1,11 @@
 <?php namespace Rpgo\Application\Repository\Eloquent;
 
 use Carbon\Carbon;
-use Rpgo\Application\Repository\Eloquent\Model\Eloquent;
+use Rpgo\Application\Repository\Eloquent\Model\Eloquent as EloquentAdapter;
 use Rpgo\Application\Repository\RepositoryManager;
 use Rpgo\Application\Repository\WorldRepository as WorldRepositoryContract;
-use Rpgo\Model\World\World as Model;
+use Rpgo\Model\World\World as Entity;
+use Rpgo\Application\Repository\Eloquent\Model\World as Eloquent;
 use Rpgo\Model\World\WorldFactory;
 use Rpgo\Support\Collection\Collection;
 
@@ -14,56 +15,27 @@ class WorldRepository extends Repository implements WorldRepositoryContract {
      * @var WorldFactory
      */
     private $factory;
-    /**
-     * @var Eloquent
-     */
-    private $eloquent;
 
-    function __construct(RepositoryManager $manager, WorldFactory $factory, Eloquent $eloquent)
+    protected $with = []; // members?
+
+    function __construct(RepositoryManager $manager, WorldFactory $factory, EloquentAdapter $eloquent)
     {
         $this->factory = $factory;
         parent::__construct($manager);
         $this->eloquent = $eloquent->world();
     }
 
-    /**
-     * @param Model $model
-     * @return bool
-     */
-    public function save(Model $model)
-    {
-        $eloquent = $this->eloquent->findOrNew($model->id());
-
-        $eloquent->id = $model->id();
-        $eloquent->name = $model->name();
-        $eloquent->slug = $model->slug();
-        $eloquent->brand = $model->brand();
-        $eloquent->creator_id = $model->creator()->id();
-        $eloquent->published_at = $model->publishedOn();
-
-        return $eloquent->save();
-    }
-
-    /**
-     * @param Model $model
-     * @return bool
-     */
-    public function delete(Model $model)
-    {
-        $eloquent = $this->eloquent->find($model->id());
-
-        return $eloquent->delete();
-    }
 
     /**
      * @param string $id
-     * @return null|Model
+     * @return null|Entity
      */
     public function fetchById($id)
     {
-        $eloquent = $this->eloquent->find($id);
+        $eloquent = $this->eloquent
+            ->find($id);
 
-        return $this->getModel($eloquent);
+        return $this->getEntity($eloquent);
     }
 
     /**
@@ -71,39 +43,24 @@ class WorldRepository extends Repository implements WorldRepositoryContract {
      */
     public function fetchAll()
     {
-        $eloquents = $this->eloquent->all();
+        $eloquents = $this->eloquent
+            ->all();
 
-        return $this->getModels($eloquents);
+        return $this->getEntities($eloquents);
 
     }
 
     /**
      * @param string $slug
-     * @return null|Model
+     * @return null|Entity
      */
     public function fetchBySlug($slug)
     {
-        $eloquent = $this->eloquent->where('slug', $slug)->first();
+        $eloquent = $this->eloquent
+            ->where('slug', $slug)
+            ->first();
 
-        return $this->getModel($eloquent);
-    }
-
-    /**
-     * @param Eloquent $eloquent
-     * @return null|Model
-     */
-    private function getModel($eloquent)
-    {
-        if( ! $eloquent)
-            return null;
-
-        $creator = $this->user()->fetchById($eloquent->creator_id);
-
-        $model = $this->factory->revive($eloquent->id, $eloquent->name, $eloquent->brand, $eloquent->slug, $creator);
-
-        $model->publishedOn($eloquent->published_at);
-
-        return $model;
+        return $this->getEntity($eloquent);
     }
 
     /**
@@ -111,29 +68,56 @@ class WorldRepository extends Repository implements WorldRepositoryContract {
      */
     public function fetchAllPublished()
     {
-        $eloquents = $this->eloquent->with(['creator', 'members'])->where('published_at', '<=', Carbon::now())->get();
+        $eloquents = $this->eloquent
+            ->where('published_at', '<=', Carbon::now())
+            ->get();
 
-        return $this->getModels($eloquents);
+        return $this->getEntities($eloquents);
     }
 
     /**
-     * @param $eloquents
-     * @return Collection
+     * @param Entity $world
+     * @return array
      */
-    private function getModels($eloquents)
+    protected function getEloquentAttributes($world)
     {
-        $worlds = new Collection();
+        return [
+            'id'           => $world->id(),
+            'name'         => $world->name(),
+            'slug'         => $world->slug(),
+            'brand'        => $world->brand(),
+            'creator_id'   => $world->creator()->id(),
+            'published_at' => $world->publishedOn(),
+        ];
+    }
 
-        foreach ($eloquents as $eloquent) {
-            $world = $this->getModel($eloquent);
+    /**
+     * @return Eloquent
+     */
+    protected function eloquent()
+    {
+        return $this->eloquent;
+    }
 
-            $members = $this->member()->fetchAllForWorld($world);
+    /**
+     * @param Eloquent $eloquent
+     * @return Entity
+     */
+    protected function getEntity($eloquent)
+    {
+        $creator = $this->user()->fetchById($eloquent->creator_id);
 
-            $world->members($members);
+        $entity = $this->factory->revive($eloquent->id, $eloquent->name, $eloquent->brand, $eloquent->slug, $creator);
 
-            $worlds->add($world);
+        $entity->publishedOn($eloquent->published_at);
+
+        if (in_array('members', $this->with))
+        {
+            $this->without('members');
+            $members = $this->member()->fetchAllForWorld($entity);
+            $entity->members($members);
         }
 
-        return $worlds;
+        return $entity;
     }
 }

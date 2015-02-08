@@ -9,13 +9,13 @@ interface WorldRepository {
      * @param World $model
      * @return bool
      */
-    public function save(World $model);
+    public function save($model);
 
     /**
      * @param World $model
      * @return bool
      */
-    public function delete(World $model);
+    public function delete($model);
 
     /**
      * @param $id

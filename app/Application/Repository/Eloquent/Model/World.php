@@ -12,7 +12,7 @@ class World extends Model {
 
     public $dates = ['published_at'];
 
-	protected $fillable = ["name", "slug", "brand", "creator_id"];
+	protected $guarded = [];
 
     public function creator()
     {

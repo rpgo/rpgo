@@ -10,7 +10,7 @@ class Member extends Model {
 
     public $casts = ['id' => 'string'];
 
-    protected $fillable = ['name'];
+    protected $guarded = [];
 
 	public function world()
     {

@@ -28,9 +28,9 @@ class ListWorldsCommandHandler extends CommandHandler {
 	public function handle(ListWorldsCommand $command)
 	{
         if($command->published)
-            return $this->worlds->fetchAllPublished();
+            return $this->worlds->with('members')->fetchAllPublished();
 
-        return $this->worlds->fetchAll();
+        return $this->worlds->with('members')->fetchAll();
 	}
 
 }
