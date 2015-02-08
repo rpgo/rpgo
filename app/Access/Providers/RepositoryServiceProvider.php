@@ -28,13 +28,16 @@ class RepositoryServiceProvider extends ServiceProvider {
         });
         $this->app->alias('Rpgo\Application\Repository\RepositoryManager', 'repository');
 
-		$this->app->singleton('Rpgo\Application\Repository\UserRepository', 'Rpgo\Application\Repository\Eloquent\UserRepository');
-        $this->app->alias('Rpgo\Application\Repository\UserRepository', 'repository.user');
+		$this->app->singleton('Rpgo\Application\Repository\Eloquent\UserRepository');
+        $this->app->alias('Rpgo\Application\Repository\Eloquent\UserRepository', 'Rpgo\Application\Repository\UserRepository');
+        $this->app->alias('Rpgo\Application\Repository\Eloquent\UserRepository', 'repository.user');
 
-        $this->app->singleton('Rpgo\Application\Repository\WorldRepository', 'Rpgo\Application\Repository\Eloquent\WorldRepository');
-        $this->app->alias('Rpgo\Application\Repository\WorldRepository', 'repository.world');
+        $this->app->singleton('Rpgo\Application\Repository\Eloquent\WorldRepository');
+        $this->app->alias('Rpgo\Application\Repository\Eloquent\WorldRepository', 'Rpgo\Application\Repository\WorldRepository');
+        $this->app->alias('Rpgo\Application\Repository\Eloquent\WorldRepository', 'repository.world');
 
-        $this->app->singleton('Rpgo\Application\Repository\MemberRepository', 'Rpgo\Application\Repository\Eloquent\MemberRepository');
+        $this->app->singleton('Rpgo\Application\Repository\Eloquent\MemberRepository');
+        $this->app->alias('Rpgo\Application\Repository\Eloquent\MemberRepository', 'Rpgo\Application\Repository\MemberRepository');
         $this->app->alias('Rpgo\Application\Repository\MemberRepository', 'repository.member');
 	}
 
