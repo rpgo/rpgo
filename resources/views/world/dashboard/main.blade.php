@@ -18,7 +18,17 @@
             <h1 class="page-header">Admin-panel</h1>
 
             <div class="row">
-                <p>Az oldalad még nincs élesítve. Szeretnéd élesíteni?</p>
+                <div class="col-xs-9">
+                </div>
+                <form action="{{route('world.publish', [$world->slug()])}}" method="POST" class="form-inline col-xs-6">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    @if(! $world->isPublished())
+                    <div class="form-group">
+                        <label for="submit-btn">Az oldalad még nincs élesítve.</label>
+                        <button type="submit" id="submit-btn" class="btn btn-sm btn-primary">Élesítem!</button>
+                    </div>
+                    @endif
+                </form>
             </div>
 
             <h2 class="sub-header">Section title</h2>

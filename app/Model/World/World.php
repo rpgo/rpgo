@@ -1,5 +1,6 @@
 <?php namespace Rpgo\Model\World;
 
+use Carbon\Carbon;
 use Rpgo\Model\User\User;
 use Rpgo\Support\Collection\Collection;
 
@@ -22,6 +23,11 @@ class World {
      * @var Collection
      */
     private $members;
+
+    /**
+     * @var Publication
+     */
+    private $publication;
 
     function __construct(WorldId $id, Trademark $trademark, User $creator)
     {
@@ -60,4 +66,31 @@ class World {
         return $members ? $this->members = $members : $this->members;
     }
 
+    public function isPublished()
+    {
+        if(!$this->publication)
+            return false;
+        
+        return $this->publication->isPublished();
+    }
+
+    public function publish()
+    {
+        $this->publishedOn(Carbon::now());
+    }
+
+    public function publishedOn(Carbon $date = null)
+    {
+        if(!$date)
+            return $this->publicationDate();
+
+        return $this->publication = new Publication($date);
+    }
+
+    private function publicationDate()
+    {
+        if(! $this->publication)
+            return null;
+        return $this->publication->date();
+    }
 }

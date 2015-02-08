@@ -53,7 +53,7 @@ foreach(['', 'lang'] as $prefix)
 
         });
 
-        Route::group(["domain" => "{slug}.rpgo." . config('app.tld'), 'middleware' => ['worlds', 'member']], function() use ($prefix) {
+        Route::group(["domain" => "{slug}.rpgo." . config('app.tld'), 'middleware' => ['worlds', 'member', 'published']], function() use ($prefix) {
 
             Route::get('/', ['as' => prefix($prefix, 'worlds.show'), 'uses' => 'WorldController@show']);
 
@@ -62,6 +62,8 @@ foreach(['', 'lang'] as $prefix)
             Route::post(trans('routes.member.store'), ['as' => prefix($prefix, 'member.store'), 'uses' => 'MemberController@store']);
 
             Route::get(trans('routes.dashboard.home'), ['as' => prefix($prefix, 'worlds.dashboard.main'), 'uses' => 'DashboardController@main', 'middleware' => 'admin']);
+
+            Route::post(trans('routes.world.publish'), ['as' => prefix($prefix, 'world.publish'), 'uses' => 'WorldController@publish']);
 
         });
     });

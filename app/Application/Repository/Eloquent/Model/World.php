@@ -10,6 +10,8 @@ class World extends Model {
 
     public $casts = ['id' => 'string'];
 
+    public $dates = ['published_at'];
+
 	protected $fillable = ["name", "slug", "brand", "creator_id"];
 
     public function creator()

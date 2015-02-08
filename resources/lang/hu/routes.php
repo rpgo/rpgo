@@ -20,4 +20,7 @@ return [
         'create' => 'csatlakozas',
         'store' => 'csatlakozas',
     ],
+    'world' => [
+        'publish' => 'elesites',
+    ],
 ];

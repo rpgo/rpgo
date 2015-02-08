@@ -2,6 +2,7 @@
 
 namespace unit\Rpgo\Model\World;
 
+use Carbon\Carbon;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Rpgo\Model\User\User;
@@ -47,5 +48,46 @@ class WorldSpec extends ObjectBehavior
     {
         $trademark->slug()->willReturn('sg-memo');
         $this->slug()->shouldBe('sg-memo');
+    }
+
+    function it_is_not_published_by_default()
+    {
+        $this->isPublished()->shouldBe(false);
+    }
+
+    function it_can_be_published()
+    {
+        $this->publish();
+
+        $this->isPublished()->shouldBe(true);
+    }
+
+    function it_sets_the_date_of_the_publication_to_some_date_in_the_future(Carbon $date)
+    {
+        $date->isFuture()->willReturn(true);
+
+        $this->publishedOn($date);
+
+        $this->isPublished()->shouldBe(false);
+    }
+
+    function it_sets_the_date_of_the_publication_to_some_date_in_the_past(Carbon $date)
+    {
+        $date->isFuture()->willReturn(false);
+
+        $this->publishedOn($date);
+
+        $this->isPublished()->shouldBe(true);
+    }
+
+    function it_returns_null_as_the_publication_date_if_not_published()
+    {
+        $this->publishedOn()->shouldReturn(null);
+    }
+
+    function it_returns_the_publication_date(Carbon $date)
+    {
+        $this->publishedOn($date);
+        $this->publishedOn()->shouldReturn($date);
     }
 }

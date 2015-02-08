@@ -39,6 +39,7 @@ class WorldRepository extends Repository implements WorldRepositoryContract {
         $eloquent->slug = $model->slug();
         $eloquent->brand = $model->brand();
         $eloquent->creator_id = $model->creator()->id();
+        $eloquent->published_at = $model->publishedOn();
 
         return $eloquent->save();
     }
@@ -98,7 +99,11 @@ class WorldRepository extends Repository implements WorldRepositoryContract {
 
         $creator = $this->user()->fetchById($eloquent->creator_id);
 
-        return $this->factory->revive($eloquent->id, $eloquent->name, $eloquent->brand, $eloquent->slug, $creator);
+        $model = $this->factory->revive($eloquent->id, $eloquent->name, $eloquent->brand, $eloquent->slug, $creator);
+
+        $model->publishedOn($eloquent->published_at);
+
+        return $model;
     }
 
     /**

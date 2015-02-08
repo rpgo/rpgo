@@ -3,9 +3,12 @@
 use Illuminate\Http\Response;
 use Rpgo\Access\Http\Requests;
 use Rpgo\Access\Http\Requests\CreateWorldRequest;
+use Rpgo\Access\Http\Requests\PublishWorldRequest;
 use Rpgo\Application\Commands\CreateWorldCommand;
 use Rpgo\Application\Commands\ListWorldsCommand;
+use Rpgo\Application\Commands\PublishWorldCommand;
 use Rpgo\Application\Services\Guard;
+use Rpgo\Application\Services\Guide;
 
 class WorldController extends Controller {
 
@@ -100,5 +103,16 @@ class WorldController extends Controller {
 	{
 		//
 	}
+
+    /**
+     * @param PublishWorldRequest $request
+     * @param Guide $guide
+     */
+    public function publish(PublishWorldRequest $request, Guide $guide)
+    {
+        $world = $guide->world();
+
+        $success = $this->dispatchFrom(PublishWorldCommand::class, $request, compact('world'));
+    }
 
 }

@@ -34,6 +34,7 @@ class Kernel extends HttpKernel {
         'member' => 'Rpgo\Access\Http\Middleware\IdentifyMember',
         'stranger' => 'Rpgo\Access\Http\Middleware\HideFromMember',
         'admin' => 'Rpgo\Access\Http\Middleware\OnlyIfAdmin',
+        'published' => 'Rpgo\Access\Http\Middleware\UnpublishedOnlyToMembers',
 	];
 
 }

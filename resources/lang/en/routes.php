@@ -17,4 +17,7 @@ return [
         'create' => 'join',
         'store' => 'join'
     ],
+    'world' => [
+        'publish' => 'publish',
+    ],
 ];
