@@ -23,4 +23,8 @@ return [
     'world' => [
         'publish' => 'elesites',
     ],
+    'location' => [
+        'index' => 'helyszinek',
+        'show' => 'helyszinek/{location}',
+    ],
 ];

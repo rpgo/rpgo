@@ -63,6 +63,8 @@ foreach(['', 'lang'] as $prefix)
 
             Route::get(trans('routes.dashboard.home'), ['as' => prefix($prefix, 'worlds.dashboard.main'), 'uses' => 'DashboardController@main', 'middleware' => 'admin']);
 
+            Route::get(trans('routes.location.index'), ['as' => prefix($prefix, 'location.index'), 'uses' => 'LocationController@index']);
+
             Route::post(trans('routes.world.publish'), ['as' => prefix($prefix, 'world.publish'), 'uses' => 'WorldController@publish']);
 
         });

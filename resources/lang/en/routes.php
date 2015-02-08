@@ -20,4 +20,8 @@ return [
     'world' => [
         'publish' => 'publish',
     ],
+    'location' => [
+        'index' => 'locations',
+        'show' => 'locations/{location}',
+    ],
 ];
