@@ -1,5 +1,7 @@
 <?php namespace Rpgo\Model\Member;
 
+use Rpgo\Model\Permission\Permission;
+
 class Member {
 
     /**
@@ -41,5 +43,10 @@ class Member {
     public function name()
     {
         return (string) $this->name;
+    }
+
+    public function canSeeAdminPanel()
+    {
+        return true;
     }
 }
