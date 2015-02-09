@@ -37,15 +37,15 @@ class LocationController extends Controller {
 		//
 	}
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
+    /**
+     * Display the specified resource.
+     *
+     * @param string $location
+     * @return Response
+     */
+	public function show($location)
 	{
-		//
+		dd($location);
 	}
 
 	/**

@@ -65,6 +65,8 @@ foreach(['', 'lang'] as $prefix)
 
             Route::get(trans('routes.location.index'), ['as' => prefix($prefix, 'location.index'), 'uses' => 'LocationController@index']);
 
+            Route::get(trans('routes.location.index') . '/{location}', ['as' => prefix($prefix, 'location.show'), 'uses' => 'LocationController@show'])->where('location', '.+');
+
             Route::post(trans('routes.world.publish'), ['as' => prefix($prefix, 'world.publish'), 'uses' => 'WorldController@publish']);
 
         });
