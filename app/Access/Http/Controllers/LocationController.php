@@ -1,6 +1,7 @@
 <?php namespace Rpgo\Access\Http\Controllers;
 
 use Illuminate\Http\Response;
+use Rpgo\Application\Repository\Eloquent\Model\Location;
 
 class LocationController extends Controller {
 
@@ -11,7 +12,9 @@ class LocationController extends Controller {
 	 */
 	public function index()
 	{
-		return view('location.index')->with(['locations' => []]);
+        $locations = Location::all();
+
+		return view('location.index')->with(compact('locations'));
 	}
 
 	/**
