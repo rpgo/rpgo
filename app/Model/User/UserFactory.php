@@ -3,7 +3,7 @@
 use Illuminate\Hashing\BcryptHasher;
 use Rpgo\Model\Contracts\User\UserFactory as UserFactoryContract;
 
-final class UserFactory implements UserFactoryContract {
+class UserFactory {
 
     /**
      * @var UserIdGenerator
