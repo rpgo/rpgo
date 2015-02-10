@@ -11,13 +11,9 @@
 |
 */
 
-Route::filter('localization', function() {
-    app()->setLocale(Route::input('lang'));
-});
-
-foreach(['', 'lang'] as $prefix)
+foreach(['lang', ''] as $prefix)
 {
-    Route::group(['prefix' => optional($prefix), 'before' => 'localization'], function () use ($prefix) {
+    Route::group(['prefix' => optional($prefix), 'middleware' => 'localization'], function () use ($prefix) {
 
         Route::group(['domain' => 'rpgo.' . config('app.tld')], function() use ($prefix) {
 
@@ -65,9 +61,9 @@ foreach(['', 'lang'] as $prefix)
 
             Route::get(trans('routes.location.index'), ['as' => prefix($prefix, 'location.index'), 'uses' => 'LocationController@index']);
 
-            Route::get(trans('routes.location.index') . '/{location}', ['as' => prefix($prefix, 'location.show'), 'uses' => 'LocationController@show'])->where('location', '.+');
-
             Route::post(trans('routes.world.publish'), ['as' => prefix($prefix, 'world.publish'), 'uses' => 'WorldController@publish']);
+
+            Route::get('{location}', ['as' => prefix($prefix, 'location.show'), 'uses' => 'LocationController@show'])->where('location', '.+');
 
         });
     });

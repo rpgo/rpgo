@@ -17,7 +17,6 @@ class Kernel extends HttpKernel {
         'Illuminate\View\Middleware\ShareErrorsFromSession',
         'Rpgo\Access\Http\Middleware\VerifyCsrfToken',
         'Rpgo\Access\Http\Middleware\IdentifyUser',
-        'Rpgo\Access\Http\Middleware\SetLanguage',
 
 	];
 
@@ -35,6 +34,7 @@ class Kernel extends HttpKernel {
         'stranger' => 'Rpgo\Access\Http\Middleware\HideFromMember',
         'admin' => 'Rpgo\Access\Http\Middleware\OnlyIfAdmin',
         'published' => 'Rpgo\Access\Http\Middleware\UnpublishedOnlyToMembers',
+        'localization' => 'Rpgo\Access\Http\Middleware\SetLanguage',
 	];
 
 }

@@ -24,7 +24,7 @@ class RouteServiceProvider extends ServiceProvider {
 	{
 		parent::boot($router);
 
-		//
+        $router->pattern('lang', '^(en|hu)$');
 	}
 
 	/**
@@ -35,9 +35,7 @@ class RouteServiceProvider extends ServiceProvider {
 	 */
 	public function map(Router $router)
 	{
-        $router->pattern('lang', '^(en|hu)$');
-
-		$router->group(['namespace' => $this->namespace], function($router)
+        $router->group(['namespace' => $this->namespace], function($router)
 		{
 			require app_path('Access/Http/routes.php');
 		});
