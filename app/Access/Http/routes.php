@@ -13,57 +13,57 @@
 
 foreach(['lang', ''] as $prefix)
 {
-    Route::group(['prefix' => optional($prefix), 'middleware' => 'localization'], function () use ($prefix) {
+    $router->group(['prefix' => optional($prefix), 'middleware' => 'localization'], function ($router) use ($prefix) {
 
-        Route::group(['domain' => 'rpgo.' . config('app.tld')], function() use ($prefix) {
+        $router->group(['domain' => 'rpgo.' . config('app.tld')], function($router) use ($prefix) {
 
-            Route::get(trans('routes.auth.login'), ['as' => prefix($prefix, 'auth.login'), 'uses' => 'Auth\AuthController@getLogin']);
+            $router->get(trans('routes.auth.login'), ['as' => prefix($prefix, 'auth.login'), 'uses' => 'Auth\AuthController@getLogin']);
 
-            Route::get(trans('routes.auth.logout'), ['as' => prefix($prefix, 'auth.logout'), 'uses' => 'Auth\AuthController@getLogout']);
+            $router->get(trans('routes.auth.logout'), ['as' => prefix($prefix, 'auth.logout'), 'uses' => 'Auth\AuthController@getLogout']);
 
-            Route::post(trans('routes.auth.login'), 'Auth\AuthController@postLogin');
+            $router->post(trans('routes.auth.login'), 'Auth\AuthController@postLogin');
 
-            Route::get(trans('routes.auth.register'), ['as' => prefix($prefix, 'auth.register'), 'uses' => 'UserController@create']);
+            $router->get(trans('routes.auth.register'), ['as' => prefix($prefix, 'auth.register'), 'uses' => 'UserController@create']);
 
-            Route::post(trans('routes.auth.register'), 'UserController@store');
+            $router->post(trans('routes.auth.register'), 'UserController@store');
 
-            Route::get(trans('routes.password.email'), ['as' => prefix($prefix, 'password.email'), 'uses' => 'Auth\PasswordController@getEmail']);
+            $router->get(trans('routes.password.email'), ['as' => prefix($prefix, 'password.email'), 'uses' => 'Auth\PasswordController@getEmail']);
 
-            Route::post(trans('routes.password.email'), 'Auth\PasswordController@postEmail');
+            $router->post(trans('routes.password.email'), 'Auth\PasswordController@postEmail');
 
-            Route::get(trans('routes.password.reset') . "/{token}", ['as' => prefix($prefix, 'password.reset'), 'uses' => 'Auth\PasswordController@getReset']);
+            $router->get(trans('routes.password.reset') . "/{token}", ['as' => prefix($prefix, 'password.reset'), 'uses' => 'Auth\PasswordController@getReset']);
 
-            Route::post(trans('routes.password.reset'), 'Auth\PasswordController@postReset');
+            $router->post(trans('routes.password.reset'), 'Auth\PasswordController@postReset');
 
-            Route::get(trans("routes.worlds") . "/" . trans("routes.create"),
+            $router->get(trans("routes.worlds") . "/" . trans("routes.create"),
                 ['as' => prefix($prefix, 'worlds.create'), 'uses' => 'WorldController@create']
             );
 
-            Route::post(trans("routes.worlds") . "/" . trans("routes.create"),
+            $router->post(trans("routes.worlds") . "/" . trans("routes.create"),
                 ['as' => prefix($prefix, 'worlds.store'), 'uses' => 'WorldController@store']
             );
 
-            Route::get(trans("routes.worlds"), ['as' => ($prefix ? $prefix . '.' : '') . 'worlds.index', 'uses' => "WorldController@index"]);
+            $router->get(trans("routes.worlds"), ['as' => ($prefix ? $prefix . '.' : '') . 'worlds.index', 'uses' => "WorldController@index"]);
 
-            Route::get('/', ['as' => prefix($prefix, 'home'), 'uses' => 'HomeController@index']);
+            $router->get('/', ['as' => prefix($prefix, 'home'), 'uses' => 'HomeController@index']);
 
         });
 
-        Route::group(["domain" => "{slug}.rpgo." . config('app.tld'), 'middleware' => ['worlds', 'member', 'published']], function() use ($prefix) {
+        $router->group(["domain" => "{slug}.rpgo." . config('app.tld'), 'middleware' => ['worlds', 'member', 'published']], function($router) use ($prefix) {
 
-            Route::get('/', ['as' => prefix($prefix, 'worlds.show'), 'uses' => 'WorldController@show']);
+            $router->get('/', ['as' => prefix($prefix, 'worlds.show'), 'uses' => 'WorldController@show']);
 
-            Route::get(trans('routes.member.create'), ['as' => prefix($prefix, 'member.create'), 'uses' => 'MemberController@create', 'middleware' => 'stranger']);
+            $router->get(trans('routes.member.create'), ['as' => prefix($prefix, 'member.create'), 'uses' => 'MemberController@create', 'middleware' => 'stranger']);
 
-            Route::post(trans('routes.member.store'), ['as' => prefix($prefix, 'member.store'), 'uses' => 'MemberController@store']);
+            $router->post(trans('routes.member.store'), ['as' => prefix($prefix, 'member.store'), 'uses' => 'MemberController@store']);
 
-            Route::get(trans('routes.dashboard.home'), ['as' => prefix($prefix, 'worlds.dashboard.main'), 'uses' => 'DashboardController@main', 'middleware' => 'admin']);
+            $router->get(trans('routes.dashboard.home'), ['as' => prefix($prefix, 'worlds.dashboard.main'), 'uses' => 'DashboardController@main', 'middleware' => 'admin']);
 
-            Route::get(trans('routes.location.index'), ['as' => prefix($prefix, 'location.index'), 'uses' => 'LocationController@index']);
+            $router->get(trans('routes.location.index'), ['as' => prefix($prefix, 'location.index'), 'uses' => 'LocationController@index']);
 
-            Route::post(trans('routes.world.publish'), ['as' => prefix($prefix, 'world.publish'), 'uses' => 'WorldController@publish']);
+            $router->post(trans('routes.world.publish'), ['as' => prefix($prefix, 'world.publish'), 'uses' => 'WorldController@publish']);
 
-            Route::get('{location}', ['as' => prefix($prefix, 'location.show'), 'uses' => 'LocationController@show'])->where('location', '.+');
+            $router->get('{location}', ['as' => prefix($prefix, 'location.show'), 'uses' => 'LocationController@show'])->where('location', '.+');
 
         });
     });
