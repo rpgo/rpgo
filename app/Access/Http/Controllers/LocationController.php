@@ -6,18 +6,6 @@ use Rpgo\Application\Repository\Eloquent\Model\Location;
 class LocationController extends Controller {
 
 	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-        $locations = Location::all();
-
-		return view('location.index')->with(compact('locations'));
-	}
-
-	/**
 	 * Show the form for creating a new resource.
 	 *
 	 * @return Response
@@ -45,7 +33,11 @@ class LocationController extends Controller {
      */
 	public function show($location)
 	{
-		dd($location);
+		$path = explode('/', $location);
+
+        //$repository->fetchByWorldAndPath($world, $path);
+
+        dd($path);
 	}
 
 	/**

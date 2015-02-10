@@ -87,11 +87,9 @@ class RouteServiceProvider extends ServiceProvider {
 
                         $router->get(trans('routes.dashboard.home'), ['as' => prefix($prefix, 'worlds.dashboard.main'), 'uses' => 'DashboardController@main', 'middleware' => 'admin']);
 
-                        $router->get(trans('routes.location.index'), ['as' => prefix($prefix, 'location.index'), 'uses' => 'LocationController@index']);
+                        $router->get('{location}', ['as' => prefix($prefix, 'location.show'), 'uses' => 'LocationController@show'])->where('location', '.+');
 
                         $router->post(trans('routes.world.publish'), ['as' => prefix($prefix, 'world.publish'), 'uses' => 'WorldController@publish']);
-
-                        $router->get('{location}', ['as' => prefix($prefix, 'location.show'), 'uses' => 'LocationController@show'])->where('location', '.+');
 
                     });
                 });
