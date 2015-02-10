@@ -1,5 +1,32 @@
 <?php namespace Rpgo\Model\Location;
 
+use Rpgo\Model\Contracts\Id;
+
 class Location {
 
+
+    /**
+     * @var Id
+     */
+    private $id;
+    /**
+     * @var Name
+     */
+    private $name;
+    /**
+     * @var Slug
+     */
+    private $slug;
+
+    /**
+     * @var Location
+     */
+    private $container;
+
+    public function __construct(Id $id, Name $name, Slug $slug)
+    {
+        $this->id = $id;
+        $this->name = $name;
+        $this->slug = $slug;
+    }
 }
