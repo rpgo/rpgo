@@ -8,27 +8,22 @@ class Uuid extends Value implements Id {
     /**
      * @var Ruuid
      */
-    private $uuid;
-
-    function __construct()
-    {
-        $this->uuid = Ruuid::uuid4();
-    }
+    protected $value;
 
     /**
-     * @return string
+     * @param string $id
      */
-    public function __toString()
+    function __construct($id = null)
     {
-        return (string) $this->uuid;
+        $this->value = $id ? Ruuid::fromString($id) : Ruuid::uuid4();
     }
 
     /**
-     * @param Id $uuid
+     * @param Id $id
      * @return bool
      */
-    public function isIdenticalTo(Id $uuid)
+    public function isIdenticalTo(Id $id)
     {
-        return $this === $uuid;
+        return $this->isEqualTo($id);
     }
 }

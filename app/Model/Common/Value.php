@@ -19,7 +19,7 @@ class Value {
         return new static($value);
     }
 
-    public function isEqualTo(self $value)
+    public function isEqualTo($value)
     {
         return $this == $value;
     }
