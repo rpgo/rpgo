@@ -1,11 +1,12 @@
 <?php namespace Rpgo\Model\World;
 
+use Rpgo\Model\Common\Value;
 use Rpgo\Model\World\Exception\EmptyWorldNameException;
 use Rpgo\Model\World\Exception\LongWorldNameException;
 
-class Name {
+class Name extends Value {
 
-    private $name;
+    protected $value;
 
     function __construct($name)
     {
@@ -13,17 +14,7 @@ class Name {
 
         $this->checkLength($name);
 
-        $this->name = $name;
-    }
-
-    function __toString()
-    {
-        return $this->name;
-    }
-
-    public function change($name)
-    {
-        return new self($name);
+        $this->value = $name;
     }
 
     private function checkLength($name)

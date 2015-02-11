@@ -4,18 +4,16 @@ use Rpgo\Model\Exception\InvalidValueException;
 
 class Slug extends Value {
 
-    protected $value;
-
-    public function __construct($value)
+    public function __construct($slug)
     {
-        $value = (string) $value;
-        $this->validate($value);
-        $this->value = $value;
+        $slug = (string) $slug;
+        $this->validate($slug);
+        parent::__construct($slug);
     }
 
-    protected function validate($value)
+    protected function validate($slug)
     {
-        if( ! preg_match('/^[a-z][-a-z0-9]+$/', $value))
+        if( ! preg_match('/^[a-z][-a-z0-9]+$/', $slug))
             throw new InvalidValueException;
     }
 }

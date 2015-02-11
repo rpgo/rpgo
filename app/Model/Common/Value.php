@@ -4,9 +4,9 @@ class Value {
 
     protected $value;
 
-    public function __construct($value)
+    public function __construct($slug)
     {
-        $this->value = $value;
+        $this->value = $slug;
     }
 
     public function __toString()

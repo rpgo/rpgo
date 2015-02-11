@@ -5,11 +5,11 @@ use Rpgo\Model\Exception\InvalidValueException;
 
 class Slug extends CommonSlug {
 
-    protected function validate($value)
+    protected function validate($slug)
     {
-        parent::validate($value);
+        parent::validate($slug);
 
-        if(strlen($value) > 20)
+        if(strlen($slug) > 20)
             throw new InvalidValueException;
     }
 

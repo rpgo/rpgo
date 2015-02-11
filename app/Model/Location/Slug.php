@@ -3,14 +3,13 @@
 use Rpgo\Model\Common\Slug as CommonSlug;
 use Rpgo\Model\Exception\InvalidValueException;
 
-class Slug extends CommonSlug
-{
+class Slug extends CommonSlug {
 
-    protected function validate($value)
+    protected function validate($slug)
     {
-        parent::validate($value);
+        parent::validate($slug);
 
-        if(strlen($value) > 40)
+        if(strlen($slug) > 40)
             throw new InvalidValueException;
     }
 
