@@ -4,6 +4,7 @@ namespace unit\Rpgo\Model\Common;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
+use Rpgo\Model\Common\Value;
 
 class ValueSpec extends ObjectBehavior
 {
@@ -42,5 +43,24 @@ class ValueSpec extends ObjectBehavior
     function it_changes_the_value_when_morphing()
     {
         $this->changeValueTo('new value')->__toString()->shouldReturn('new value');
+    }
+
+    function it_equals_itself()
+    {
+        $this->isEqualTo($this)->shouldReturn(true);
+    }
+
+    function it_equals_another_value_object_with_the_same_value()
+    {
+        $other = $this->changeValueTo('value');
+
+        $this->isEqualTo($other)->shouldReturn(true);
+    }
+
+    function it_does_not_equal_another_value_object_with_a_different_value()
+    {
+        $other = $this->changeValueTo('other value');
+
+        $this->isEqualTo($other)->shouldReturn(false);
     }
 }
