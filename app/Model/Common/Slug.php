@@ -2,25 +2,15 @@
 
 use Rpgo\Model\Exception\InvalidValueException;
 
-class Slug {
+class Slug extends Value {
 
-    private $value;
+    protected $value;
 
     public function __construct($value)
     {
         $value = (string) $value;
         $this->validate($value);
         $this->value = $value;
-    }
-
-    public function __toString()
-    {
-        return $this->value;
-    }
-
-    public function change($value)
-    {
-        return new static($value);
     }
 
     protected function validate($value)

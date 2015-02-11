@@ -23,10 +23,11 @@ class Location {
      */
     private $container;
 
-    public function __construct(Id $id, Name $name, Slug $slug)
+    public function __construct(Id $id, Name $name, Slug $slug, self $container = null)
     {
         $this->id = $id;
         $this->name = $name;
         $this->slug = $slug;
+        $this->container = $container;
     }
 }

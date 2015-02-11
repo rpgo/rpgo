@@ -15,6 +15,7 @@ class SlugSpec extends ObjectBehavior
     function it_is_initializable()
     {
         $this->shouldHaveType('Rpgo\Model\Common\Slug');
+        $this->shouldHaveType('Rpgo\Model\Common\Value');
     }
 
     function it_cannot_contain_a_dot()
@@ -53,36 +54,9 @@ class SlugSpec extends ObjectBehavior
             ->during('__construct', ['sg/memo']);
     }
 
-    function it_is_immutable()
-    {
-        $this->change('sgmemo')->shouldNotBe($this);
-    }
-
-    function it_morphs_into_a_new_slug()
-    {
-        $this->change('sgmemo')->shouldHaveType('Rpgo\Model\Common\Slug');
-    }
-
-    function it_changes_the_value_when_morphing()
-    {
-        $this->change('sgmemo')->__toString()->shouldReturn('sgmemo');
-    }
-
     function it_cannot_be_empty()
     {
         $this->shouldThrow('Rpgo\Model\Exception\InvalidValueException')
             ->during('__construct', ['']);
-    }
-
-    function it_can_be_cast_to_string()
-    {
-        $this->__toString()->shouldReturn('sg-memo');
-    }
-
-    function it_casts_itself_to_string()
-    {
-        $this->beConstructedWith('sgmemo');
-
-        $this->__toString()->shouldReturn('sgmemo');
     }
 }
