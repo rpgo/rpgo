@@ -11,7 +11,7 @@ class Value {
 
     public function __toString()
     {
-        return (string) $this->value;
+        return (string) $this->value();
     }
 
     public function changeValueTo($value)
@@ -22,5 +22,10 @@ class Value {
     public function isEqualTo(self $value)
     {
         return $this == $value;
+    }
+
+    public function value()
+    {
+        return $this->value;
     }
 }

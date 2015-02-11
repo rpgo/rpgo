@@ -63,4 +63,15 @@ class ValueSpec extends ObjectBehavior
 
         $this->isEqualTo($other)->shouldReturn(false);
     }
+
+    function it_returns_the_raw_value()
+    {
+        $this->value()->shouldBe('value');
+    }
+
+    function it_returns_the_actual_raw_value()
+    {
+        $this->beConstructedWith(4);
+        $this->value()->shouldBe(4);
+    }
 }
