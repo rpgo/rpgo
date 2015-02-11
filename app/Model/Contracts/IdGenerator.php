@@ -5,12 +5,12 @@ interface IdGenerator {
     /**
      * @return Id
      */
-    public function next();
+    public function generateNewId();
 
     /**
-     * @param string $string
+     * @param string $id
      * @return Id
      */
-    public function from($string);
+    public function idFromString($id);
 
 }

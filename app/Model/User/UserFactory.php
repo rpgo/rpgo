@@ -85,7 +85,7 @@ class UserFactory {
      */
     private function getNewId()
     {
-        return $this->generator->next();
+        return $this->generator->generateNewId();
     }
 
     /**
@@ -94,7 +94,7 @@ class UserFactory {
      */
     private function getOldId($id)
     {
-        return $this->generator->from($id);
+        return $this->generator->idFromString($id);
     }
 
     /**

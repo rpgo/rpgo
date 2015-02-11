@@ -15,18 +15,18 @@ abstract class EntityIdGenerator implements IdGenerator {
     /**
      * @return Id
      */
-    public function next()
+    public function generateNewId()
     {
-        return $this->getEntityId($this->generator->next());
+        return $this->getEntityId($this->generator->generateNewId());
     }
 
     /**
-     * @param string $string
+     * @param string $id
      * @return Id
      */
-    public function from($string)
+    public function idFromString($id)
     {
-        return $this->getEntityId($this->generator->from($string));
+        return $this->getEntityId($this->generator->idFromString($id));
     }
 
     abstract public function getEntityId(Id $id);

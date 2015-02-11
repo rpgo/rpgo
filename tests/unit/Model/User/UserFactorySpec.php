@@ -15,8 +15,8 @@ class UserFactorySpec extends ObjectBehavior
     {
         $this->beConstructedWith($generator, $hasher);
 
-        $generator->next()->willReturn($id);
-        $generator->from('id')->willReturn($id);
+        $generator->generateNewId()->willReturn($id);
+        $generator->idFromString('id')->willReturn($id);
 
         $hasher->make('password')->willReturn('hashed_password');
         $hasher->check('password', 'hashed_password')->willReturn(true);

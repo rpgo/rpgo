@@ -15,8 +15,8 @@ class MemberFactorySpec extends ObjectBehavior
     {
         $this->beConstructedWith($generator);
 
-        $generator->next()->willReturn($id);
-        $generator->from('id')->willReturn($id);
+        $generator->generateNewId()->willReturn($id);
+        $generator->idFromString('id')->willReturn($id);
     }
 
     function it_is_initializable()

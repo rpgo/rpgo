@@ -17,7 +17,7 @@ class WorldFactory {
 
     public function create($name, $brand, $slug, User $creator)
     {
-        $id = $this->generator->next();
+        $id = $this->generator->generateNewId();
         $trademark = $this->getTrademark($name, $brand, $slug);
         return new World($id, $trademark, $creator);
     }
@@ -38,7 +38,7 @@ class WorldFactory {
 
     public function revive($id, $name, $brand, $slug, User $creator)
     {
-        $id = $this->generator->from($id);
+        $id = $this->generator->idFromString($id);
         $trademark = $this->getTrademark($name, $brand, $slug);
         return new World($id, $trademark, $creator);
     }

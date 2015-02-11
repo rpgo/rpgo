@@ -13,8 +13,8 @@ class WorldFactorySpec extends ObjectBehavior
     function let(WorldIdGenerator $generator, WorldId $id)
     {
         $this->beConstructedWith($generator);
-        $generator->next()->willReturn($id);
-        $generator->from('id')->willReturn($id);
+        $generator->generateNewId()->willReturn($id);
+        $generator->idFromString('id')->willReturn($id);
     }
 
     function it_is_initializable()

@@ -22,7 +22,7 @@ class MemberFactory {
      */
     public function create($name, World $world, User $user)
     {
-        $id = $this->generator->next();
+        $id = $this->generator->generateNewId();
         $name = new Name($name);
         $membership = new Membership($world, $user);
         return new Member($id, $name, $membership);
@@ -38,7 +38,7 @@ class MemberFactory {
      */
     public function revive($id, $name, World $world, User $user)
     {
-        $id = $this->generator->from($id);
+        $id = $this->generator->idFromString($id);
         $name = new Name($name);
         $membership = new Membership($world, $user);
         return new Member($id, $name, $membership);

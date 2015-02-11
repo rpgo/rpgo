@@ -7,12 +7,12 @@ interface UserIdGenerator extends IdGenerator {
     /**
      * @return UserId
      */
-    public function next();
+    public function generateNewId();
 
     /**
-     * @param string $string
+     * @param string $id
      * @return UserId
      */
-    public function from($string);
+    public function idFromString($id);
 
 }
