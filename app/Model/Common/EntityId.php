@@ -18,12 +18,12 @@ abstract class EntityId implements Id {
      * @param Id $id
      * @return bool
      */
-    public function equals(Id $id)
+    public function isIdenticalTo(Id $id)
     {
         if( ! $this->isIdForSameEntity($id))
             return false;
 
-        return $this->id->equals($id);
+        return $this->id->isIdenticalTo($id);
     }
 
     /**

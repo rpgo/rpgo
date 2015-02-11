@@ -6,7 +6,7 @@ interface Id {
      * @param Id $id
      * @return bool
      */
-    public function equals(self $id);
+    public function isIdenticalTo(self $id);
 
     /**
      * @return string

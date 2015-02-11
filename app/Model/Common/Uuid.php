@@ -27,7 +27,7 @@ class Uuid extends Value implements Id {
      * @param Id $uuid
      * @return bool
      */
-    public function equals(Id $uuid)
+    public function isIdenticalTo(Id $uuid)
     {
         return $this === $uuid;
     }
