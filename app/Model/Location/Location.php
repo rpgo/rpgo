@@ -1,9 +1,6 @@
 <?php namespace Rpgo\Model\Location;
 
-use Rpgo\Model\Contracts\Id;
-
 class Location {
-
 
     /**
      * @var Id
