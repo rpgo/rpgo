@@ -31,16 +31,16 @@ class ValueSpec extends ObjectBehavior
 
     function it_is_immutable()
     {
-        $this->change('new value')->shouldNotBe($this);
+        $this->changeValueTo('new value')->shouldNotBe($this);
     }
 
     function it_morphs_into_a_new_world_name()
     {
-        $this->change('new value')->shouldHaveType('Rpgo\Model\Common\Value');
+        $this->changeValueTo('new value')->shouldHaveType('Rpgo\Model\Common\Value');
     }
 
     function it_changes_the_value_when_morphing()
     {
-        $this->change('new value')->__toString()->shouldReturn('new value');
+        $this->changeValueTo('new value')->__toString()->shouldReturn('new value');
     }
 }

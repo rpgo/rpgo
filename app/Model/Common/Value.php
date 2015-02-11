@@ -14,7 +14,7 @@ class Value {
         return (string) $this->value;
     }
 
-    public function change($value)
+    public function changeValueTo($value)
     {
         return new static($value);
     }
