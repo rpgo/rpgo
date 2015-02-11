@@ -3,19 +3,16 @@
 use Rhumsaa\Uuid\Uuid as Ruuid;
 use Rpgo\Model\Contracts\Id;
 
-class Uuid implements Id {
+class Uuid extends Value implements Id {
 
     /**
      * @var Ruuid
      */
     private $uuid;
 
-    /**
-     * @param Ruuid $uuid
-     */
-    function __construct(Ruuid $uuid)
+    function __construct()
     {
-        $this->uuid = $uuid;
+        $this->uuid = Ruuid::uuid4();
     }
 
     /**
