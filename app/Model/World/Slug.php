@@ -1,8 +1,9 @@
 <?php namespace Rpgo\Model\World;
 
+use Rpgo\Model\Common\Slug as CommonSlug;
 use Rpgo\Model\Exception\InvalidValueException;
 
-class Slug extends \Rpgo\Model\Common\Slug {
+class Slug extends CommonSlug {
 
     protected function validate($value)
     {
