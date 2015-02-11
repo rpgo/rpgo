@@ -27,6 +27,6 @@ class NameSpec extends ObjectBehavior
     function it_cannot_be_longer_than_40_characters()
     {
         $this->shouldThrow('Rpgo\Model\Exception\InvalidValueException')
-            ->during('__construct', ['The Best Possible Stargate Memories To Make In This Life']);
+            ->during('__construct', ['The lift in SGC going always up and down.']);
     }
 }
