@@ -1,6 +1,7 @@
 <?php namespace Rpgo\Access\Http\Controllers;
 
 use Illuminate\Http\Response;
+use Rpgo\Application\Commands\AddLocationCommand;
 use Rpgo\Application\Repository\Eloquent\Model\Location;
 
 class LocationController extends Controller {
@@ -37,7 +38,7 @@ class LocationController extends Controller {
 
         //$repository->fetchByWorldAndPath($world, $path);
 
-        dd($path);
+        $this->dispatchFromArray(AddLocationCommand::class,['name' => 'SGC', 'slug' => 'sgc']);
 	}
 
 	/**
