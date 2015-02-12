@@ -27,4 +27,24 @@ class Location {
         $this->slug = $slug;
         $this->container = $container;
     }
+
+    public function id()
+    {
+        return (string) $this->id;
+    }
+
+    public function name()
+    {
+        return (string) $this->name;
+    }
+
+    public function slug()
+    {
+        return (string) $this->slug;
+    }
+
+    public function container()
+    {
+        return $this->container;
+    }
 }
