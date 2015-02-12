@@ -41,8 +41,8 @@ class LocationRepository extends Repository implements LocationRepositoryContrac
     protected function getEloquentAttributes($entity)
     {
         return [
-            'id' => $entity->id(),
-            'container_id' => $entity->container()->id(),
+            'uuid' => $entity->id(),
+            //'container_id' => $entity->container() ? $this->eloquent->where('uuid', $entity->container()->id())->first()->id : null,
             'name' => $entity->name(),
             'slug' => $entity->slug(),
         ];
@@ -55,7 +55,7 @@ class LocationRepository extends Repository implements LocationRepositoryContrac
     private function getModelData($eloquent)
     {
         return [
-            'id'   => $eloquent->id,
+            'id'   => $eloquent->uuid,
             'name' => $eloquent->name,
             'slug' => $eloquent->slug,
             'container' => $this->getEntity($eloquent->container)
