@@ -20,6 +20,12 @@ class Location {
      */
     private $container;
 
+    /**
+     * @param Id $id
+     * @param Name $name
+     * @param Slug $slug
+     * @param Location $container
+     */
     public function __construct(Id $id, Name $name, Slug $slug, self $container = null)
     {
         $this->id = $id;
@@ -28,21 +34,33 @@ class Location {
         $this->container = $container;
     }
 
+    /**
+     * @return string
+     */
     public function id()
     {
         return (string) $this->id;
     }
 
+    /**
+     * @return string
+     */
     public function name()
     {
         return (string) $this->name;
     }
 
+    /**
+     * @return string
+     */
     public function slug()
     {
         return (string) $this->slug;
     }
 
+    /**
+     * @return Location|null
+     */
     public function container()
     {
         return $this->container;
