@@ -28,7 +28,8 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="{{route('worlds.show', [$world->slug()])}}">{{$world->brand()}}</a>
+                <a class="navbar-brand" href="{{route('home')}}">RPGO</a>
+                <a class="navbar-brand" href="{{route('worlds.show', [$world->slug()])}}">{{$world->brand()}}</a>
 			</div>
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -45,7 +46,7 @@
 					@if ( ! $user)
 						<li><a href="{{route('auth.login')}}">{{trans('worlds.login')}}</a></li>
 						<li><a href="{{route('auth.register')}}">{{trans('worlds.register')}}</a></li>
-					@else
+					@elseif (! $member)
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ $user->name() }} <span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
@@ -53,6 +54,14 @@
 								<li><a href="{{route('auth.logout')}}">{{trans('rpgo.logout')}}</a></li>
 							</ul>
 						</li>
+                    @else
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ $member->name() }} <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{route('worlds.show', [$world->slug()])}}">{{trans('members.settings.name')}}</a></li>
+                                <li><a href="{{route('auth.logout')}}">{{trans('rpgo.logout')}}</a></li>
+                            </ul>
+                        </li>
 					@endif
 				</ul>
 			</div>
