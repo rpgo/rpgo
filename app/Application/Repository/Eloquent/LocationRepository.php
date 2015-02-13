@@ -44,7 +44,7 @@ class LocationRepository extends Repository implements LocationRepositoryContrac
     {
         return [
             'uuid' => $entity->id(),
-            'container_id' => $entity->container() ? $this->eloquentFind($entity->container()->id())->aiid : null,
+            'container_aiid' => $entity->container() ? $this->eloquentFind($entity->container()->id())->aiid : null,
             'name' => $entity->name(),
             'slug' => $entity->slug(),
         ];
@@ -82,9 +82,9 @@ class LocationRepository extends Repository implements LocationRepositoryContrac
     {
         $slug = end($path);
 
-        array_shift($path);
-
         $root = $this->eloquentFind($world->location()->id());
+
+        $root->load('children');
 
         $eloquent = $this->getByPath($root, $path);
 
@@ -98,19 +98,19 @@ class LocationRepository extends Repository implements LocationRepositoryContrac
     }
 
     /**
-     * @param Eloquent $tree
+     * @param Eloquent $node
      * @param $path
      * @return Collection
      */
-    private function getByPath($tree, array $path)
+    private function getByPath($node, array $path)
     {
-        if( empty($path) || ! $tree->hasChildren())
-            return $tree;
+        if( empty($path) || ! $node->hasChildren())
+            return $node;
 
-        $slug = array_shift($path);
+        $slug = next($path);
 
-        foreach($tree->children as $node)
-            if($node->slug == $slug)
-                return $this->getByPath($node->children, $path);
+        foreach($node->children as $children)
+            if($children->slug == $slug)
+                return $this->getByPath($children->children, $path);
     }
 }
