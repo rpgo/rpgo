@@ -5,6 +5,7 @@ use Rpgo\Application\Commands\AddLocationCommand;
 use Rpgo\Application\Repository\Eloquent\Model\Location;
 use Rpgo\Application\Repository\LocationRepository;
 use Rpgo\Application\Services\Guide;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class LocationController extends Controller {
 
@@ -43,6 +44,9 @@ class LocationController extends Controller {
 		$path = explode('/', $location);
 
         $location = $repository->fetchByWorldAndPath($world, $path);
+
+        if( ! $location )
+            throw new NotFoundHttpException;
 
         return view('location.show')->with(compact('location'));
 	}

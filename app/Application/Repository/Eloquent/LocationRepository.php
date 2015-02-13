@@ -80,6 +80,8 @@ class LocationRepository extends Repository implements LocationRepositoryContrac
 
     public function fetchByWorldAndPath(World $world, array $path)
     {
+        $slug = end($path);
+
         array_shift($path);
 
         $root = $this->eloquentFind($world->location()->id());
@@ -87,7 +89,10 @@ class LocationRepository extends Repository implements LocationRepositoryContrac
         $eloquent = $this->getByPath($root, $path);
 
         if(! $eloquent )
-            return $this->getEntity($root);
+            $eloquent = $root;
+
+        if( $eloquent->slug != $slug )
+            return null;
 
         return $this->getEntity($eloquent);
     }
