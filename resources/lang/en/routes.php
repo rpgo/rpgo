@@ -21,7 +21,7 @@ return [
         'publish' => 'publish',
     ],
     'location' => [
-        'index' => 'locations',
-        'show' => 'locations/{location}',
+        'edit' => 'edit',
+        'create' => 'create',
     ],
 ];

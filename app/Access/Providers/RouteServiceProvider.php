@@ -87,11 +87,11 @@ class RouteServiceProvider extends ServiceProvider {
 
                         $router->get(trans('routes.dashboard.home'), ['as' => prefix($prefix, 'worlds.dashboard.main'), 'uses' => 'DashboardController@main', 'middleware' => 'admin']);
 
-                        $router->get('{location}', ['as' => prefix($prefix, 'location.show'), 'uses' => 'LocationController@show'])->where('location', '^(.(?!uj$|szerkesztes$))+');
+                        $router->get('{location}', ['as' => prefix($prefix, 'location.show'), 'uses' => 'LocationController@show'])->where('location', '^(.(?!' . trans('routes.location.edit') . '$|' . trans('routes.location.create') . '$))+');
 
-                        $router->get('{location}/szerkesztes', ['as' => prefix($prefix, 'location.edit'), 'uses' => 'LocationController@edit'])->where('location', '^(.(?!uj$|szerkesztes$))+');
+                        $router->get('{location}/' . trans('routes.location.edit'), ['as' => prefix($prefix, 'location.edit'), 'uses' => 'LocationController@edit'])->where('location', '^(.(?!' . trans('routes.location.edit') . '$|' . trans('routes.location.create') . '$))+');
 
-                        $router->get('{location}/uj', ['as' => prefix($prefix, 'location.create'), 'uses' => 'LocationController@create'])->where('location', '^(.(?!uj$|szerkesztes$))+');
+                        $router->get('{location}/' . trans('routes.location.create'), ['as' => prefix($prefix, 'location.create'), 'uses' => 'LocationController@create'])->where('location', '^(.(?!' . trans('routes.location.edit') . '$|' . trans('routes.location.create') . '$))+');
 
                         $router->post(trans('routes.world.publish'), ['as' => prefix($prefix, 'world.publish'), 'uses' => 'WorldController@publish']);
 

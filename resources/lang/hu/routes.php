@@ -24,7 +24,7 @@ return [
         'publish' => 'elesites',
     ],
     'location' => [
-        'index' => 'helyszinek',
-        'show' => 'helyszinek/{location}',
+        'edit' => 'szerkesztes',
+        'create' => 'uj/helyszin',
     ],
 ];
