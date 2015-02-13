@@ -3,6 +3,8 @@
 use Illuminate\Http\Response;
 use Rpgo\Application\Commands\AddLocationCommand;
 use Rpgo\Application\Repository\Eloquent\Model\Location;
+use Rpgo\Application\Repository\LocationRepository;
+use Rpgo\Application\Services\Guide;
 
 class LocationController extends Controller {
 
@@ -30,15 +32,19 @@ class LocationController extends Controller {
      * Display the specified resource.
      *
      * @param string $location
+     * @param Guide $guide
+     * @param LocationRepository $repository
      * @return Response
      */
-	public function show($location)
+	public function show($location, Guide $guide, LocationRepository $repository)
 	{
+        $world = $guide->world();
+
 		$path = explode('/', $location);
 
-        //$repository->fetchByWorldAndPath($world, $path);
+        $location = $repository->fetchByWorldAndPath($world, $path);
 
-        $this->dispatchFromArray(AddLocationCommand::class,['name' => 'SGC', 'slug' => 'sgc']);
+        return view('location.show')->with(compact('location'));
 	}
 
 	/**

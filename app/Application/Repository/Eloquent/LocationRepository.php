@@ -6,6 +6,8 @@ use Rpgo\Application\Repository\RepositoryManager;
 use Rpgo\Model\Location\Factory;
 use Rpgo\Model\Location\Location as Entity;
 use Rpgo\Application\Repository\Eloquent\Model\Location as Eloquent;
+use Rpgo\Model\World\World;
+use Rpgo\Support\Collection\Collection;
 
 class LocationRepository extends Repository implements LocationRepositoryContract {
     /**
@@ -64,7 +66,7 @@ class LocationRepository extends Repository implements LocationRepositoryContrac
 
     /**
      * @param $id
-     * @return mixed
+     * @return Eloquent
      */
     protected function eloquentFind($id)
     {
@@ -74,5 +76,36 @@ class LocationRepository extends Repository implements LocationRepositoryContrac
     protected function eloquentFindOrNew($id)
     {
         return $this->eloquent->firstOrNew(['uuid' => $id]);
+    }
+
+    public function fetchByWorldAndPath(World $world, array $path)
+    {
+        array_shift($path);
+
+        $root = $this->eloquentFind($world->location()->id());
+
+        $eloquent = $this->getByPath($root, $path);
+
+        if(! $eloquent )
+            return $this->getEntity($root);
+
+        return $this->getEntity($eloquent);
+    }
+
+    /**
+     * @param Eloquent $tree
+     * @param $path
+     * @return Collection
+     */
+    private function getByPath($tree, array $path)
+    {
+        if( empty($path) || ! $tree->hasChildren())
+            return $tree;
+
+        $slug = array_shift($path);
+
+        foreach($tree->children as $node)
+            if($node->slug == $slug)
+                return $this->getByPath($node->children, $path);
     }
 }

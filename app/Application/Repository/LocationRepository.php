@@ -1,6 +1,7 @@
 <?php namespace Rpgo\Application\Repository;
 
 use Rpgo\Model\Location\Location;
+use Rpgo\Model\World\World;
 use Rpgo\Support\Collection\Collection;
 
 interface LocationRepository extends Repository {
@@ -27,5 +28,7 @@ interface LocationRepository extends Repository {
      * @return Collection
      */
     public function fetchAll();
+
+    public function fetchByWorldAndPath(World $world, array $path);
 
 }

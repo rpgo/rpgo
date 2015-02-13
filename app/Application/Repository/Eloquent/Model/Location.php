@@ -12,7 +12,7 @@ class Location extends Node {
 
     const RGT = 'container_rgt';
 
-    const PARENT_ID = 'container_id';
+    const PARENT_ID = 'container_aiid';
 
     protected $guarded = [ 'container_lft', 'container_rgt' ];
 
