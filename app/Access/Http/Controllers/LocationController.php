@@ -16,7 +16,7 @@ class LocationController extends Controller {
 	 */
 	public function create($location)
 	{
-		dd("creating ".$location);
+		return view('location.create');
 	}
 
 	/**
@@ -59,7 +59,7 @@ class LocationController extends Controller {
 	 */
 	public function edit($location)
 	{
-		dd("editing ". $location);
+		return view('location.edit');
 	}
 
 	/**
