@@ -21,4 +21,9 @@ class Location extends Node {
         $this->setParentIdAttribute($value);
     }
 
+    public function world()
+    {
+        $this->hasOne(World::class, 'location_id', 'uuid');
+    }
+
 }

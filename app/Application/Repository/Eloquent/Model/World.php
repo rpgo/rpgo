@@ -29,4 +29,9 @@ class World extends Model {
         return $this->belongsToMany(User::class,'members');
     }
 
+    public function location()
+    {
+        return $this->belongsTo(Location::class, 'location_id', 'uuid');
+    }
+
 }

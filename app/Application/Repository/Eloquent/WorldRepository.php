@@ -35,6 +35,9 @@ class WorldRepository extends Repository implements WorldRepositoryContract {
             ->where('slug', $slug)
             ->first();
 
+        if(!$eloquent)
+            return null;
+
         return $this->getEntity($eloquent);
     }
 
