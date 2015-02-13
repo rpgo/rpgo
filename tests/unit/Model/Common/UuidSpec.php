@@ -4,7 +4,7 @@ namespace unit\Rpgo\Model\Common;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
-use Rpgo\Model\Contracts\Id;
+use Rpgo\Model\Common\Id;
 
 class UuidSpec extends ObjectBehavior
 {
@@ -17,7 +17,7 @@ class UuidSpec extends ObjectBehavior
     {
         $this->shouldHaveType('Rpgo\Model\Common\Uuid');
         $this->shouldHaveType('Rpgo\Model\Common\Value');
-        $this->shouldHaveType('Rpgo\Model\Contracts\Id');
+        $this->shouldHaveType('Rpgo\Model\Common\Id');
     }
 
     function it_is_identical_to_the_same_uuid()

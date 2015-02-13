@@ -1,7 +1,7 @@
 <?php namespace Rpgo\Model\Common;
 
 use Rhumsaa\Uuid\Uuid as Ruuid;
-use Rpgo\Model\Contracts\Id;
+use Rpgo\Model\Common\Id;
 
 class Uuid extends Value implements Id {
 

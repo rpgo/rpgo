@@ -1,4 +1,4 @@
-<?php namespace Rpgo\Model\Contracts;
+<?php namespace Rpgo\Model\Common;
 
 interface Id {
 

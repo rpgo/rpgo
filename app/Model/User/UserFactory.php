@@ -1,7 +1,6 @@
 <?php namespace Rpgo\Model\User;
 
 use Illuminate\Hashing\BcryptHasher;
-use Rpgo\Model\Contracts\User\UserFactory as UserFactoryContract;
 
 class UserFactory {
     /**
