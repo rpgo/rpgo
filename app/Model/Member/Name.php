@@ -1,15 +1,14 @@
 <?php namespace Rpgo\Model\Member;
 
-use Rpgo\Model\Member\Exception\EmptyMemberNameException;
-use Rpgo\Model\Member\Exception\InvalidMemberNameException;
-use Rpgo\Model\Member\Exception\LongMemberNameException;
+use Rpgo\Model\Common\Value;
+use Rpgo\Model\Exception\InvalidValueException;
 
-class Name {
+class Name extends Value {
 
     /**
      * @var string
      */
-    private $name;
+    protected $value;
 
     public function __construct($name)
     {
@@ -17,33 +16,21 @@ class Name {
     }
 
     /**
-     * @return string
-     */
-    public function __toString()
-    {
-        return $this->name;
-    }
-
-    /**
      * @param string $name
-     * @throws InvalidMemberNameException
-     * @throws LongMemberNameException
      */
     private function setName($name)
     {
-        $name = $this->getString($name);
+        $name = (string) $name;
 
         $this->checkLength($name);
 
         $this->checkLetters($name);
 
-        $this->name = $name;
+        $this->value = $name;
     }
 
     /**
      * @param $name
-     * @throws EmptyMemberNameException
-     * @throws \Rpgo\Model\User\Exception\LongUserNameException
      */
     private function checkLength($name)
     {
@@ -54,45 +41,31 @@ class Name {
 
     /**
      * @param $name
-     * @throws InvalidMemberNameException
+     * @throws InvalidValueException
      */
     private function checkLetters($name)
     {
         if ( ! preg_match("/^[a-zA-ZáéíóöőúűÁÉÍÓÖŐÚŰ0-9]+$/", $name))
-            throw new InvalidMemberNameException("A member cannot have the name '${name}', because it contains special characters.");
-    }
-
-    public function change($name)
-    {
-        return new self($name);
+            throw new InvalidValueException("A member cannot have the name '${name}', because it contains special characters.");
     }
 
     /**
      * @param $name
-     * @return string
-     */
-    private function getString($name)
-    {
-        return (string) $name;
-    }
-
-    /**
-     * @param $name
-     * @throws EmptyMemberNameException
+     * @throws InvalidValueException
      */
     private function checkIfEmpty($name)
     {
         if (strlen(utf8_decode($name)) == 0)
-            throw new EmptyMemberNameException("A member cannot have an empty name.");
+            throw new InvalidValueException("A member cannot have an empty name.");
     }
 
     /**
      * @param $name
-     * @throws LongMemberNameException
+     * @throws InvalidValueException
      */
     private function checkIfTooLong($name)
     {
         if (strlen(utf8_decode($name)) > 30)
-            throw new LongMemberNameException("A member cannot have the name '${name}', because it's more than 30 characters.");
+            throw new InvalidValueException("A member cannot have the name '${name}', because it's more than 30 characters.");
     }
 }

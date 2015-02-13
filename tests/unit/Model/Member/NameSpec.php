@@ -15,89 +15,78 @@ class NameSpec extends ObjectBehavior
     function it_is_initializable()
     {
         $this->shouldHaveType('Rpgo\Model\Member\Name');
-    }
-
-    function it_can_be_cast_to_string()
-    {
-        $this->__toString()->shouldReturn('LilyBelle');
-    }
-
-    function it_casts_itself_to_string()
-    {
-        $this->beConstructedWith('JohnDoe');
-
-        $this->__toString()->shouldReturn('JohnDoe');
+        $this->shouldHaveType('Rpgo\Model\Common\Value');
     }
 
     function it_squawks_at_more_than_30_characters()
     {
-        $this->shouldThrow('Rpgo\Model\Member\Exception\LongMemberNameException')
+        $this->shouldThrow('Rpgo\Model\Exception\InvalidValueException')
             ->during('__construct', ['TooLongANameToGiveToAMemberHereNow']);
     }
 
     function it_cannot_contain_a_dot()
     {
-        $this->shouldThrow('Rpgo\Model\Member\Exception\InvalidMemberNameException')
+        $this->shouldThrow('Rpgo\Model\Exception\InvalidValueException')
             ->during('__construct', ['This.isreallykillingme']);
     }
 
     function it_cannot_contain_a_space()
     {
-        $this->shouldThrow('Rpgo\Model\Member\Exception\InvalidMemberNameException')
+        $this->shouldThrow('Rpgo\Model\Exception\InvalidValueException')
             ->during('__construct', ['This isreallykillingme']);
     }
 
     function it_cannot_contain_a_dash()
     {
-        $this->shouldThrow('Rpgo\Model\Member\Exception\InvalidMemberNameException')
+        $this->shouldThrow('Rpgo\Model\Exception\InvalidValueException')
             ->during('__construct', ['This-isreallykillingme']);
     }
 
     function it_cannot_contain_an_at_symbol()
     {
-        $this->shouldThrow('Rpgo\Model\Member\Exception\InvalidMemberNameException')
+        $this->shouldThrow('Rpgo\Model\Exception\InvalidValueException')
             ->during('__construct', ['This@isreallykillingme']);
     }
 
     function it_cannot_contain_an_and_symbol()
     {
-        $this->shouldThrow('Rpgo\Model\Member\Exception\InvalidMemberNameException')
+        $this->shouldThrow('Rpgo\Model\Exception\InvalidValueException')
             ->during('__construct', ['This&isreallykillingme']);
     }
 
     function it_cannot_contain_a_hashtag()
     {
-        $this->shouldThrow('Rpgo\Model\Member\Exception\InvalidMemberNameException')
+        $this->shouldThrow('Rpgo\Model\Exception\InvalidValueException')
             ->during('__construct', ['This#isreallykillingme']);
     }
 
     function it_cannot_contain_a_quote()
     {
-        $this->shouldThrow('Rpgo\Model\Member\Exception\InvalidMemberNameException')
+        $this->shouldThrow('Rpgo\Model\Exception\InvalidValueException')
             ->during('__construct', ['This"isreallykillingme']);
     }
 
     function it_cannot_contain_a_star()
     {
-        $this->shouldThrow('Rpgo\Model\Member\Exception\InvalidMemberNameException')
+        $this->shouldThrow('Rpgo\Model\Exception\InvalidValueException')
             ->during('__construct', ['This*isreallykillingme']);
     }
 
     function it_cannot_contain_a_plus_sign()
     {
-        $this->shouldThrow('Rpgo\Model\Member\Exception\InvalidMemberNameException')
+        $this->shouldThrow('Rpgo\Model\Exception\InvalidValueException')
             ->during('__construct', ['This+isreallykillingme']);
     }
 
     function it_cannot_contain_a_slash()
     {
-        $this->shouldThrow('Rpgo\Model\Member\Exception\InvalidMemberNameException')
+        $this->shouldThrow('Rpgo\Model\Exception\InvalidValueException')
             ->during('__construct', ['This/isreallykillingme']);
     }
 
     function it_cannot_contain_a_blackslash()
     {
-        $this->shouldThrow('Rpgo\Model\Member\Exception\InvalidMemberNameException')
+        $this->shouldThrow('Rpgo\Model\Exception\InvalidValueException')
             ->during('__construct', ['This\\isreallykillingme']);
     }
 
@@ -115,24 +104,9 @@ class NameSpec extends ObjectBehavior
         $this->__toString()->shouldReturn('NumbersAreOK0123456789');
     }
 
-    function it_is_immutable()
-    {
-        $this->change('JohnDoe')->shouldNotBe($this);
-    }
-
-    function it_morphs_into_a_new_Membername()
-    {
-        $this->change('JohnDoe')->shouldHaveType($this);
-    }
-
-    function it_changes_the_value_when_morphing()
-    {
-        $this->change('JohnDoe')->__toString()->shouldReturn('JohnDoe');
-    }
-
     function it_cannot_be_empty()
     {
-        $this->shouldThrow('Rpgo\Model\Member\Exception\EmptyMemberNameException')
+        $this->shouldThrow('Rpgo\Model\Exception\InvalidValueException')
             ->during('__construct', ['']);
     }
 }
