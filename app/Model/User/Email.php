@@ -1,10 +1,11 @@
 <?php namespace Rpgo\Model\User;
 
+use Rpgo\Model\Common\Value;
 use Rpgo\Model\User\Exception\InvalidEmailException;
 
-class Email {
+class Email extends Value {
 
-    private $email;
+    protected $value;
 
     public function __construct($email)
     {
@@ -20,23 +21,13 @@ class Email {
 
         $this->checkAddress($email);
 
-        $this->email = $email;
+        $this->value = $email;
     }
 
     private function checkAddress($email)
     {
         if ( ! preg_match("/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$/i", $email))
             throw new InvalidEmailException("A user cannot have the email '${email}', because its not a valid email address.");
-    }
-
-    public function change($email)
-    {
-        return new self($email);
-    }
-
-    public function __toString()
-    {
-        return (string) $this->email;
     }
 
     public function handle()

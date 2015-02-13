@@ -15,6 +15,7 @@ class EmailSpec extends ObjectBehavior
     function it_is_initializable()
     {
         $this->shouldHaveType('Rpgo\Model\User\Email');
+        $this->shouldHaveType('Rpgo\Model\Common\Value');
     }
 
     function it_needs_to_have_an_at_symbol()
@@ -52,33 +53,6 @@ class EmailSpec extends ObjectBehavior
     {
         $this->shouldThrow('Rpgo\Model\User\Exception\InvalidEmailException')
             ->during('__construct', ['tolily@belle@gmail.com']);
-    }
-
-    function it_is_immutable()
-    {
-        $this->change('john@doe.sg')->shouldNotBe($this);
-    }
-
-    function it_morphs_into_a_new_email()
-    {
-        $this->change('john@doe.sg')->shouldHaveType('Rpgo\Model\User\Email');
-    }
-
-    function it_changes_the_value_when_morphing()
-    {
-        $this->change('john@doe.sg')->__toString()->shouldReturn('john@doe.sg');
-    }
-
-    function it_can_be_cast_to_string()
-    {
-        $this->__toString()->shouldReturn('tolilybelle@gmail.com');
-    }
-
-    function it_casts_itself_to_string()
-    {
-        $this->beConstructedWith('john@doe.sg');
-
-        $this->__toString()->shouldReturn('john@doe.sg');
     }
 
     function it_returns_the_handle()

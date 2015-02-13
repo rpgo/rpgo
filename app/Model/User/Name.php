@@ -1,27 +1,20 @@
 <?php namespace Rpgo\Model\User;
 
+use Rpgo\Model\Common\Value;
 use Rpgo\Model\User\Exception\InvalidUserNameException;
 use Rpgo\Model\User\Exception\EmptyUserNameException;
 use Rpgo\Model\User\Exception\LongUserNameException;
 
-class Name {
+class Name extends Value {
 
     /**
      * @var string
      */
-    private $name;
+    protected $value;
 
     public function __construct($name)
     {
         $this->setName($name);
-    }
-
-    /**
-     * @return string
-     */
-    public function __toString()
-    {
-        return $this->name;
     }
 
     /**
@@ -37,7 +30,7 @@ class Name {
 
         $this->checkLetters($name);
 
-        $this->name = $name;
+        $this->value = $name;
     }
 
     /**

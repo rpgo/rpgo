@@ -15,18 +15,7 @@ class NameSpec extends ObjectBehavior
     function it_is_initializable()
     {
         $this->shouldHaveType('Rpgo\Model\User\Name');
-    }
-
-    function it_can_be_cast_to_string()
-    {
-        $this->__toString()->shouldReturn('LilyBelle');
-    }
-
-    function it_casts_itself_to_string()
-    {
-        $this->beConstructedWith('JohnDoe');
-
-        $this->__toString()->shouldReturn('JohnDoe');
+        $this->shouldHaveType('Rpgo\Model\Common\Value');
     }
 
     function it_squawks_at_more_than_30_characters()
@@ -113,21 +102,6 @@ class NameSpec extends ObjectBehavior
         $this->beConstructedWith('NumbersAreOK0123456789');
 
         $this->__toString()->shouldReturn('NumbersAreOK0123456789');
-    }
-
-    function it_is_immutable()
-    {
-        $this->change('JohnDoe')->shouldNotBe($this);
-    }
-
-    function it_morphs_into_a_new_username()
-    {
-        $this->change('JohnDoe')->shouldHaveType($this);
-    }
-
-    function it_changes_the_value_when_morphing()
-    {
-        $this->change('JohnDoe')->__toString()->shouldReturn('JohnDoe');
     }
 
     function it_cannot_be_empty()
