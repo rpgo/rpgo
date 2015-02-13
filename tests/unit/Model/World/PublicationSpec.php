@@ -16,15 +16,16 @@ class PublicationSpec extends ObjectBehavior
     function it_is_initializable()
     {
         $this->shouldHaveType('Rpgo\Model\World\Publication');
+        $this->shouldHaveType('Rpgo\Model\Common\Value');
     }
 
-    function it_says_it_was_not_published_if_the_date_is_in_the_future(Carbon $date)
+    function it_was_not_published_if_the_date_is_in_the_future(Carbon $date)
     {
         $date->isFuture()->willReturn(true);
         $this->isPublished()->shouldReturn(false);
     }
 
-    function it_says_it_was_published_if_the_date_is_in_the_past(Carbon $date)
+    function it_was_published_if_the_date_is_in_the_past(Carbon $date)
     {
         $date->isFuture()->willReturn(false);
         $this->isPublished()->shouldReturn(true);

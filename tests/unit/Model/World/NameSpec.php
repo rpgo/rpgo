@@ -20,13 +20,13 @@ class NameSpec extends ObjectBehavior
 
     function it_cannot_be_empty()
     {
-        $this->shouldThrow('Rpgo\Model\World\Exception\EmptyWorldNameException')
+        $this->shouldThrow('Rpgo\Model\Exception\InvalidValueException')
             ->during('__construct', ['']);
     }
 
     function it_cannot_be_longer_than_40_characters()
     {
-        $this->shouldThrow('Rpgo\Model\World\Exception\LongWorldNameException')
+        $this->shouldThrow('Rpgo\Model\Exception\InvalidValueException')
             ->during('__construct', ['The Best Possible Stargate Memories To Make In This Life']);
     }
 }
