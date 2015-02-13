@@ -11,12 +11,9 @@ use Rpgo\Support\Hash\Hash;
 
 class UserFactorySpec extends ObjectBehavior
 {
-    function let(UserIdGenerator $generator, UserId $id, BcryptHasher $hasher)
+    function let(BcryptHasher $hasher)
     {
-        $this->beConstructedWith($generator, $hasher);
-
-        $generator->generateNewId()->willReturn($id);
-        $generator->idFromString('id')->willReturn($id);
+        $this->beConstructedWith($hasher);
 
         $hasher->make('password')->willReturn('hashed_password');
         $hasher->check('password', 'hashed_password')->willReturn(true);
@@ -52,24 +49,24 @@ class UserFactorySpec extends ObjectBehavior
 
     function it_revives_an_old_User_from_the_id_name_email_and_password()
     {
-        $this->revive('id', 'LilyBelle', 'tolilybelle@gmail.com', 'hashed_password')->shouldHaveType('Rpgo\Model\User\User');
+        $this->revive('0b2e8b80-f13d-43c2-851f-e06b25f8aa0a', 'LilyBelle', 'tolilybelle@gmail.com', 'hashed_password')->shouldHaveType('Rpgo\Model\User\User');
     }
 
     function it_sets_the_name_correctly_on_the_revived_old_User()
     {
-        $this->revive('id', 'LilyBelle', 'tolilybelle@gmail.com', 'hashed_password')
+        $this->revive('0b2e8b80-f13d-43c2-851f-e06b25f8aa0a', 'LilyBelle', 'tolilybelle@gmail.com', 'hashed_password')
             ->name()->shouldReturn('LilyBelle');
     }
 
     function it_sets_the_email_correctly_on_the_revived_old_User()
     {
-        $this->revive('id', 'LilyBelle', 'tolilybelle@gmail.com', 'hashed_password')
+        $this->revive('0b2e8b80-f13d-43c2-851f-e06b25f8aa0a', 'LilyBelle', 'tolilybelle@gmail.com', 'hashed_password')
             ->email()->shouldReturn('tolilybelle@gmail.com');
     }
 
     function it_sets_the_password_correctly_on_the_revived_old_User()
     {
-        $this->revive('id', 'LilyBelle', 'tolilybelle@gmail.com', 'hashed_password')
+        $this->revive('0b2e8b80-f13d-43c2-851f-e06b25f8aa0a', 'LilyBelle', 'tolilybelle@gmail.com', 'hashed_password')
             ->validateCredentials('tolilybelle@gmail.com','password')->shouldReturn(true);
     }
 }

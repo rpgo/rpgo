@@ -4,19 +4,13 @@ use Illuminate\Hashing\BcryptHasher;
 use Rpgo\Model\Contracts\User\UserFactory as UserFactoryContract;
 
 class UserFactory {
-
-    /**
-     * @var UserIdGenerator
-     */
-    private $generator;
     /**
      * @var BcryptHasher
      */
     private $hasher;
 
-    public function __construct(UserIdGenerator $generator, BcryptHasher $hasher = null)
+    public function __construct(BcryptHasher $hasher = null)
     {
-        $this->generator = $generator;
         $this->hasher = $hasher;
     }
 
@@ -81,20 +75,20 @@ class UserFactory {
     }
 
     /**
-     * @return UserId
+     * @return Id
      */
     private function getNewId()
     {
-        return $this->generator->generateNewId();
+        return new Id();
     }
 
     /**
      * @param $id
-     * @return UserId
+     * @return Id
      */
     private function getOldId($id)
     {
-        return $this->generator->idFromString($id);
+        return new Id($id);
     }
 
     /**

@@ -3,7 +3,7 @@
 class User {
 
     /**
-     * @var UserId
+     * @var Id
      */
     private $id;
 
@@ -16,7 +16,7 @@ class User {
      */
     private $credentials;
 
-    public function __construct(UserId $userId, Name $name, Credentials $credentials)
+    public function __construct(Id $userId, Name $name, Credentials $credentials)
     {
         $this->id = $userId;
         $this->name = $name;

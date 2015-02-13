@@ -5,12 +5,13 @@ namespace unit\Rpgo\Model\User;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Rpgo\Model\User\Credentials;
+use Rpgo\Model\User\Id;
 use Rpgo\Model\User\Name;
 use Rpgo\Model\User\UserId;
 
 class UserSpec extends ObjectBehavior
 {
-    function let(UserId $id, Name $name, Credentials $credentials)
+    function let(Id $id, Name $name, Credentials $credentials)
     {
         $this->beConstructedWith($id, $name, $credentials);
     }
@@ -20,7 +21,7 @@ class UserSpec extends ObjectBehavior
         $this->shouldHaveType('Rpgo\Model\User\User');
     }
 
-    function it_returns_the_id_as_a_string(UserId $id)
+    function it_returns_the_id_as_a_string(Id $id)
     {
         $id->__toString()->willReturn('uuid');
         $this->id()->shouldReturn('uuid');
