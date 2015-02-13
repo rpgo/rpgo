@@ -4,6 +4,7 @@ namespace unit\Rpgo\Model\Member;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
+use Rpgo\Model\Member\Id;
 use Rpgo\Model\Member\MemberId;
 use Rpgo\Model\Member\Membership;
 use Rpgo\Model\Member\Name;
@@ -12,7 +13,7 @@ use Rpgo\Model\World\World;
 
 class MemberSpec extends ObjectBehavior
 {
-    function let(MemberId $id, Name $name, Membership $membership)
+    function let(Id $id, Name $name, Membership $membership)
     {
         $this->beConstructedWith($id, $name, $membership);
     }
@@ -40,7 +41,7 @@ class MemberSpec extends ObjectBehavior
         $this->world()->shouldBe($world);
     }
 
-    function it_returns_the_id_as_a_string(MemberId $id)
+    function it_returns_the_id_as_a_string(Id $id)
     {
         $id->__toString()->willReturn('id');
         $this->id()->shouldBe('id');

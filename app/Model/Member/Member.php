@@ -1,11 +1,9 @@
 <?php namespace Rpgo\Model\Member;
 
-use Rpgo\Model\Permission\Permission;
-
 class Member {
 
     /**
-     * @var MemberId
+     * @var Id
      */
     private $id;
 
@@ -18,7 +16,7 @@ class Member {
      */
     private $membership;
 
-    public function __construct(MemberId $memberId, Name $name, Membership $membership)
+    public function __construct(Id $memberId, Name $name, Membership $membership)
     {
         $this->id = $memberId;
         $this->name = $name;
