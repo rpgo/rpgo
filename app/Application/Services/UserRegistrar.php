@@ -2,7 +2,7 @@
 
 use Rpgo\Application\Repository\UserRepository;
 use Rpgo\Model\User\User;
-use Rpgo\Model\User\UserFactory;
+use Rpgo\Model\User\Factory as UserFactory;
 
 class UserRegistrar {
 

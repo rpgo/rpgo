@@ -2,7 +2,7 @@
 
 use Illuminate\Hashing\BcryptHasher;
 
-class UserFactory {
+class Factory {
     /**
      * @var BcryptHasher
      */

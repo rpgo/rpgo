@@ -9,7 +9,7 @@ use Rpgo\Model\User\UserId;
 use Rpgo\Model\User\UserIdGenerator;
 use Rpgo\Support\Hash\Hash;
 
-class UserFactorySpec extends ObjectBehavior
+class FactorySpec extends ObjectBehavior
 {
     function let(BcryptHasher $hasher)
     {
@@ -21,7 +21,7 @@ class UserFactorySpec extends ObjectBehavior
 
     function it_is_initializable()
     {
-        $this->shouldHaveType('Rpgo\Model\User\UserFactory');
+        $this->shouldHaveType('Rpgo\Model\User\Factory');
     }
 
     function it_creates_a_new_User_from_name_email_and_password()

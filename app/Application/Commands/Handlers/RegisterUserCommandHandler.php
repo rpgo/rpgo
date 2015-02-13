@@ -3,7 +3,7 @@
 use Rpgo\Application\Commands\RegisterUserCommand;
 use Rpgo\Application\Events\UserWasRegistered;
 use Rpgo\Application\Repository\UserRepository;
-use Rpgo\Model\User\UserFactory;
+use Rpgo\Model\User\Factory as UserFactory;
 
 class RegisterUserCommandHandler extends CommandHandler {
 

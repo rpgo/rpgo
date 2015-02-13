@@ -6,7 +6,7 @@ use Rpgo\Application\Repository\RepositoryManager;
 use Rpgo\Application\Repository\WorldRepository as WorldRepositoryContract;
 use Rpgo\Model\World\World as Entity;
 use Rpgo\Application\Repository\Eloquent\Model\World as Eloquent;
-use Rpgo\Model\World\WorldFactory;
+use Rpgo\Model\World\Factory as WorldFactory;
 use Rpgo\Support\Collection\Collection;
 
 class WorldRepository extends Repository implements WorldRepositoryContract {

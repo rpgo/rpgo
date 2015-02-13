@@ -7,12 +7,12 @@ use Prophecy\Argument;
 use Rpgo\Model\Location\Location;
 use Rpgo\Model\User\User;
 
-class WorldFactorySpec extends ObjectBehavior
+class FactorySpec extends ObjectBehavior
 {
 
     function it_is_initializable()
     {
-        $this->shouldHaveType('Rpgo\Model\World\WorldFactory');
+        $this->shouldHaveType('Rpgo\Model\World\Factory');
     }
 
     function it_makes_a_World_from_the_name_brand_slug_and_creator(User $creator)

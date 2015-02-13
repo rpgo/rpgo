@@ -1,6 +1,6 @@
 <?php namespace Rpgo\Model\World;
 
-class WorldFactory {
+class Factory {
 
     private $required = ['name', 'brand', 'slug', 'creator'];
 

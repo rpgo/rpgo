@@ -3,11 +3,9 @@
 use Rpgo\Application\Repository\MemberRepository;
 use Rpgo\Application\Repository\WorldRepository;
 use Rpgo\Application\Repository\LocationRepository;
-use Rpgo\Model\User\User;
-use Rpgo\Model\Member\MemberFactory;
+use Rpgo\Model\Member\Factory as MemberFactory;
 use Rpgo\Model\World\World;
-use Rpgo\Model\World\WorldFactory;
-use Rpgo\Model\Location\Location;
+use Rpgo\Model\World\Factory as WorldFactory;
 use Rpgo\Model\Location\Factory as LocationFactory;
 
 class WorldCreator {
@@ -62,7 +60,7 @@ class WorldCreator {
     public function create(array $data)
     {
 
-        $world = $this->worldFactory->make(array_merge($data));
+        $world = $this->worldFactory->make($data);
 
         if( ! $this->worldRepository->save($world))
             return null;
@@ -72,7 +70,6 @@ class WorldCreator {
             'user' => $data['creator'],
             'world' => $world,
         ]);
-
 
         if( ! $this->memberRepository->save($admin))
             return null;

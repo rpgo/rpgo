@@ -3,7 +3,7 @@
 use Rpgo\Application\Repository\Eloquent\Model\Eloquent as EloquentAdapter;
 use Rpgo\Application\Repository\RepositoryManager;
 use Rpgo\Application\Repository\UserRepository as UserRepositoryContract;
-use Rpgo\Model\User\UserFactory;
+use Rpgo\Model\User\Factory as UserFactory;
 use Rpgo\Model\User\User as Entity;
 use Rpgo\Application\Repository\Eloquent\Model\User as Eloquent;
 
