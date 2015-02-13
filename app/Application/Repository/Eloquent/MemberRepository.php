@@ -72,7 +72,12 @@ class MemberRepository extends Repository implements MemberRepositoryContract {
         $world = $this->world()->fetchById($eloquent->world_id);
         $user = $this->user()->fetchById($eloquent->user_id);
 
-        $entity = $this->factory->revive($eloquent->id, $eloquent->name, $world, $user);
+        $entity = $this->factory->make([
+            'name' => $eloquent->name,
+            'id' => $eloquent->id,
+            'world' => $world,
+            'user' => $user,
+        ]);
 
         return $entity;
     }

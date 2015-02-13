@@ -37,7 +37,7 @@ class JoinWorldCommandHandler {
      */
 	public function handle(JoinWorldCommand $command)
 	{
-		$member = $this->member->create($command->name, $command->world, $command->user);
+		$member = $this->member->make($command->data());
 
         if( ! $this->repository->save($member))
             return null;

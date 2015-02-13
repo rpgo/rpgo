@@ -67,7 +67,11 @@ class WorldCreator {
         if( ! $this->worldRepository->save($world))
             return null;
 
-        $admin = $this->memberFactory->create($data['admin'], $world, $data['creator']);
+        $admin = $this->memberFactory->make([
+            'name' => $data['admin'],
+            'user' => $data['creator'],
+            'world' => $world,
+        ]);
 
 
         if( ! $this->memberRepository->save($admin))
