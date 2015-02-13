@@ -1,45 +1,74 @@
 <?php namespace Rpgo\Model\World;
 
-use Rpgo\Model\User\User;
-
 class WorldFactory {
 
+    private $required = ['name', 'brand', 'slug', 'creator', 'location'];
 
     /**
-     * @var WorldIdGenerator
-     */
-    private $generator;
-
-    function __construct(WorldIdGenerator $generator)
-    {
-        $this->generator = $generator;
-    }
-
-    public function create($name, $brand, $slug, User $creator)
-    {
-        $id = $this->generator->generateNewId();
-        $trademark = $this->getTrademark($name, $brand, $slug);
-        return new World($id, $trademark, $creator);
-    }
-
-    /**
-     * @param $name
-     * @param $slug
-     * @param $brand
+     * @param array $data
      * @return Trademark
      */
-    private function getTrademark($name, $brand, $slug)
+    private function getTrademark(array $data)
     {
-        $name = new Name($name);
-        $brand = new Brand($brand);
-        $slug = new Slug($slug);
+        $name = new Name($data['name']);
+        $brand = new Brand($data['brand']);
+        $slug = new Slug($data['slug']);
+
         return new Trademark($name, $brand, $slug);
     }
 
-    public function revive($id, $name, $brand, $slug, User $creator)
+    public function make(array $data)
     {
-        $id = $this->generator->idFromString($id);
-        $trademark = $this->getTrademark($name, $brand, $slug);
-        return new World($id, $trademark, $creator);
+        if( ! $this->hasRequiredParameters($data))
+            return null;
+
+        return $this->makeEntity($data);
+    }
+
+    private function hasRequiredParameters($data)
+    {
+        foreach($this->required as $key)
+            if( ! array_key_exists($key, $data))
+                return false;
+
+        return true;
+    }
+
+    /**
+     * @param array $data
+     * @return World
+     */
+    private function makeEntity(array $data)
+    {
+        $id = $this->getId($data);
+
+        $trademark = $this->getTrademark($data);
+
+        $creator = $data['creator'];
+
+        $location = $data['location'];
+
+        return new World($id, $trademark, $creator, $location);
+    }
+
+    /**
+     * @param array $data
+     * @return Id
+     */
+    private function getId(array $data)
+    {
+        if (array_key_exists('id', $data))
+            return $this->makeId($data['id']);
+        else
+            return $this->makeId();
+    }
+
+    /**
+     * @param null $id
+     * @return Id
+     */
+    private function makeId($id = null)
+    {
+        return new Id($id);
     }
 }

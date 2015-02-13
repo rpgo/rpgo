@@ -26,7 +26,7 @@ class CreateWorldCommandHandler extends CommandHandler {
      */
 	public function handle(CreateWorldCommand $command)
 	{
-        $world = $this->creator->create($command->name, $command->slug, $command->brand, $command->admin, $command->creator);
+        $world = $this->creator->create($command->data());
 
         if( ! $world)
             return null;

@@ -56,34 +56,33 @@ class WorldCreator {
     }
 
     /**
-     * @param $name
-     * @param $slug
-     * @param $brand
-     * @param $admin
-     * @param User $user
-     * @return World|null
+     * @param array $data
+     * @return null|World
      */
-    public function create($name, $slug, $brand, $admin, User $user)
+    public function create(array $data)
     {
-        $world = $this->worldFactory->create($name, $brand, $slug, $user);
-
-        $admin = $this->memberFactory->create($admin, $world, $user);
 
         $location = $this->locationFactory->make(['name' => 'Helyszínek', 'slug' => 'helszinek']);
 
-        if( ! $this->worldRepository->save($world))
+        $world = $this->worldFactory->make(array_merge($data, compact('location')));
+
+        $admin = $this->memberFactory->create($data['admin'], $world, $data['creator']);
+
+        if( ! $this->locationRepository->save($location) )
+        {
             return null;
+        }
+
+        if( ! $this->worldRepository->save($world))
+        {
+            $this->locationRepository->delete($location);
+            return null;
+        }
 
         if( ! $this->memberRepository->save($admin))
         {
             $this->worldRepository->delete($world);
-            return null;
-        }
-
-        if( ! $this->locationRepository->save($location) )
-        {
-            $this->memberRepository->delete($admin);
-            $this->worldRepository->delete($world);
+            $this->locationRepository->delete($location);
             return null;
         }
 

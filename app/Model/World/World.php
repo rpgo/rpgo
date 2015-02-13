@@ -1,6 +1,7 @@
 <?php namespace Rpgo\Model\World;
 
 use Carbon\Carbon;
+use Rpgo\Model\Location\Location;
 use Rpgo\Model\User\User;
 use Rpgo\Support\Collection\Collection;
 
@@ -29,11 +30,23 @@ class World {
      */
     private $publication;
 
-    function __construct(WorldId $id, Trademark $trademark, User $creator)
+    /**
+     * @var Location
+     */
+    private $location;
+
+    /**
+     * @param Id $id
+     * @param Trademark $trademark
+     * @param User $creator
+     * @param Location $location
+     */
+    function __construct(Id $id, Trademark $trademark, User $creator, Location $location)
     {
         $this->id = $id;
         $this->trademark = $trademark;
         $this->creator = $creator;
+        $this->location = $location;
     }
 
     public function id()
@@ -92,5 +105,10 @@ class World {
         if(! $this->publication)
             return null;
         return $this->publication->date();
+    }
+
+    public function location()
+    {
+        return $this->location;
     }
 }

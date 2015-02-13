@@ -5,15 +5,16 @@ namespace unit\Rpgo\Model\World;
 use Carbon\Carbon;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
+use Rpgo\Model\Location\Location;
 use Rpgo\Model\User\User;
+use Rpgo\Model\World\Id;
 use Rpgo\Model\World\Trademark;
-use Rpgo\Model\World\WorldId;
 
 class WorldSpec extends ObjectBehavior
 {
-    function let(WorldId $id, Trademark $trademark, User $creator)
+    function let(Id $id, Trademark $trademark, User $creator, Location $location)
     {
-        $this->beConstructedWith($id, $trademark, $creator);
+        $this->beConstructedWith($id, $trademark, $creator, $location);
     }
 
     function it_is_initializable()
@@ -21,7 +22,7 @@ class WorldSpec extends ObjectBehavior
         $this->shouldHaveType('Rpgo\Model\World\World');
     }
 
-    function it_returns_the_id_as_a_string(WorldId $id)
+    function it_returns_the_id_as_a_string(Id $id)
     {
         $id->__toString()->willReturn('id');
         $this->id()->shouldBe('id');
@@ -30,6 +31,11 @@ class WorldSpec extends ObjectBehavior
     function it_returns_the_creator_User(User $creator)
     {
         $this->creator()->shouldBe($creator);
+    }
+
+    function it_returns_the_location(Location $location)
+    {
+        $this->location()->shouldBe($location);
     }
 
     function it_returns_the_name_as_a_string(Trademark $trademark)

@@ -66,6 +66,7 @@ class WorldRepository extends Repository implements WorldRepositoryContract {
             'brand'        => $world->brand(),
             'creator_id'   => $world->creator()->id(),
             'published_at' => $world->publishedOn(),
+            'location_id'  => $world->location()->id(),
         ];
     }
 
@@ -83,9 +84,7 @@ class WorldRepository extends Repository implements WorldRepositoryContract {
      */
     protected function getEntity($eloquent)
     {
-        $creator = $this->user()->fetchById($eloquent->creator_id);
-
-        $entity = $this->factory->revive($eloquent->id, $eloquent->name, $eloquent->brand, $eloquent->slug, $creator);
+        $entity = $this->factory->make($this->getModelData($eloquent));
 
         $entity->publishedOn($eloquent->published_at);
 
@@ -97,5 +96,21 @@ class WorldRepository extends Repository implements WorldRepositoryContract {
         }
 
         return $entity;
+    }
+
+    /**
+     * @param Eloquent $eloquent
+     * @return array
+     */
+    private function getModelData($eloquent)
+    {
+        return [
+            'id' => $eloquent->id,
+            'name' => $eloquent->name,
+            'brand' => $eloquent->brand,
+            'slug' => $eloquent->slug,
+            'creator' => $this->user()->fetchById($eloquent->creator_id),
+            'location' => $this->location()->fetchById($eloquent->location_id),
+        ];
     }
 }

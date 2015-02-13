@@ -38,4 +38,12 @@ class RepositoryManager {
         return $this->app['repository.member'];
     }
 
+    /**
+     * @return MemberRepository
+     */
+    public function location()
+    {
+        return $this->app['repository.location'];
+    }
+
 }

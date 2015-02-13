@@ -58,7 +58,7 @@ class LocationRepository extends Repository implements LocationRepositoryContrac
             'id'   => $eloquent->uuid,
             'name' => $eloquent->name,
             'slug' => $eloquent->slug,
-            'container' => $this->getEntity($eloquent->container)
+            'container' => $eloquent->container ? $this->getEntity($eloquent->container) : null,
         ];
     }
 
@@ -68,7 +68,7 @@ class LocationRepository extends Repository implements LocationRepositoryContrac
      */
     protected function eloquentFind($id)
     {
-        return $this->eloquent->whereUuid($id)->first();
+        return $this->eloquent->where('uuid', $id)->first();
     }
 
     protected function eloquentFindOrNew($id)

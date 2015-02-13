@@ -36,8 +36,9 @@
                     @if(! $member)
                         <li><a href="{{route('member.create', [$world->slug()])}}">{{trans('members.create.name')}}</a></li>
                     @elseif($member->canSeeAdminPanel())
-                            <li><a href="{{route('worlds.dashboard.main', [$world->slug()])}}">{{trans('dashboard.name')}}</a></li>
+                        <li><a href="{{route('worlds.dashboard.main', [$world->slug()])}}">{{trans('dashboard.name')}}</a></li>
                     @endif
+                    <li><a href="{{route('location.show', [$world->slug(), $world->location()->slug()])}}">{{$world->location()->name()}}</a></li>
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">

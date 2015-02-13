@@ -54,6 +54,15 @@ abstract class Repository {
 
 
     /**
+     * @return \Rpgo\Application\Repository\MemberRepository
+     */
+    public function location()
+    {
+        return $this->manager->location();
+    }
+
+
+    /**
      * @return Collection
      */
     public function fetchAll()
