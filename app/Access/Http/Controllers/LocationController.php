@@ -14,9 +14,9 @@ class LocationController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function create($location)
 	{
-		//
+		dd("creating ".$location);
 	}
 
 	/**
@@ -57,9 +57,9 @@ class LocationController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit($location)
 	{
-		//
+		dd("editing ". $location);
 	}
 
 	/**
