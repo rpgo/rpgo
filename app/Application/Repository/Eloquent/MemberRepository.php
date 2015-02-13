@@ -5,7 +5,7 @@ use Rpgo\Application\Repository\MemberRepository as MemberRepositoryContract;
 use Rpgo\Application\Repository\RepositoryManager;
 use Rpgo\Model\Member\Member as Entity;
 use Rpgo\Application\Repository\Eloquent\Model\Member as Eloquent;
-use Rpgo\Model\Member\MemberFactory;
+use Rpgo\Model\Member\Factory as MemberFactory;
 use Rpgo\Model\World\World;
 use Rpgo\Support\Collection\Collection;
 
