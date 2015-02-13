@@ -42,7 +42,7 @@ class LocationRepository extends Repository implements LocationRepositoryContrac
     {
         return [
             'uuid' => $entity->id(),
-            //'container_id' => $entity->container() ? $this->eloquent->where('uuid', $entity->container()->id())->first()->id : null,
+            'container_id' => $entity->container() ? $this->eloquentFind($entity->container()->id())->aiid : null,
             'name' => $entity->name(),
             'slug' => $entity->slug(),
         ];
@@ -60,5 +60,19 @@ class LocationRepository extends Repository implements LocationRepositoryContrac
             'slug' => $eloquent->slug,
             'container' => $this->getEntity($eloquent->container)
         ];
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    protected function eloquentFind($id)
+    {
+        return $this->eloquent->whereUuid($id)->first();
+    }
+
+    protected function eloquentFindOrNew($id)
+    {
+        return $this->eloquent->firstOrNew(['uuid' => $id]);
     }
 }

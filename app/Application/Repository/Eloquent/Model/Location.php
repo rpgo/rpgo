@@ -4,7 +4,9 @@ use Kalnoy\Nestedset\Node;
 
 class Location extends Node {
 
-    // public $casts = ['id' => 'string'];
+    public $primaryKey = 'aiid';
+
+    public $casts = ['uuid' => 'string'];
 
     const LFT = 'container_lft';
 
@@ -14,7 +16,6 @@ class Location extends Node {
 
     protected $guarded = [ 'container_lft', 'container_rgt' ];
 
-    // To allow mass asignment on parent attribute
     public function setContainerIdAttribute($value)
     {
         $this->setParentIdAttribute($value);

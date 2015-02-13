@@ -2,6 +2,7 @@
 
 
 use Rpgo\Application\Repository\Eloquent\Model\Eloquent;
+use Rpgo\Application\Repository\Eloquent\Model\User;
 use Rpgo\Application\Repository\RepositoryManager;
 use Rpgo\Support\Collection\Collection;
 
@@ -70,7 +71,7 @@ abstract class Repository {
      */
     public function save($entity)
     {
-        $eloquent = $this->eloquent->findOrNew($entity->id());
+        $eloquent = $this->eloquentFindOrNew($entity->id());
 
         $data = $this->getEloquentAttributes($entity);
 
@@ -85,7 +86,7 @@ abstract class Repository {
      */
     public function fetchById($id)
     {
-        $eloquent = $this->eloquent->find($id);
+        $eloquent = $this->eloquentFind($id);
 
         if( ! $eloquent )
             return null;
@@ -100,7 +101,7 @@ abstract class Repository {
     public function delete($entity)
     {
 
-        $eloquent = $this->eloquent->find($entity->id());
+        $eloquent = $this->eloquentFind($entity->id());
 
         if( ! $eloquent )
             return null;
@@ -151,5 +152,19 @@ abstract class Repository {
      * @return array
      */
     abstract protected function getEloquentAttributes($entity);
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    protected function eloquentFind($id)
+    {
+        return $this->eloquent->find($id);
+    }
+
+    protected function eloquentFindOrNew($id)
+    {
+        return $this->eloquent->findOrNew($id);
+    }
 
 }

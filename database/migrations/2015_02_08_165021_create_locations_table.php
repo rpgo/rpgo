@@ -15,11 +15,11 @@ class CreateLocationsTable extends Migration {
 	{
 		Schema::create('locations', function(Blueprint $table)
 		{
-            $table->increments('id');
-            $table->string('uuid', 36);
+            $table->increments('aiid');
+            $table->string('uuid', 36)->unique();
             $table->unsignedInteger('container_lft');
             $table->unsignedInteger('container_rgt');
-            $table->unsignedInteger('container_id')->nullable();
+            $table->unsignedInteger('container_aiid')->nullable();
             $table->string('name', 40);
             $table->string('slug', 40);
 			$table->timestamps();
