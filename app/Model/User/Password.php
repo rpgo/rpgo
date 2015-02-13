@@ -1,7 +1,7 @@
 <?php namespace Rpgo\Model\User;
 
 use Illuminate\Hashing\BcryptHasher;
-use Rpgo\Model\User\Exception\EmptyPasswordException;
+use Rpgo\Model\Exception\InvalidValueException;
 
 class Password {
 
@@ -55,12 +55,12 @@ class Password {
 
     /**
      * @param string $password
-     * @throws EmptyPasswordException
+     * @throws InvalidValueException
      */
     private function cantBeEmpty($password)
     {
         if ($password == '')
-            throw new EmptyPasswordException;
+            throw new InvalidValueException;
     }
 
     private function setHasher($hasher)

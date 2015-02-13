@@ -1,9 +1,7 @@
 <?php namespace Rpgo\Model\User;
 
 use Rpgo\Model\Common\Value;
-use Rpgo\Model\User\Exception\InvalidUserNameException;
-use Rpgo\Model\User\Exception\EmptyUserNameException;
-use Rpgo\Model\User\Exception\LongUserNameException;
+use Rpgo\Model\Exception\InvalidValueException;
 
 class Name extends Value {
 
@@ -19,8 +17,6 @@ class Name extends Value {
 
     /**
      * @param string $name
-     * @throws \Rpgo\Model\User\Exception\InvalidUserNameException
-     * @throws \Rpgo\Model\User\Exception\LongUserNameException
      */
     private function setName($name)
     {
@@ -35,8 +31,7 @@ class Name extends Value {
 
     /**
      * @param $name
-     * @throws EmptyUserNameException
-     * @throws \Rpgo\Model\User\Exception\LongUserNameException
+     * @throws InvalidValueException
      */
     private function checkLength($name)
     {
@@ -47,12 +42,12 @@ class Name extends Value {
 
     /**
      * @param $name
-     * @throws InvalidUserNameException
+     * @throws InvalidValueException
      */
     private function checkLetters($name)
     {
         if ( ! preg_match("/^[a-zA-ZáéíóöőúűÁÉÍÓÖŐÚŰ0-9]+$/", $name))
-            throw new InvalidUserNameException("A user cannot have the name '${name}', because it contains special characters.");
+            throw new InvalidValueException("A user cannot have the name '${name}', because it contains special characters.");
     }
 
     public function change($name)
@@ -71,21 +66,21 @@ class Name extends Value {
 
     /**
      * @param $name
-     * @throws \Rpgo\Model\User\Exception\EmptyUserNameException
+     * @throws InvalidValueException
      */
     private function checkIfEmpty($name)
     {
         if (strlen(utf8_decode($name)) == 0)
-            throw new EmptyUserNameException("A user cannot have an empty name.");
+            throw new InvalidValueException("A user cannot have an empty name.");
     }
 
     /**
      * @param $name
-     * @throws \Rpgo\Model\User\Exception\LongUserNameException
+     * @throws InvalidValueException
      */
     private function checkIfTooLong($name)
     {
         if (strlen(utf8_decode($name)) > 30)
-            throw new LongUserNameException("A user cannot have the name '${name}', because it's more than 30 characters.");
+            throw new InvalidValueException("A user cannot have the name '${name}', because it's more than 30 characters.");
     }
 }

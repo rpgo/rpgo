@@ -20,38 +20,38 @@ class EmailSpec extends ObjectBehavior
 
     function it_needs_to_have_an_at_symbol()
     {
-        $this->shouldThrow('Rpgo\Model\User\Exception\InvalidEmailException')
+        $this->shouldThrow('Rpgo\Model\Exception\InvalidValueException')
             ->during('__construct', ['tolilybellegmail.com']);
     }
 
 
     function it_needs_to_have_a_dot_after_the_at_symbol()
     {
-        $this->shouldThrow('Rpgo\Model\User\Exception\InvalidEmailException')
+        $this->shouldThrow('Rpgo\Model\Exception\InvalidValueException')
             ->during('__construct', ['tolilybelle@gmailcom']);
     }
 
     function it_cannot_contain_a_dash()
     {
-        $this->shouldThrow('Rpgo\Model\User\Exception\InvalidEmailException')
+        $this->shouldThrow('Rpgo\Model\Exception\InvalidValueException')
             ->during('__construct', ['to-lilybellegmail.com']);
     }
 
     function it_cannot_contain_a_space()
     {
-        $this->shouldThrow('Rpgo\Model\User\Exception\InvalidEmailException')
+        $this->shouldThrow('Rpgo\Model\Exception\InvalidValueException')
             ->during('__construct', ['tolily bellegmail.com']);
     }
 
     function it_cannot_start_with_an_at_symbol()
     {
-        $this->shouldThrow('Rpgo\Model\User\Exception\InvalidEmailException')
+        $this->shouldThrow('Rpgo\Model\Exception\InvalidValueException')
             ->during('__construct', ['@tolilybellegmail.com']);
     }
 
     function it_cannot_have_more_than_one_at_symbol()
     {
-        $this->shouldThrow('Rpgo\Model\User\Exception\InvalidEmailException')
+        $this->shouldThrow('Rpgo\Model\Exception\InvalidValueException')
             ->during('__construct', ['tolily@belle@gmail.com']);
     }
 

@@ -1,7 +1,7 @@
 <?php namespace Rpgo\Model\User;
 
 use Rpgo\Model\Common\Value;
-use Rpgo\Model\User\Exception\InvalidEmailException;
+use Rpgo\Model\Exception\InvalidValueException;
 
 class Email extends Value {
 
@@ -27,7 +27,7 @@ class Email extends Value {
     private function checkAddress($email)
     {
         if ( ! preg_match("/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$/i", $email))
-            throw new InvalidEmailException("A user cannot have the email '${email}', because its not a valid email address.");
+            throw new InvalidValueException("A user cannot have the email '${email}', because its not a valid email address.");
     }
 
     public function handle()
