@@ -62,29 +62,26 @@ class WorldCreator {
     public function create(array $data)
     {
 
-        $location = $this->locationFactory->make(['name' => 'Helyszínek', 'slug' => 'helszinek']);
+        $world = $this->worldFactory->make(array_merge($data));
 
-        $world = $this->worldFactory->make(array_merge($data, compact('location')));
+        if( ! $this->worldRepository->save($world))
+            return null;
 
         $admin = $this->memberFactory->create($data['admin'], $world, $data['creator']);
 
-        if( ! $this->locationRepository->save($location) )
-        {
-            return null;
-        }
-
-        if( ! $this->worldRepository->save($world))
-        {
-            $this->locationRepository->delete($location);
-            return null;
-        }
 
         if( ! $this->memberRepository->save($admin))
-        {
-            $this->worldRepository->delete($world);
-            $this->locationRepository->delete($location);
             return null;
-        }
+
+        $location = $this->locationFactory->make(['name' => 'Helyszínek', 'slug' => 'helszinek']);
+
+        if( ! $this->locationRepository->save($location) )
+            return null;
+
+        $world->location($location);
+
+        if( ! $this->worldRepository->save($world))
+            return null;
 
         return $world;
     }

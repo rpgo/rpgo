@@ -2,7 +2,7 @@
 
 class WorldFactory {
 
-    private $required = ['name', 'brand', 'slug', 'creator', 'location'];
+    private $required = ['name', 'brand', 'slug', 'creator'];
 
     /**
      * @param array $data
@@ -46,9 +46,12 @@ class WorldFactory {
 
         $creator = $data['creator'];
 
-        $location = $data['location'];
+        $world = new World($id, $trademark, $creator);
 
-        return new World($id, $trademark, $creator, $location);
+        if(array_key_exists('location', $data))
+            $world->location($data['location']);
+
+        return $world;
     }
 
     /**

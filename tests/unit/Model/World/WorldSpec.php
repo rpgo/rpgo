@@ -12,9 +12,9 @@ use Rpgo\Model\World\Trademark;
 
 class WorldSpec extends ObjectBehavior
 {
-    function let(Id $id, Trademark $trademark, User $creator, Location $location)
+    function let(Id $id, Trademark $trademark, User $creator)
     {
-        $this->beConstructedWith($id, $trademark, $creator, $location);
+        $this->beConstructedWith($id, $trademark, $creator);
     }
 
     function it_is_initializable()
@@ -33,8 +33,15 @@ class WorldSpec extends ObjectBehavior
         $this->creator()->shouldBe($creator);
     }
 
-    function it_returns_the_location(Location $location)
+    function it_has_no_location_by_default()
     {
+        $this->location()->shouldBe(null);
+    }
+
+    function it_can_be_placed_into_a_location(Location $location)
+    {
+        $this->location($location);
+
         $this->location()->shouldBe($location);
     }
 

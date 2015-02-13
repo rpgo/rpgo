@@ -66,7 +66,7 @@ class WorldRepository extends Repository implements WorldRepositoryContract {
             'brand'        => $world->brand(),
             'creator_id'   => $world->creator()->id(),
             'published_at' => $world->publishedOn(),
-            'location_id'  => $world->location()->id(),
+            'location_id'  => $world->location() ? $world->location()->id() : null,
         ];
     }
 

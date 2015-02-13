@@ -8,7 +8,7 @@ use Rpgo\Support\Collection\Collection;
 class World {
 
     /**
-     * @var WorldId
+     * @var Id
      */
     private $id;
     /**
@@ -41,12 +41,11 @@ class World {
      * @param User $creator
      * @param Location $location
      */
-    function __construct(Id $id, Trademark $trademark, User $creator, Location $location)
+    function __construct(Id $id, Trademark $trademark, User $creator)
     {
         $this->id = $id;
         $this->trademark = $trademark;
         $this->creator = $creator;
-        $this->location = $location;
     }
 
     public function id()
@@ -107,8 +106,8 @@ class World {
         return $this->publication->date();
     }
 
-    public function location()
+    public function location(Location $location = null)
     {
-        return $this->location;
+        return $this->location = $location ?: $this->location;
     }
 }
