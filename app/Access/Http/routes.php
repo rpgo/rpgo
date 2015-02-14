@@ -61,13 +61,13 @@ foreach(['lang', ''] as $prefix)
 
             $router->get(trans('routes.dashboard.home'), ['as' => prefix($prefix, 'worlds.dashboard.main'), 'uses' => 'DashboardController@main', 'middleware' => 'admin']);
 
-            $router->get('{location}', ['as' => prefix($prefix, 'location.show'), 'uses' => 'LocationController@show'])->where('location', '^(.(?!' . trans('routes.location.edit') . '$|' . trans('routes.location.create') . '$))+');
+            $router->get('{location_path}', ['as' => prefix($prefix, 'location.show'), 'uses' => 'LocationController@show']);
 
-            $router->get('{location}/' . trans('routes.location.edit'), ['as' => prefix($prefix, 'location.edit'), 'uses' => 'LocationController@edit'])->where('location', '^(.(?!' . trans('routes.location.edit') . '$|' . trans('routes.location.create') . '$))+');
+            $router->get('{location_path}/' . trans('routes.location.edit'), ['as' => prefix($prefix, 'location.edit'), 'uses' => 'LocationController@edit']);
 
-            $router->get('{location}/' . trans('routes.location.create'), ['as' => prefix($prefix, 'location.create'), 'uses' => 'LocationController@create'])->where('location', '^(.(?!' . trans('routes.location.edit') . '$|' . trans('routes.location.create') . '$))+');
+            $router->get('{location_path}/' . trans('routes.location.create'), ['as' => prefix($prefix, 'location.create'), 'uses' => 'LocationController@create']);
 
-            $router->post('{location}', ['as' => prefix($prefix, 'location.store'), 'uses' => 'LocationController@store'])->where('location', '^(.(?!' . trans('routes.location.edit') . '$|' . trans('routes.location.create') . '$))+');
+            $router->post('{location_path}', ['as' => prefix($prefix, 'location.store'), 'uses' => 'LocationController@store']);
 
             $router->post(trans('routes.world.publish'), ['as' => prefix($prefix, 'world.publish'), 'uses' => 'WorldController@publish']);
 

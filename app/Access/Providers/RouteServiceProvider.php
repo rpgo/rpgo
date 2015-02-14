@@ -23,7 +23,11 @@ class RouteServiceProvider extends ServiceProvider {
 	public function boot(Router $router)
 	{
 		parent::boot($router);
-	}
+
+        $this->bootPatterns($router);
+
+        $this->bootBindings($router);
+    }
 
 	/**
 	 * Define the routes for the application.
@@ -42,5 +46,21 @@ class RouteServiceProvider extends ServiceProvider {
 
 		});
 	}
+
+    /**
+     * @param Router $router
+     */
+    private function bootPatterns(Router $router)
+    {
+        $router->pattern('location_path', '^(.(?!' . trans('routes.location.edit') . '$|' . trans('routes.location.create') . '$))+');
+    }
+
+    /**
+     * @param Router $router
+     */
+    private function bootBindings(Router $router)
+    {
+        $router->bind('location_path', '\Rpgo\Access\Http\Parameters\LocationPath@bind');
+    }
 
 }

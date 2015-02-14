@@ -39,7 +39,7 @@ class RepositoryManager {
     }
 
     /**
-     * @return MemberRepository
+     * @return LocationRepository
      */
     public function location()
     {
