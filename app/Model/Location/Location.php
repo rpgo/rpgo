@@ -53,7 +53,7 @@ class Location {
     {
         if($name)
             return (string) $this->name = $this->name->changeValueTo($name);
-        
+
         return (string) $this->name;
     }
 
