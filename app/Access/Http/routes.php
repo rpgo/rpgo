@@ -71,6 +71,8 @@ foreach(['lang', ''] as $prefix)
 
             $router->post('{location_path}', ['as' => prefix($prefix, 'location.store'), 'uses' => 'LocationController@store']);
 
+            $router->put('{location_path}', ['as' => prefix($prefix, 'location.update'), 'uses' => 'LocationController@update']);
+
         });
     });
 }
