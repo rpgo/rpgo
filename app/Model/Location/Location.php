@@ -59,10 +59,24 @@ class Location {
     }
 
     /**
-     * @return Location|null
+     * @param Location $container
+     * @return null|Location
      */
-    public function container()
+    public function container(Location $container = null)
     {
-        return $this->container;
+        return $this->container = $container ?: $this->container;
+    }
+
+    public function isWorld()
+    {
+        return ! $this->container();
+    }
+
+    public function breadcrumbs()
+    {
+        if( ! $this->isWorld())
+            return array_merge($this->container()->breadcrumbs(), [$this->name()]);
+
+        return [$this->name()];
     }
 }

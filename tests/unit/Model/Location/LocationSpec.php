@@ -49,4 +49,30 @@ class LocationSpec extends ObjectBehavior
         $this->beConstructedWith($id, $name, $slug, $container);
         $this->container()->shouldBe($container);
     }
+
+    function it_is_World_if_it_has_no_container()
+    {
+        $this->isWorld()->shouldReturn(true);
+    }
+
+    function it_is_World_if_it_has_a_container(Location $container)
+    {
+        $this->container($container);
+        $this->isWorld()->shouldReturn(false);
+    }
+
+    function its_breadcrumbs_contain_only_its_slug_if_its_World(Slug $slug, Name $name)
+    {
+        $name->__toString()->willReturn('my-little-place');
+        $this->breadcrumbs()->shouldBe(['my-little-place']);
+    }
+
+    function its_breadcrumbs_contain_the_breadcrumbs_of_the_container_Location(Location $container, Name $name)
+    {
+        $name->__toString()->willReturn('my-little-place');
+        $container->breadcrumbs()->willReturn(['path','to','container']);
+        $this->container($container);
+
+        $this->breadcrumbs()->shouldBe(['path', 'to', 'container', 'my-little-place']);
+    }
 }
