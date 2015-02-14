@@ -61,6 +61,8 @@ foreach(['lang', ''] as $prefix)
 
             $router->get(trans('routes.dashboard.home'), ['as' => prefix($prefix, 'worlds.dashboard.main'), 'uses' => 'DashboardController@main', 'middleware' => 'admin']);
 
+            $router->post(trans('routes.world.publish'), ['as' => prefix($prefix, 'world.publish'), 'uses' => 'WorldController@publish']);
+
             $router->get('{location_path}', ['as' => prefix($prefix, 'location.show'), 'uses' => 'LocationController@show']);
 
             $router->get('{location_path}/' . trans('routes.location.edit'), ['as' => prefix($prefix, 'location.edit'), 'uses' => 'LocationController@edit']);
@@ -68,8 +70,6 @@ foreach(['lang', ''] as $prefix)
             $router->get('{location_path}/' . trans('routes.location.create'), ['as' => prefix($prefix, 'location.create'), 'uses' => 'LocationController@create']);
 
             $router->post('{location_path}', ['as' => prefix($prefix, 'location.store'), 'uses' => 'LocationController@store']);
-
-            $router->post(trans('routes.world.publish'), ['as' => prefix($prefix, 'world.publish'), 'uses' => 'WorldController@publish']);
 
         });
     });
