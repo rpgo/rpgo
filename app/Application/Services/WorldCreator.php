@@ -74,7 +74,7 @@ class WorldCreator {
         if( ! $this->memberRepository->save($admin))
             return null;
 
-        $location = $this->locationFactory->make(['name' => 'Helyszínek', 'slug' => 'helyszinek']);
+        $location = $this->locationFactory->make(['name' => 'Világ', 'slug' => 'vilag']);
 
         if( ! $this->locationRepository->save($location) )
             return null;

@@ -1,5 +1,7 @@
 <?php namespace Rpgo\Model\Location;
 
+use Rpgo\Support\Collection\Collection;
+
 class Location {
 
     /**
@@ -19,6 +21,7 @@ class Location {
      * @var Location
      */
     private $container;
+    private $locations;
 
     /**
      * @param Id $id
@@ -86,5 +89,10 @@ class Location {
             return array_merge($this->container()->path(), [$this->slug()]);
 
         return [$this->slug()];
+    }
+
+    public function locations(Collection $locations = null)
+    {
+        return $this->locations = $locations ? : $this->locations;
     }
 }

@@ -28,8 +28,8 @@ class LocationRepository extends Repository implements LocationRepositoryContrac
     }
 
     /**
-     * @param $eloquent
-     * @return mixed
+     * @param Eloquent $eloquent
+     * @return Entity
      */
     protected function getEntity($eloquent)
     {
@@ -84,11 +84,20 @@ class LocationRepository extends Repository implements LocationRepositoryContrac
 
         $locations = $this->getEntities($root->getDescendantsAndSelf());
 
-        //dd($root->getDescendantsAndSelf());
-
         foreach($locations as $location)
             if($location->path() === $path)
                 return $location;
+    }
+
+    public function loadLocations(Entity $entity)
+    {
+        $eloquent = $this->eloquentFind($entity->id());
+
+        $locations = $this->getEntities($eloquent->children);
+
+        $entity->locations($locations);
+
+        return $entity;
     }
 
 }

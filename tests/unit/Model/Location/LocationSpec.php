@@ -8,6 +8,7 @@ use Rpgo\Model\Location\Id;
 use Rpgo\Model\Location\Location;
 use Rpgo\Model\Location\Name;
 use Rpgo\Model\Location\Slug;
+use Rpgo\Support\Collection\Collection;
 
 class LocationSpec extends ObjectBehavior
 {
@@ -87,5 +88,16 @@ class LocationSpec extends ObjectBehavior
         $this->container($container);
 
         $this->path()->shouldBe(['path', 'to', 'container', 'my-little-place']);
+    }
+
+    function it_has_no_locations_by_default()
+    {
+        $this->locations()->shouldBe(null);
+    }
+
+    function it_can_contain_other_locations(Collection $collection)
+    {
+        $this->locations($collection);
+        $this->locations()->shouldBe($collection);
     }
 }
