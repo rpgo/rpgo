@@ -8,10 +8,7 @@ class AddLocationCommand extends Command {
      * @var string
      */
     protected $name;
-    /**
-     * @var string
-     */
-    protected $slug;
+
     /**
      * @var Location
      */
@@ -20,13 +17,11 @@ class AddLocationCommand extends Command {
     /**
      * Create a new command instance.
      * @param string $name
-     * @param string $slug
      * @param Location $container
      */
-	public function __construct($name, $slug, Location $container = null)
+	public function __construct($name, Location $container)
 	{
         $this->name = $name;
-        $this->slug = $slug;
         $this->container = $container;
     }
 

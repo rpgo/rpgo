@@ -1,6 +1,8 @@
 <?php namespace Rpgo\Access\Http\Controllers;
 
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Response;
+use Rpgo\Access\Http\Requests\Request;
 use Rpgo\Application\Commands\AddLocationCommand;
 use Rpgo\Application\Repository\Eloquent\Model\Location;
 use Rpgo\Application\Repository\LocationRepository;
@@ -29,10 +31,11 @@ class LocationController extends Controller {
     }
 
     /**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
+     * Show the form for creating a new resource.
+     *
+     * @param $location
+     * @return Response
+     */
 	public function create($location)
 	{
         $location = $this->location($location);
@@ -40,14 +43,20 @@ class LocationController extends Controller {
 		return view('location.create')->with(compact('location'));
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param $container
+     * @param FormRequest|\Illuminate\Http\Request $request
+     * @return Response
+     */
+	public function store($container, \Illuminate\Http\Request $request)
 	{
-		//
+		$container = $this->location($container);
+
+        $location = $this->dispatchFrom(AddLocationCommand::class, $request, compact('container'));
+
+        return redirect()->route('location.show', [$this->guide->world()->slug(), $location->slug()]);
 	}
 
     /**
