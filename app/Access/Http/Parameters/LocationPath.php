@@ -2,8 +2,6 @@
 
 use Illuminate\Http\Request;
 use Rpgo\Application\Repository\Eloquent\LocationRepository;
-use Rpgo\Model\Location\Location;
-use Rpgo\Model\World\World;
 
 class LocationPath extends Parameter {
 
@@ -33,7 +31,7 @@ class LocationPath extends Parameter {
      * Return the Location in the current World with the specified path.
      *
      * @param string $locationPath
-     * @return Location|null
+     * @return null|\Rpgo\Model\Location\Location
      */
     public function bind($locationPath)
     {
@@ -53,7 +51,7 @@ class LocationPath extends Parameter {
      * Since we don't have route parameters when the route-model bindings occur,
      * we have to do a little extra work. Shame on you, Laravel! :)
      *
-     * @return World
+     * @return \Rpgo\Model\World\World
      */
     private function getCurrentWorld()
     {
