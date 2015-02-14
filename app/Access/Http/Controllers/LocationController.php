@@ -31,7 +31,7 @@ class LocationController extends Controller {
 	{
         $location = $this->dispatchFrom(AddLocationCommand::class, $request, compact('container'));
 
-        return redirect()->route('location.show', [$guide->world()->slug(), $location->slug()]);
+        return redirect()->route('location.show', [$guide->world()->slug(), join('/',$location->path())]);
 	}
 
     /**

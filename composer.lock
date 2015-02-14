@@ -4,8 +4,61 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c58b17e05f7f220a24f3a73411046fcd",
+    "hash": "55b5256089cb736f3085617f76550b4d",
     "packages": [
+        {
+            "name": "baum/baum",
+            "version": "1.0.13",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/etrepat/baum.git",
+                "reference": "b868b70bde6e9abb48a4cd5c8244eea9cb4eec4e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/etrepat/baum/zipball/b868b70bde6e9abb48a4cd5c8244eea9cb4eec4e",
+                "reference": "b868b70bde6e9abb48a4cd5c8244eea9cb4eec4e",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/console": "4.*|5.*",
+                "illuminate/database": "4.*|5.*",
+                "illuminate/filesystem": "4.*|5.*",
+                "illuminate/support": "4.*|5.*",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "d11wtq/boris": "~1.0",
+                "mockery/mockery": "~0.9",
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Baum": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Estanislau Trepat",
+                    "email": "estanis@etrepat.com",
+                    "homepage": "http://etrepat.com"
+                }
+            ],
+            "description": "Baum is an implementation of the Nested Set pattern for Eloquent models.",
+            "keywords": [
+                "Laravel 4",
+                "database",
+                "eloquent",
+                "laravel",
+                "nested set"
+            ],
+            "time": "2014-09-30 17:04:36"
+        },
         {
             "name": "classpreloader/classpreloader",
             "version": "1.2.0",
@@ -409,63 +462,17 @@
             "time": "2015-01-26 23:07:39"
         },
         {
-            "name": "kalnoy/nestedset",
-            "version": "v2.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/lazychaser/laravel-nestedset.git",
-                "reference": "f4e3a563b5607b085b3aed7aeee83b980288c70a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/lazychaser/laravel-nestedset/zipball/f4e3a563b5607b085b3aed7aeee83b980288c70a",
-                "reference": "f4e3a563b5607b085b3aed7aeee83b980288c70a",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/database": ">=4.1,<5.1.0",
-                "illuminate/events": ">=4.1,<5.1.0",
-                "illuminate/support": ">=4.1,<5.1.0",
-                "php": ">=5.4.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Kalnoy\\Nestedset\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Alexander Kalnoy",
-                    "email": "lazychaser@gmail.com"
-                }
-            ],
-            "description": "Nested Set Model for Laravel 4",
-            "keywords": [
-                "database",
-                "hierarchy",
-                "laravel",
-                "nested sets",
-                "nsm"
-            ],
-            "time": "2015-02-04 18:24:10"
-        },
-        {
             "name": "laravel/framework",
-            "version": "v5.0.4",
+            "version": "v5.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "b5eafda7dba3d1367a63095b83a068a73d32d97f"
+                "reference": "b1aea041cbc0cd54563e2d3709a54a71eed57653"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/b5eafda7dba3d1367a63095b83a068a73d32d97f",
-                "reference": "b5eafda7dba3d1367a63095b83a068a73d32d97f",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/b1aea041cbc0cd54563e2d3709a54a71eed57653",
+                "reference": "b1aea041cbc0cd54563e2d3709a54a71eed57653",
                 "shasum": ""
             },
             "require": {
@@ -577,7 +584,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2015-02-11 20:37:48"
+            "time": "2015-02-13 19:10:59"
         },
         {
             "name": "league/flysystem",

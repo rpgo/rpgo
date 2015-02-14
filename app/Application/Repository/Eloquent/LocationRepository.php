@@ -60,7 +60,7 @@ class LocationRepository extends Repository implements LocationRepositoryContrac
             'id'   => $eloquent->uuid,
             'name' => $eloquent->name,
             'slug' => $eloquent->slug,
-            'container' => $eloquent->container ? $this->getEntity($eloquent->container) : null,
+            'container' => $eloquent->parent ? $this->getEntity($eloquent->parent) : null,
         ];
     }
 
@@ -80,37 +80,15 @@ class LocationRepository extends Repository implements LocationRepositoryContrac
 
     public function fetchByWorldAndPath(World $world, array $path)
     {
-        $slug = end($path);
-
         $root = $this->eloquentFind($world->location()->id());
 
-        $root->load('children');
+        $locations = $this->getEntities($root->getDescendantsAndSelf());
 
-        $eloquent = $this->getByPath($root, $path);
+        //dd($root->getDescendantsAndSelf());
 
-        if(! $eloquent )
-            $eloquent = $root;
-
-        if( $eloquent->slug != $slug )
-            return null;
-
-        return $this->getEntity($eloquent);
+        foreach($locations as $location)
+            if($location->path() === $path)
+                return $location;
     }
 
-    /**
-     * @param Eloquent $node
-     * @param $path
-     * @return Collection
-     */
-    private function getByPath($node, array $path)
-    {
-        if( empty($path) || ! $node->hasChildren())
-            return $node;
-
-        $slug = next($path);
-
-        foreach($node->children as $children)
-            if($children->slug == $slug)
-                return $this->getByPath($children->children, $path);
-    }
 }

@@ -37,6 +37,9 @@ class LocationPath extends Parameter {
     {
         $world = $this->getCurrentWorld();
 
+        if(! $world)
+            $this->bindingNotFound();
+
         $path = explode('/', $locationPath);
 
         $location = $this->repository->fetchByWorldAndPath($world, $path);

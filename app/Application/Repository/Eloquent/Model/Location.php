@@ -1,25 +1,22 @@
 <?php namespace Rpgo\Application\Repository\Eloquent\Model;
 
-use Kalnoy\Nestedset\Node;
+use Baum\Node;
 
 class Location extends Node {
 
-    public $primaryKey = 'aiid';
+    protected $primaryKey = 'aiid';
 
-    public $casts = ['uuid' => 'string'];
+    protected $casts = ['uuid' => 'string'];
 
-    const LFT = 'container_lft';
+    protected $guarded = [ 'container_lft', 'container_rgt', 'container_depth' ];
 
-    const RGT = 'container_rgt';
+    protected $parentColumn = 'container_aiid';
 
-    const PARENT_ID = 'container_aiid';
+    protected $leftColumn = 'container_left';
 
-    protected $guarded = [ 'container_lft', 'container_rgt' ];
+    protected $rightColumn = 'container_right';
 
-    public function setContainerIdAttribute($value)
-    {
-        $this->setParentIdAttribute($value);
-    }
+    protected $depthColumn = 'container_depth';
 
     public function world()
     {

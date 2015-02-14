@@ -61,18 +61,31 @@ class LocationSpec extends ObjectBehavior
         $this->isWorld()->shouldReturn(false);
     }
 
-    function its_breadcrumbs_contain_only_its_slug_if_its_World(Slug $slug, Name $name)
+    function its_breadcrumbs_contain_only_itself_Name_if_its_World()
     {
-        $name->__toString()->willReturn('my-little-place');
-        $this->breadcrumbs()->shouldBe(['my-little-place']);
+        $this->breadcrumbs()->shouldBe([$this]);
     }
 
-    function its_breadcrumbs_contain_the_breadcrumbs_of_the_container_Location(Location $container, Name $name)
+    function its_breadcrumbs_contain_the_breadcrumbs_of_the_container_Location(Location $container, Location $other)
     {
-        $name->__toString()->willReturn('my-little-place');
-        $container->breadcrumbs()->willReturn(['path','to','container']);
+        $container->breadcrumbs()->willReturn([$other, $container]);
         $this->container($container);
 
-        $this->breadcrumbs()->shouldBe(['path', 'to', 'container', 'my-little-place']);
+        $this->breadcrumbs()->shouldBe([$other, $container, $this]);
+    }
+
+    function its_path_contains_only_its_Slug_if_its_a_World(Slug $slug)
+    {
+        $slug->__toString()->willReturn('my-little-place');
+        $this->path()->shouldBe(['my-little-place']);
+    }
+
+    function its_path_contains_the_path_of_the_container_Location(Location $container, Slug $slug)
+    {
+        $slug->__toString()->willReturn('my-little-place');
+        $container->path()->willReturn(['path','to','container']);
+        $this->container($container);
+
+        $this->path()->shouldBe(['path', 'to', 'container', 'my-little-place']);
     }
 }

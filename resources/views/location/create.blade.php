@@ -18,7 +18,7 @@
                             </div>
                         @endif
 
-                        <form class="form-horizontal" role="form" method="POST" action="{{route('location.store', [$world->slug(), $location->slug()])}}">
+                        <form class="form-horizontal" role="form" method="POST" action="{{route('location.store', [$world->slug(), join('/', $location->path())])}}">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                             <div class="form-group">

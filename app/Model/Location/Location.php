@@ -75,8 +75,16 @@ class Location {
     public function breadcrumbs()
     {
         if( ! $this->isWorld())
-            return array_merge($this->container()->breadcrumbs(), [$this->name()]);
+            return array_merge($this->container()->breadcrumbs(), [$this]);
 
-        return [$this->name()];
+        return [$this];
+    }
+
+    public function path()
+    {
+        if( ! $this->isWorld())
+            return array_merge($this->container()->path(), [$this->slug()]);
+
+        return [$this->slug()];
     }
 }

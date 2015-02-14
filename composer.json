@@ -10,7 +10,7 @@
   "require": {
     "laravel/framework": "5.0.*",
     "rhumsaa/uuid": "2.8.*",
-    "kalnoy/nestedset": "2.2.*"
+    "baum/baum": "1.0.*"
   },
   "require-dev": {
     "phpspec/phpspec": "2.1.*",

@@ -17,9 +17,10 @@ class CreateLocationsTable extends Migration {
 		{
             $table->increments('aiid');
             $table->string('uuid', 36)->unique();
-            $table->unsignedInteger('container_lft');
-            $table->unsignedInteger('container_rgt');
+            $table->unsignedInteger('container_left')->nullable();
+            $table->unsignedInteger('container_right')->nullable();
             $table->unsignedInteger('container_aiid')->nullable();
+            $table->unsignedInteger('container_depth')->nullable();
             $table->string('name', 40);
             $table->string('slug', 40);
 			$table->timestamps();
