@@ -24,9 +24,9 @@ class RouteServiceProvider extends ServiceProvider {
 	{
 		parent::boot($router);
 
-        $this->bootPatterns($router);
-
         $this->bootBindings($router);
+
+        $this->bootMacros($router);
     }
 
 	/**
@@ -37,12 +37,11 @@ class RouteServiceProvider extends ServiceProvider {
 	 */
 	public function map(Router $router)
 	{
-        $router->pattern('lang', '^(en|hu)$');
+        $this->mapPatterns($router);
 
         $router->group(['namespace' => $this->namespace], function(Router $router)
 		{
 			require app_path('Access/Http/routes.php');
-
 
 		});
 	}
@@ -50,8 +49,9 @@ class RouteServiceProvider extends ServiceProvider {
     /**
      * @param Router $router
      */
-    private function bootPatterns(Router $router)
+    private function mapPatterns(Router $router)
     {
+        $router->pattern('lang', '^(en|hu)$');
         $router->pattern('location_path', '^(.(?!' . trans('routes.location.edit') . '$|' . trans('routes.location.create') . '$))+');
     }
 
@@ -61,6 +61,11 @@ class RouteServiceProvider extends ServiceProvider {
     private function bootBindings(Router $router)
     {
         $router->bind('location_path', '\Rpgo\Access\Http\Parameters\LocationPath@bind');
+    }
+
+    private function bootMacros(Router $router)
+    {
+        // TODO: explore macro possibilities to simplify routes file.
     }
 
 }

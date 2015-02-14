@@ -13,4 +13,9 @@ abstract class Controller extends BaseController {
         return $this->dispatchFrom($command, $source, $extras);
     }
 
+    public function view($view = null, array $data = [], array $mergeData = [])
+    {
+        return view($view, $data, $mergeData);
+    }
+
 }
