@@ -46,10 +46,14 @@ class Location {
     }
 
     /**
+     * @param null $name
      * @return string
      */
-    public function name()
+    public function name($name = null)
     {
+        if($name)
+            return (string) $this->name = $this->name->changeValueTo($name);
+        
         return (string) $this->name;
     }
 

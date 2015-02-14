@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Rpgo\Application\Commands\AddLocationCommand;
+use Rpgo\Application\Commands\RenameLocationCommand;
 use Rpgo\Application\Services\Guide;
 use Rpgo\Model\Location\Location;
 
@@ -60,11 +61,15 @@ class LocationController extends Controller {
      * Update the specified Location in storage.
      *
      * @param Location $location
+     * @param Guide $guide
+     * @param Request $request
      * @return Response
      */
-	public function update(Location $location)
+	public function update(Location $location, Guide $guide, Request $request)
 	{
-		dd($location);
+		$location = $this->dispatchFrom(RenameLocationCommand::class, $request, compact('location'));
+
+        return redirect()->route('location.show', [$guide->world()->slug(), join('/', $location->path())]);
 	}
 
     /**
