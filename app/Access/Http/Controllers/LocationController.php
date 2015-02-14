@@ -9,14 +9,35 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class LocationController extends Controller {
 
-	/**
+    /**
+     * @var Guide
+     */
+    private $guide;
+    /**
+     * @var LocationRepository
+     */
+    private $location;
+
+    /**
+     * @param Guide $guide
+     * @param LocationRepository $location
+     */
+    public function __construct(Guide $guide, LocationRepository $location)
+    {
+        $this->guide = $guide;
+        $this->location = $location;
+    }
+
+    /**
 	 * Show the form for creating a new resource.
 	 *
 	 * @return Response
 	 */
 	public function create($location)
 	{
-		return view('location.create');
+        $location = $this->location($location);
+
+		return view('location.create')->with(compact('location'));
 	}
 
 	/**
@@ -30,23 +51,14 @@ class LocationController extends Controller {
 	}
 
     /**
-     * Display the specified resource.
+     * Display the location.
      *
      * @param string $location
-     * @param Guide $guide
-     * @param LocationRepository $repository
      * @return Response
      */
-	public function show($location, Guide $guide, LocationRepository $repository)
+	public function show($location)
 	{
-        $world = $guide->world();
-
-		$path = explode('/', $location);
-
-        $location = $repository->fetchByWorldAndPath($world, $path);
-
-        if( ! $location )
-            throw new NotFoundHttpException;
+        $location = $this->location($location);
 
         return view('location.show')->with(compact('location'));
 	}
@@ -83,5 +95,23 @@ class LocationController extends Controller {
 	{
 		//
 	}
+
+    /**
+     * @param $location
+     * @return mixed
+     */
+    private function location($location)
+    {
+        $world = $this->guide->world();
+
+        $path = explode('/', $location);
+
+        $location = $this->location->fetchByWorldAndPath($world, $path);
+
+        if( ! $location )
+            throw new NotFoundHttpException;
+
+        return $location;
+    }
 
 }
