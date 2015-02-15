@@ -10,7 +10,8 @@
   "require": {
     "laravel/framework": "5.0.*",
     "rhumsaa/uuid": "2.8.*",
-    "baum/baum": "1.0.*"
+    "baum/baum": "1.0.*",
+    "doctrine/orm": "2.4.*"
   },
   "require-dev": {
     "phpspec/phpspec": "2.1.*",
