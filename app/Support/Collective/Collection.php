@@ -102,4 +102,14 @@ class Collection implements CollectionContract, Countable, IteratorAggregate, Ar
     {
         $this->items[] = $item;
     }
+
+    public function contains($item)
+    {
+        return in_array($item, $this->items);
+    }
+
+    public function isEmpty()
+    {
+        return empty($this->items);
+    }
 }
