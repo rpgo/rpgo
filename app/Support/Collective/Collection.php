@@ -8,6 +8,8 @@ use Rpgo\Support\Collective\Contract\Collection as CollectionContract;
 
 class Collection implements CollectionContract, Countable, IteratorAggregate, ArrayAccess {
 
+    protected $items = [];
+
     /**
      * (PHP 5 &gt;= 5.1.0)<br/>
      * Count elements of an object

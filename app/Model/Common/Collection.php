@@ -6,6 +6,8 @@ use Rpgo\Support\Collective\Collection as BaseCollection;
 
 class Collection extends BaseCollection implements DoctrineCollection {
 
+    protected $items = [];
+
     /**
      * Adds an element at the end of the collection.
      *
