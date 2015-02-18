@@ -105,11 +105,17 @@ class Collection implements CollectionContract, Countable, IteratorAggregate, Ar
 
     public function contains($item)
     {
-        return in_array($item, $this->items);
+        return in_array($item, $this->items, true);
     }
 
     public function isEmpty()
     {
         return empty($this->items);
+    }
+
+    public function remove($item)
+    {
+        if(false !== $key = array_search($item, $this->items, true))
+            unset($this->items[$key]);
     }
 }

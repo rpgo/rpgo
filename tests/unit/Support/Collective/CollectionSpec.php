@@ -45,4 +45,29 @@ class CollectionSpec extends ObjectBehavior
         $this->add('something');
         $this->isEmpty()->shouldReturn(false);
     }
+
+    function it_removes_an_added_item()
+    {
+        $this->add('something');
+        $this->remove('something');
+        $this->contains('something')->shouldReturn(false);
+    }
+
+    function it_does_nothing_when_trying_to_remove_something_not_in_the_items()
+    {
+        $this->remove('something');
+    }
+
+    function it_does_not_contain_an_item_that_is_only_similar_to_the_contained_one()
+    {
+        $this->add(0);
+        $this->contains(false)->shouldReturn(false);
+    }
+
+    function it_does_not_remove_an_item_that_is_only_similar_to_the_contained_one()
+    {
+        $this->add(0);
+        $this->remove(false);
+        $this->contains(0)->shouldReturn(true);
+    }
 }
