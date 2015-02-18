@@ -21,7 +21,7 @@ class Collection implements CollectionContract, Countable, IteratorAggregate, Ar
      */
     public function count()
     {
-        // TODO: Implement count() method.
+        return count($this->items);
     }
 
     /**
@@ -96,5 +96,10 @@ class Collection implements CollectionContract, Countable, IteratorAggregate, Ar
     public function offsetUnset($offset)
     {
         // TODO: Implement offsetUnset() method.
+    }
+
+    public function add($item)
+    {
+        $this->items[] = $item;
     }
 }
