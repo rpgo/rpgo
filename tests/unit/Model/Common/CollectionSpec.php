@@ -11,5 +11,6 @@ class CollectionSpec extends ObjectBehavior
     {
         $this->shouldHaveType('Rpgo\Model\Common\Collection');
         $this->shouldHaveType('Rpgo\Support\Collective\Collection');
+        $this->shouldHaveType('Doctrine\Common\Collections\Collection');
     }
 }
